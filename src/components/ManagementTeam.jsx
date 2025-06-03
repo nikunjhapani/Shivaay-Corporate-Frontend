@@ -6,7 +6,7 @@ export default function ManagementTeam() {
     const [data, setCount] = useState();
 
   return (
-    <div>
+   
       <section className="layout-pt-md layout-pb-lg px-10 container">
 
       <div className="container layout-pb-sm">
@@ -79,6 +79,6 @@ export default function ManagementTeam() {
         </div>
       </div>
     </section>
-    </div>
+    
   )
 }
