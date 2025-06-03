@@ -7,6 +7,7 @@ const Typography = ({
   weight = 'normal',
   className = '',
   as,
+   ...props
 }) => {
   const variantMap = {
     h1: 'h1',
@@ -23,8 +24,8 @@ const Typography = ({
   const Component = as || variantMap[variant];
 
   const variantStyles = {
-    h1: 'text-4xl md:text-6xl font-bold',
-    h2: 'text-3xl md:text-4xl font-bold',
+    h1: 'text-34 md:text-30 sm:text-24 mb-10 text-secondary',
+    h2: 'text-34 md:text-30 sm:text-24 mb-10',
     h3: 'text-2xl md:text-3xl font-bold',
     h4: 'text-xl md:text-2xl font-semibold',
     h5: 'text-lg md:text-xl font-semibold',
@@ -51,7 +52,7 @@ const Typography = ({
 
   return (
     <Component
-      className={`${variantStyles[variant]} ${colorStyles[color]} ${weightStyles[weight]} ${className}`}
+      className={`${variantStyles[variant]} ${colorStyles[color]} ${weightStyles[weight]} ${className}`}  {...props}
     >
       {children}
     </Component>

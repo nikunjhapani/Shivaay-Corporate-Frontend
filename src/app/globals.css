@@ -1,5 +1,15 @@
 @import "tailwindcss";
+
 @import 'swiper/css';
 @import 'swiper/css/navigation';
 @import 'swiper/css/pagination';
 @import 'swiper/css/effect-fade'; /* Optional */
+
+h1, h2, h3 {
+  font-family: var(--font-cinzel), serif;
+}
+
+body {
+  font-family: var(--font-poppins), sans-serif;
+  font-weight: 400;
+}

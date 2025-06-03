@@ -1,37 +1,43 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Cinzel,Poppins } from 'next/font/google';
 import "./globals.css";
-import '../../public/css/vendors.css';
-import '../../public/css/main.css';
-import Header from "@/app/layout/Header";
-import Footer from "@/app/layout/Footer";
-import AOSProvider from "@/components/AOSProvider"; // <-- import client wrapper
+import "../../public/css/vendors.css";
+import "../../public/css/main.css";
+import Header from "../app/layout/Header";
+import Footer from "../app/layout/Footer";
+import AOSProvider from "../components/AOSProvider";
+import ReactQueryProvider from "./context/ReactQueryProvider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const cinzel = Cinzel({
+  subsets: ['latin'],
+  weight: ['400', '700'], // customize as needed
+  variable: '--font-cinzel',
+  display: 'swap',
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '600', '700'], // customize as needed
+  variable: '--font-poppins',
+  display: 'swap',
 });
 
 export const metadata = {
   title: "Shivaay Corporate - Innovative Business Solutions",
-  description: "Shivaay Corporate provides cutting-edge technology solutions for businesses of all sizes.",
+  description:
+    "Shivaay Corporate provides cutting-edge technology solutions for businesses of all sizes.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable}`}
-      >
-         <AOSProvider>
-        <Header />
-        <main className="flex-grow">{children}</main>
-          <Footer />
+      <body className={`${cinzel.variable} ${poppins.variable}`}>
+        <ReactQueryProvider>
+          <AOSProvider>
+            <Header />
+            <main className="flex-grow">{children}</main>
+            <Footer />
           </AOSProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
