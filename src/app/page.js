@@ -17,10 +17,7 @@ export default function Home() {
   return (
     <>
       <Banner
-        data={{
-          title: " Jewelry-Making Intertwines With",
-          desc: "Creativity & Innovation",
-        }}
+         pageName="Home"
       />
      
      <About />
