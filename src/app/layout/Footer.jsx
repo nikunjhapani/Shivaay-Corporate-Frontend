@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-const Footer = () => {
+const Footer = (settings) => {
   return (
     <>
       <footer className="footer footer-d -type-1 bg-accent-3 text-white">

@@ -1,7 +1,11 @@
-import React from 'react'
+import Banner from "../../components/Banner";
+import React from "react";
 
 export default function page() {
   return (
-    <div>Contact Us</div>
-  )
+    <>
+      <Banner pageName="contact-us" />
+      <div>Contact Us</div>
+    </>
+  );
 }

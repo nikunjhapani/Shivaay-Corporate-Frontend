@@ -120,7 +120,6 @@ export default function Banner({ pageName }: Props) {
                         data-aos="fade-up"
                         data-aos-offset="0"
                         data-aos-duration="1000"
-
                       >
                         {banner.bannerTitle}
                       </h1>

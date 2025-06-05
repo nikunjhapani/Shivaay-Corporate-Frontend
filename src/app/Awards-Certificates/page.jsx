@@ -18,8 +18,6 @@ const getAwards = async () => {
 };
 export default async function page() {
   const awardsData = await getAwards();
-  const data = await getAwards();
-  console.log(data);
   return (
     <div>
       <Banner pageName="Awards & Certificates" />

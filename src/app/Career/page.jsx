@@ -1,7 +1,10 @@
 import React from 'react'
+import Banner from "../../components/Banner";
 
 export default function page() {
   return (
-    <div>Career</div>
+    <div>
+       <Banner pageName="Career" />
+    </div>
   )
 }

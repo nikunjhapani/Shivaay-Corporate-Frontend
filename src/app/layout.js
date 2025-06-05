@@ -1,4 +1,4 @@
-import { Cinzel,Poppins } from 'next/font/google';
+import { Cinzel, Poppins } from "next/font/google";
 import "./globals.css";
 import "../../public/css/vendors.css";
 import "../../public/css/main.css";
@@ -6,40 +6,40 @@ import Header from "../app/layout/Header";
 import Footer from "../app/layout/Footer";
 import AOSProvider from "../components/AOSProvider";
 import ReactQueryProvider from "./context/ReactQueryProvider";
+import getWebsiteSettings from "../utils/websiteSettings";
+import { metadata } from "./seo/metadata";
+import PageName from "./context/PageInfoProvider";
 
 const cinzel = Cinzel({
-  subsets: ['latin'],
-  weight: ['400', '700'], // customize as needed
-  variable: '--font-cinzel',
-  display: 'swap',
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-cinzel",
+  display: "swap",
 });
 
 const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '600', '700'], // customize as needed
-  variable: '--font-poppins',
-  display: 'swap',
+  subsets: ["latin"],
+  weight: ["400", "600", "700"], // customize as needed
+  variable: "--font-poppins",
+  display: "swap",
 });
+export { metadata };
 
-export const metadata = {
-  title: "",
-  title: {
-    default: "Shivaay Corporate - Innovative Business Solutions", 
-    template: "%s | Shivaay Corporate ",
-  },
-  description:
-    "Shivaay Corporate provides cutting-edge technology solutions for businesses of all sizes.",
-};
-
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children, params }) {
+  const settings = await getWebsiteSettings();
+  console.log(settings, "settings");
   return (
     <html lang="en">
       <body className={`${cinzel.variable} ${poppins.variable}`}>
         <ReactQueryProvider>
           <AOSProvider>
-            <Header />
-            <main className="flex-grow">{children}</main>
-            <Footer />
+            <main>
+              <Header settings={settings} />
+            
+              {children}
+
+              <Footer settings={settings} />
+            </main>
           </AOSProvider>
         </ReactQueryProvider>
       </body>
