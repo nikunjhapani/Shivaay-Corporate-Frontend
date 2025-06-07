@@ -13,7 +13,6 @@ const useStickyHeader = (headerRef: React.RefObject<HTMLElement>) => {
 
     const onScroll = () => {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      
 
       // Hide on scroll down, show on scroll up
       if (scrollTop > lastScrollTop.current) {
@@ -31,8 +30,7 @@ const useStickyHeader = (headerRef: React.RefObject<HTMLElement>) => {
         if (classFromAttr) header.classList.remove(classFromAttr);
       }
 
-        lastScrollTop.current = scrollTop <= 0 ? 0 : scrollTop;
-        console.log('call')
+      lastScrollTop.current = scrollTop <= 0 ? 0 : scrollTop;
     };
 
     window.addEventListener("scroll", onScroll);

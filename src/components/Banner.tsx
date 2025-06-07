@@ -31,7 +31,6 @@ export default function Banner({ pageName }: Props) {
           (item: BannerItem) =>
             item.pageName === pageName && item.isActive === true
         );
-        console.log(Filter);
         setBanners(Filter);
       } catch (error) {
         console.error("Error fetching banners:", error);
@@ -41,8 +40,6 @@ export default function Banner({ pageName }: Props) {
     };
 
     fetchBanners();
-
-    console.log(banners,'Awards & Certificates');
   }, [pageName]);
   if (loading) return <p>Loading banners...</p>;
   if (banners.length === 0) return null;
@@ -52,7 +49,10 @@ export default function Banner({ pageName }: Props) {
 
       {banners.map((banner) => {
         const isVideo = banner.bannerType === "video";
-        const cleanDescription = banner.description?.replace(/^<p>|<\/p>$/g, '');
+        const cleanDescription = banner.description?.replace(
+          /^<p>|<\/p>$/g,
+          ""
+        );
         return (
           <>
             <section className="hero -type-1 z-1" key={banner._id}>
@@ -60,7 +60,6 @@ export default function Banner({ pageName }: Props) {
               <div className="hero__bg">
                 {isVideo ? (
                   <>
-
                     <video
                       width="100%"
                       className="desktop-v"
@@ -69,7 +68,10 @@ export default function Banner({ pageName }: Props) {
                       muted
                       playsInline
                     >
-                      <source src={`${api.defaults.baseURL}/${banner.desktopImage}`} type="video/mp4" />
+                      <source
+                        src={`${api.defaults.baseURL}/${banner.desktopImage}`}
+                        type="video/mp4"
+                      />
                     </video>
                     <video
                       width="100%"
@@ -79,8 +81,12 @@ export default function Banner({ pageName }: Props) {
                       muted
                       playsInline
                     >
-                      <source src={`${api.defaults.baseURL}/${banner.desktopImage}`} type="video/mp4" />
-                    </video></>
+                      <source
+                        src={`${api.defaults.baseURL}/${banner.desktopImage}`}
+                        type="video/mp4"
+                      />
+                    </video>
+                  </>
                 ) : (
                   <>
                     <Image
@@ -99,7 +105,6 @@ export default function Banner({ pageName }: Props) {
                     />
                   </>
                 )}
-
               </div>
 
               <div className="container">
@@ -111,9 +116,8 @@ export default function Banner({ pageName }: Props) {
                         data-aos="fade-up"
                         data-aos-offset="0"
                         data-aos-duration="1000"
-                        dangerouslySetInnerHTML={{ __html: cleanDescription }} >
-
-                      </div>
+                        dangerouslySetInnerHTML={{ __html: cleanDescription }}
+                      ></div>
 
                       <h1
                         className="hero__title text-white"

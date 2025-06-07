@@ -28,8 +28,6 @@ export default function ContactFormSection() {
           },
         }
       );
-
-      console.log("Success:", response.data);
       setFormData({ firstName: "", lastName: "", email: "", comment: "" });
     } catch (error) {
       console.error("Error:", error.response?.data || error.message);

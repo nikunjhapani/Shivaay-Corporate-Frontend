@@ -27,7 +27,6 @@ export { metadata };
 
 export default async function RootLayout({ children, params }) {
   const settings = await getWebsiteSettings();
-  console.log(settings, "settings");
   return (
     <html lang="en">
       <body className={`${cinzel.variable} ${poppins.variable}`}>
@@ -35,7 +34,7 @@ export default async function RootLayout({ children, params }) {
           <AOSProvider>
             <main>
               <Header settings={settings} />
-            
+
               {children}
 
               <Footer settings={settings} />

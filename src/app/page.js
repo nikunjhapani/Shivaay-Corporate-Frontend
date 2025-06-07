@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import SocialResponsibility from "../components/SocialResponsibility";
 import Awards from "../components/Awards";
@@ -13,44 +13,40 @@ import About from "../components/AboutSection";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-
   return (
     <>
-      <Banner
-         pageName="Home"
-      />
-     
-     <About />
+      <Banner pageName="Home" />
+
+      <About />
       <CounterSection />
-       <VisionMissionSection />
+      <VisionMissionSection />
       <InnovationSection />
       <Essence />
-     <SocialResponsibility />
+      <SocialResponsibility />
       <ManagementTeam />
       <OurClients />
-       <section class="global-bg-section">
-        <video width="100%" class="desktop-v" autoplay loop muted>
+      <section className="global-bg-section">
+        <video width="100%" className="desktop-v" autoPlay loop muted>
           <source src="./video/global-presence.mp4" type="video/mp4" />
         </video>
-        <video width="100%" class="mobile-v" autoplay loop muted>
+        <video width="100%" className="mobile-v" autoPlay loop muted>
           <source src="./video/global-presence_mobile.mp4" type="video/mp4" />
         </video>
-        <div class="global-text-p">
-          <div class="container">
-            <div class="col-lg-6">
+        <div className="global-text-p">
+          <div className="container">
+            <div className="col-lg-6">
               <div
                 data-aos="fade-right"
                 data-aos-offset="0"
                 data-aos-duration="1500"
               >
-                <div class="text-15 sm:text-13 uppercase mb-5 text-white">
-                 
+                <div className="text-15 sm:text-13 uppercase mb-5 text-white">
                   A Worldwide Influence in Jewelry Design
                 </div>
-                <h2 class="text-34 md:text-30 sm:text-24 text-white mb-20">
+                <h2 className="text-34 md:text-30 sm:text-24 text-white mb-20">
                   Our Global Presence
                 </h2>
-                <p class="text-white text-17 sm:text-13 lh-17">
+                <p className="text-white text-17 sm:text-13 lh-17">
                   {" "}
                   Shivaay Jewels has established a significant global footprint.
                   Our jewelry is sold across continents, from New York to Paris,
@@ -60,8 +56,8 @@ export default function Home() {
                 </p>
 
                 <a href="/global-presence.html">
-                  <button class="button -type-1 text-white mt-40">
-                    <i class="-icon">
+                  <button className="button -type-1 text-white mt-40">
+                    <i className="-icon">
                       <svg
                         width="50"
                         height="30"

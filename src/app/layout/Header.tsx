@@ -15,9 +15,8 @@ export default function Header() {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
-    console.log('call')
   };
-   const handleLinkClick = () => {
+  const handleLinkClick = () => {
     setIsOpen(false);
   };
 
@@ -43,12 +42,15 @@ export default function Header() {
     }
     async function fetchSettings() {
       try {
-        const res = await fetch(`${api.defaults.baseURL}/api/websiteSettings/getSettings`, {
-          method: "GET", // or "GET", depends on your API
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const res = await fetch(
+          `${api.defaults.baseURL}/api/websiteSettings/getSettings`,
+          {
+            method: "GET", // or "GET", depends on your API
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         if (!res.ok) {
           throw new Error("Failed to fetch website settings");
         }
@@ -66,7 +68,9 @@ export default function Header() {
   if (loading) {
     return <div>Loading menu...</div>;
   }
-  const filteredMenuData = menuData.filter(item => item.menuName.toLowerCase() !== 'home');
+  const filteredMenuData = menuData.filter(
+    (item) => item.menuName.toLowerCase() !== "home"
+  );
   const parentMenus = filteredMenuData.filter((item) => !item.parentId);
   const submenuMap = menuData.reduce((acc, item) => {
     if (item.parentId && item.parentId._id) {
@@ -76,14 +80,22 @@ export default function Header() {
     }
     return acc;
   }, {});
-  console.log(siteSettings, 'siteSettings')
   return (
     <>
-      <div className={`menuFullScreen js-menuFullScreen ${isOpen ? 'is-active' : ''}`}>
+      <div
+        className={`menuFullScreen js-menuFullScreen ${
+          isOpen ? "is-active" : ""
+        }`}
+      >
         <div className="menuFullScreen__topMobile js-menuFullScreen-topMobile">
-          <div className="d-flex items-center text-white js-menuFullScreen-toggle" onClick={toggleMenu}>
+          <div
+            className="d-flex items-center text-white js-menuFullScreen-toggle"
+            onClick={toggleMenu}
+          >
             <i className="icon-menu text-9"></i>
-            <div className="text-15 sm:text-13 uppercase ml-30 sm:d-none">Menu</div>
+            <div className="text-15 sm:text-13 uppercase ml-30 sm:d-none">
+              Menu
+            </div>
           </div>
 
           <div className="menuFullScreen__img">
@@ -98,7 +110,10 @@ export default function Header() {
             <img src="img/menu/bg.png" alt="image" />
           </div>
 
-          <button className="menuFullScreen__close js-menuFullScreen-toggle js-menuFullScreen-close-btn" onClick={toggleMenu}>
+          <button
+            className="menuFullScreen__close js-menuFullScreen-toggle js-menuFullScreen-close-btn"
+            onClick={toggleMenu}
+          >
             <span className="icon">
               <span></span>
               <span></span>
@@ -107,7 +122,6 @@ export default function Header() {
           </button>
 
           <div className="menuFullScreen-links js-menuFullScreen-links">
-
             {parentMenus.map((item, index) => (
               <div className="menuFullScreen-links__item" key={index}>
                 <Link href={item?.menuURL} onClick={handleLinkClick}>
@@ -116,14 +130,21 @@ export default function Header() {
                   {item?.menuType === "Sub Menu" && (
                     <>
                       <i className="icon-arrow-right"></i>
-                      <i className="icon-chevron-right"></i></>
+                      <i className="icon-chevron-right"></i>
+                    </>
                   )}
                 </Link>
                 {submenuMap[item._id] && submenuMap[item._id].length > 0 && (
                   <div className="menuFullScreen-links-subnav js-menuFullScreen-subnav">
                     {submenuMap[item._id].map((submenuItem) => (
-                      <div className="menuFullScreen-links-subnav__item" key={submenuItem._id}>
-                        <Link href={submenuItem.menuURL} onClick={handleLinkClick}>
+                      <div
+                        className="menuFullScreen-links-subnav__item"
+                        key={submenuItem._id}
+                      >
+                        <Link
+                          href={submenuItem.menuURL}
+                          onClick={handleLinkClick}
+                        >
                           {submenuItem.menuName}
                         </Link>
                       </div>
@@ -135,15 +156,19 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="menuFullScreen__right js-menuFullScreen-right" style={{
-          backgroundImage: `url(${api.defaults.baseURL}/${siteSettings?.menuImage1})`,
-        }}
+        <div
+          className="menuFullScreen__right js-menuFullScreen-right"
+          style={{
+            backgroundImage: `url(${api.defaults.baseURL}/${siteSettings?.menuImage1})`,
+          }}
         >
           <div className="text-center">
             <div className="mt-40">
               <div className="text-24 text-sec fw-500 text-white">Location</div>
-              <div className="mt-10 text-white" dangerouslySetInnerHTML={{ __html: siteSettings?.address }}>
-              </div>
+              <div
+                className="mt-10 text-white"
+                dangerouslySetInnerHTML={{ __html: siteSettings?.address }}
+              ></div>
             </div>
 
             <div className="mt-40">
@@ -152,10 +177,14 @@ export default function Header() {
               </div>
               <div className="mt-10 text-white">
                 <div>
-                  <Link href={`tel:${siteSettings?.phone}`}>{siteSettings?.phone}</Link>
+                  <Link href={`tel:${siteSettings?.phone}`}>
+                    {siteSettings?.phone}
+                  </Link>
                 </div>
                 <div>
-                  <Link href={`mailto:${siteSettings?.email}`}>{siteSettings?.email}</Link>
+                  <Link href={`mailto:${siteSettings?.email}`}>
+                    {siteSettings?.email}
+                  </Link>
                 </div>
               </div>
             </div>
@@ -165,7 +194,9 @@ export default function Header() {
                 Connect With Us
               </div>
               <div className="mt-10 text-white">
-                <Link href={`tel:${siteSettings?.mobile}`}>{siteSettings?.mobile}</Link>
+                <Link href={`tel:${siteSettings?.mobile}`}>
+                  {siteSettings?.mobile}
+                </Link>
               </div>
             </div>
           </div>
@@ -181,7 +212,10 @@ export default function Header() {
       >
         <div className="header__container h-full items-center">
           <div className="header__left d-flex items-center">
-            <button className="d-flex items-center cursor-pointer js-menuFullScreen-toggle" onClick={toggleMenu}>
+            <button
+              className="d-flex items-center cursor-pointer js-menuFullScreen-toggle"
+              onClick={toggleMenu}
+            >
               <i className="icon-menu text-11 text-white"></i>
               <div className="text-15 sm:text-13 uppercase text-white ml-15 sm:d-none fw-600">
                 Menu
