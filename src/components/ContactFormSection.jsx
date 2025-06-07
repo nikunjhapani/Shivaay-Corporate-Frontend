@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import axios from "axios";
+import api from "../utils/axios";
 
 export default function ContactFormSection() {
   const [formData, setFormData] = useState({
@@ -9,6 +10,7 @@ export default function ContactFormSection() {
     email: "",
     comment: "",
   });
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,7 +22,7 @@ export default function ContactFormSection() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5001/api/inquiry/getAllApi",
+        `${api.defaults.baseURL}/api/inquiry/createApi`,
         formData,
         {
           headers: {
@@ -29,10 +31,13 @@ export default function ContactFormSection() {
         }
       );
       setFormData({ firstName: "", lastName: "", email: "", comment: "" });
+      setError("");
     } catch (error) {
       console.error("Error:", error.response?.data || error.message);
+      setError("Failed to submit form. Please try again.");
     }
   };
+
   return (
     <section className="layout-pt-md layout-pb-md">
       <div className="container">
@@ -46,12 +51,14 @@ export default function ContactFormSection() {
             >
               Leave us your info
             </h2>
+            {error && <p className="alert alert-danger">{error}</p>}
+            
             <form
               onSubmit={handleSubmit}
               className="contactForm row y-gap-30 pt-30"
               noValidate
             >
-              <div className="col-md-6">
+               <div className="col-md-6">
                 <div className="form-input">
                   <input
                     type="text"
@@ -59,7 +66,7 @@ export default function ContactFormSection() {
                     required
                     value={formData.firstName}
                     onChange={handleChange}
-                    className=""
+                    className={formData.isSuccess ? "is-invalid" : ""}
                   />
                   <label className="lh-1 text-14 text-light-1">
                     First Name
@@ -117,6 +124,7 @@ export default function ContactFormSection() {
                   SEND YOUR MESSAGE
                 </button>
               </div>
+             
             </form>
           </div>
         </div>

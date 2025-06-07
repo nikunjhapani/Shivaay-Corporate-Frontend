@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import api from "../utils/axios";
 import Image from "next/image";
 import Link from "next/link";
+import CareerForm from "./CareerForm";
 
 type BannerItem = {
   _id: string;
@@ -23,6 +24,7 @@ type Props = {
 export default function Banner({ pageName }: Props) {
   const [banners, setBanners] = useState<BannerItem[]>([]);
   const [loading, setLoading] = useState(true);
+  console.log(pageName, 'pageName');
   useEffect(() => {
     const fetchBanners = async () => {
       try {
@@ -44,8 +46,7 @@ export default function Banner({ pageName }: Props) {
   if (loading) return <p>Loading banners...</p>;
   if (banners.length === 0) return null;
   return (
-    <section className="hero -type-1 z-1">
-      <div className="video-overlay01"></div>
+    <>
 
       {banners.map((banner) => {
         const isVideo = banner.bannerType === "video";
@@ -55,70 +56,93 @@ export default function Banner({ pageName }: Props) {
         );
         return (
           <>
-            <section className="hero -type-1 z-1" key={banner._id}>
-              <div className="video-overlay01"></div>
-              <div className="hero__bg">
-                {isVideo ? (
-                  <>
-                    <video
-                      width="100%"
-                      className="desktop-v"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                    >
-                      <source
-                        src={`${api.defaults.baseURL}/${banner.desktopImage}`}
-                        type="video/mp4"
-                      />
-                    </video>
-                    <video
-                      width="100%"
-                      className="mobile-v"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                    >
-                      <source
-                        src={`${api.defaults.baseURL}/${banner.desktopImage}`}
-                        type="video/mp4"
-                      />
-                    </video>
-                  </>
-                ) : (
-                  <>
-                    <Image
-                      src={`${api.defaults.baseURL}/${banner.desktopImage}`}
-                      alt={banner.bannerTitle}
-                      width={1920}
-                      height={800}
-                      className="hidden md:block w-full object-cover"
-                    />
-                    <Image
-                      src={`${api.defaults.baseURL}/${banner.mobileImage}`}
-                      alt={banner.bannerTitle}
-                      width={768}
-                      height={500}
-                      className="md:hidden w-full object-cover"
-                    />
-                  </>
-                )}
-              </div>
-
-              <div className="container">
-                <div className="row justify-center text-center">
-                  <div className="col-xl-8 col-lg-10">
-                    <div className="hero__content">
-                      <div
-                        className="hero__subtitle text-white"
+            {pageName === "Career" ? (
+             
+              <section key={banner._id} className="job-section"   style={{ backgroundImage: `url(${api.defaults.baseURL}/${banner.desktopImage})` }}>
+                <div className="container">
+                  <div className="row justify-center text-center">
+                    <div className="col-xl-6 col-lg-6  d-flex items-center text-left">
+                      <div className="pr-50">
+                        <h1
+                        className="hero__title text-white"
                         data-aos="fade-up"
                         data-aos-offset="0"
                         data-aos-duration="1000"
-                        dangerouslySetInnerHTML={{ __html: cleanDescription }}
-                      ></div>
+                      >
+                        {banner.bannerTitle}
+                      </h1>
+                      <div className="hero__content">
+                        <div
+                          className="hero__subtitle text-white"
+                          data-aos="fade-up"
+                          data-aos-offset="0"
+                          data-aos-duration="1000"
+                          dangerouslySetInnerHTML={{ __html: cleanDescription }} >
 
+                        </div>
+
+                      </div>
+                      </div>
+                    </div>
+                    <div className="col-xl-6 col-lg-6 job-bg">
+                      <div className="contactForm row y-gap-30 pt-30">
+                        <CareerForm />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            ) : (
+              <section className="hero -type-1 z-1" key={banner._id}>
+                <div className="video-overlay01"></div>
+                <div className="hero__bg">
+                  {isVideo ? (
+                    <>
+
+                      <video
+                        width="100%"
+                        className="desktop-v"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                      >
+                        <source src={`${api.defaults.baseURL}/${banner.desktopImage}`} type="video/mp4" />
+                      </video>
+                      <video
+                        width="100%"
+                        className="mobile-v"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                      >
+                        <source src={`${api.defaults.baseURL}/${banner.desktopImage}`} type="video/mp4" />
+                      </video></>
+                  ) : (
+                    <>
+                      <Image
+                        src={`${api.defaults.baseURL}/${banner.desktopImage}`}
+                        alt={banner.bannerTitle}
+                        width={1920}
+                        height={800}
+                        className="hidden md:block w-full object-cover"
+                      />
+                      <Image
+                        src={`${api.defaults.baseURL}/${banner.mobileImage}`}
+                        alt={banner.bannerTitle}
+                        width={768}
+                        height={500}
+                        className="md:hidden w-full object-cover"
+                      />
+                    </>
+                  )}
+
+                </div>
+
+                <div className="container">
+                  <div className="row justify-center text-center">
+                    <div className="col-xl-8 col-lg-10">
                       <h1
                         className="hero__title text-white"
                         data-aos="fade-up"
@@ -127,14 +151,25 @@ export default function Banner({ pageName }: Props) {
                       >
                         {banner.bannerTitle}
                       </h1>
+                      <div className="hero__content">
+                        <div
+                          className="hero__subtitle text-white"
+                          data-aos="fade-up"
+                          data-aos-offset="0"
+                          data-aos-duration="1000"
+                          dangerouslySetInnerHTML={{ __html: cleanDescription }} >
+
+                        </div>
+
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            )}
           </>
         );
       })}
-    </section>
+    </>
   );
 }

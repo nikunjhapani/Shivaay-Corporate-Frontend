@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import SocialResponsibility from "../components/SocialResponsibility";
 import Awards from "../components/Awards";
@@ -11,21 +11,25 @@ import CounterSection from "../components/Counter";
 import VisionMissionSection from "../components/VisionMissionSection";
 import About from "../components/AboutSection";
 import { useEffect, useState } from "react";
+import Button from "../components/ui/Button";
 
 export default function Home() {
+
   return (
     <>
-      <Banner pageName="Home" />
-
-      <About />
+      <Banner
+         pageName="Home"
+      />
+     
+     <About />
       <CounterSection />
-      <VisionMissionSection />
+       <VisionMissionSection />
       <InnovationSection />
       <Essence />
-      <SocialResponsibility />
+     <SocialResponsibility />
       <ManagementTeam />
       <OurClients />
-      <section className="global-bg-section">
+       <section className="global-bg-section">
         <video width="100%" className="desktop-v" autoPlay loop muted>
           <source src="./video/global-presence.mp4" type="video/mp4" />
         </video>
@@ -41,13 +45,14 @@ export default function Home() {
                 data-aos-duration="1500"
               >
                 <div className="text-15 sm:text-13 uppercase mb-5 text-white">
+                 
                   A Worldwide Influence in Jewelry Design
                 </div>
                 <h2 className="text-34 md:text-30 sm:text-24 text-white mb-20">
                   Our Global Presence
                 </h2>
                 <p className="text-white text-17 sm:text-13 lh-17">
-                  {" "}
+               
                   Shivaay Jewels has established a significant global footprint.
                   Our jewelry is sold across continents, from New York to Paris,
                   Dubai to Hong Kong. With flagship stores and exclusive
@@ -55,27 +60,10 @@ export default function Home() {
                   who appreciate both luxury and craftsmanship.
                 </p>
 
-                <a href="/global-presence.html">
-                  <button className="button -type-1 text-white mt-40">
-                    <i className="-icon">
-                      <svg
-                        width="50"
-                        height="30"
-                        viewBox="0 0 50 30"
-                        fill="none"
-                      >
-                        <path
-                          d="M35.8 28.0924C43.3451 28.0924 49.4616 21.9759 49.4616 14.4308C49.4616 6.88577 43.3451 0.769287 35.8 0.769287C28.255 0.769287 22.1385 6.88577 22.1385 14.4308C22.1385 21.9759 28.255 28.0924 35.8 28.0924Z"
-                          stroke="#FFF"
-                        ></path>
-                        <path
-                          d="M33.4808 10.2039L32.9985 10.8031L37.2931 14.2623H0.341553V15.0315H37.28L33.0008 18.4262L33.4785 19.0285L39 14.6492L33.4808 10.2039Z"
-                          fill="#FFF"
-                        ></path>
-                      </svg>
-                    </i>
-                    READ MORE
-                  </button>
+                <a href="/global-presence">
+                  <Button  classNameName="button -type-1 text-white"
+                    iconColor="white">  READ MORE</Button>
+               
                 </a>
               </div>
             </div>

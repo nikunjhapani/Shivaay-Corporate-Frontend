@@ -1,4 +1,6 @@
 import { Cinzel, Poppins } from "next/font/google";
+import Script from "next/script";
+
 import "./globals.css";
 import "../../public/css/vendors.css";
 import "../../public/css/main.css";
@@ -8,7 +10,6 @@ import AOSProvider from "../components/AOSProvider";
 import ReactQueryProvider from "./context/ReactQueryProvider";
 import getWebsiteSettings from "../utils/websiteSettings";
 import { metadata } from "./seo/metadata";
-import PageName from "./context/PageInfoProvider";
 
 const cinzel = Cinzel({
   subsets: ["latin"],
@@ -41,6 +42,7 @@ export default async function RootLayout({ children, params }) {
             </main>
           </AOSProvider>
         </ReactQueryProvider>
+        <Script src="/js/main.js" strategy="afterInteractive" />
       </body>
     </html>
   );
