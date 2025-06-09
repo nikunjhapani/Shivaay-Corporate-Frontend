@@ -56,7 +56,7 @@ export default function GalleryPage() {
                 >
                   <div className="col-auto">
                     <h2
-                      class="text-34 md:text-30 sm:text-24 mb-10"
+                      className="text-34 md:text-30 sm:text-24 mb-10"
                       data-aos="fade-up"
                       data-aos-offset="0"
                       data-aos-duration="1000"
