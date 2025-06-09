@@ -17,18 +17,18 @@ export default function Home() {
   return (
     <>
       <Banner
-         pageName="Home"
+        pageName="Home"
       />
-     
-     <About />
+
+      <About />
       <CounterSection />
-       <VisionMissionSection />
+      <VisionMissionSection />
       <InnovationSection />
       <Essence />
-     <SocialResponsibility />
+      <SocialResponsibility />
       <ManagementTeam />
       <OurClients />
-       <section className="global-bg-section">
+      <section className="global-bg-section">
         <video width="100%" className="desktop-v" autoPlay loop muted>
           <source src="./video/global-presence.mp4" type="video/mp4" />
         </video>
@@ -44,13 +44,13 @@ export default function Home() {
                 data-aos-duration="1500"
               >
                 <div className="text-15 sm:text-13 uppercase mb-5 text-white">
-                 
+
                   A Worldwide Influence in Jewelry Design
                 </div>
                 <h2 className="text-34 md:text-30 sm:text-24 text-white mb-20">
                   Our Global Presence
                 </h2>
-                <p class="text-white text-17 sm:text-13 lh-17">
+                <p className="text-white text-17 sm:text-13 lh-17">
                   {" "}
                   Shivaay Jewels has established a significant global footprint.
                   Our jewelry is sold across continents, from New York to Paris,
@@ -60,8 +60,8 @@ export default function Home() {
                 </p>
 
                 <a href="/global-presence.html">
-                  <button class="button -type-1 text-white mt-40">
-                    <i class="-icon">
+                  <button className="button -type-1 text-white mt-40">
+                    <i className="-icon">
                       <svg
                         width="50"
                         height="30"
