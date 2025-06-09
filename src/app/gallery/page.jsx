@@ -5,6 +5,11 @@ import Banner from "../../components/Banner";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import api from "../../utils/axios";
+import {
+  LightGallery,
+  lgThumbnail,
+  lgZoom,
+} from "../../utils/lightgallerySetup";
 
 export const fetchGalleryData = async () => {
   const [titlesRes, imagesRes] = await Promise.all([
@@ -35,52 +40,47 @@ export default function GalleryPage() {
   });
 
   return (
-    <div>
+    <>
       <Banner pageName="Gallery" />
-      <section className="layout-pt-md  layout-pb-lg">
-        <div className="container">
-          {isLoading && <p style={{ padding: "20px" }}>Loading gallery...</p>}
-          {isError && (
-            <p style={{ color: "red", padding: "20px" }}>
-              Failed to load gallery. Please try again later.
-            </p>
-          )}
 
-          {!isLoading &&
-            !isError &&
-            data?.map(({ galleryTitleId, title, images }) => (
-              <>
-                <div
-                  className="row y-gap-30 justify-between items-end"
-                  key={galleryTitleId}
+      {isLoading && <p>Loading gallery...</p>}
+      {isError && <p>Failed to load gallery. Please try again later.</p>}
+
+      {!isLoading && !isError && (
+        <section className="layout-pt-md layout-pb-lg">
+          <div className="container">
+            {data?.map(({ galleryTitleId, title, images }, index) => (
+              <div
+                key={galleryTitleId}
+                className={`${index === 0 ? "" : "layout-pt-md "}`}
+              >
+                <h2 className="text-34 md:text-30 sm:text-24 mb-20">{title}</h2>
+
+                <LightGallery
+                  speed={500}
+                  plugins={[lgThumbnail, lgZoom]}
+                  elementClassNames="row g-4"
                 >
-                  <div className="col-auto">
-                    <h2
-                      class="text-34 md:text-30 sm:text-24 mb-10"
-                      data-aos="fade-up"
-                      data-aos-offset="0"
-                      data-aos-duration="1000"
-                    >
-                      {title}
-                    </h2>
-                  </div>
-                </div>
-
-                <div className="row g-4">
                   {images.map(({ _id, gallaryImage, sort_order_no }) => (
-                    <div className="col-md-4" key={_id}>
+                    <a
+                      key={_id}
+                      href={`${api.defaults.baseURL}/${gallaryImage}`}
+                      className="col-md-4"
+                      data-sub-html={`<h4>${title}</h4><p>Image ${sort_order_no}</p>`}
+                    >
                       <img
                         src={`${api.defaults.baseURL}/${gallaryImage}`}
-                        alt={`${title} Image ${sort_order_no}`}
-                        style={{ maxWidth: "100%", height: "auto" }}
+                        alt={`Image ${sort_order_no}`}
+                        style={{ width: "100%", height: "auto" }}
                       />
-                    </div>
+                    </a>
                   ))}
-                </div>
-              </>
+                </LightGallery>
+              </div>
             ))}
-        </div>
-      </section>
-    </div>
+          </div>
+        </section>
+      )}
+    </>
   );
 }
