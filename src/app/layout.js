@@ -8,7 +8,8 @@ import Header from "../app/layout/Header";
 import Footer from "../app/layout/Footer";
 import AOSProvider from "../components/AOSProvider";
 import ReactQueryProvider from "./context/ReactQueryProvider";
-import getWebsiteSettings from "../utils/websiteSettings";
+import getLayoutData from "../utils/getLayoutData";
+
 import { metadata } from "./seo/metadata";
 
 const cinzel = Cinzel({
@@ -26,8 +27,9 @@ const poppins = Poppins({
 });
 export { metadata };
 
-export default async function RootLayout({ children, params }) {
-  const settings = await getWebsiteSettings();
+export default async function RootLayout({ children }) {
+  const { settings, menu, submenuMap } = await getLayoutData();
+  console.log(settings, 'settings');
   return (
     <html lang="en">
       <body className={`${cinzel.variable} ${poppins.variable}`}>
@@ -38,7 +40,7 @@ export default async function RootLayout({ children, params }) {
 
               {children}
 
-              <Footer settings={settings} />
+              <Footer settings={settings} menu={menu} submenuMap={submenuMap} />
             </main>
           </AOSProvider>
         </ReactQueryProvider>

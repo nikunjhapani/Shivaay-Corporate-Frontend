@@ -45,7 +45,7 @@ export default function Header() {
         const res = await fetch(
           `${api.defaults.baseURL}/api/websiteSettings/getSettings`,
           {
-            method: "GET", // or "GET", depends on your API
+            method: "GET",
             headers: {
               "Content-Type": "application/json",
             },
@@ -65,9 +65,7 @@ export default function Header() {
     fetchMenu();
   }, []);
 
-  if (loading) {
-    return <div>Loading menu...</div>;
-  }
+ 
   const filteredMenuData = menuData.filter(
     (item) => item.menuName.toLowerCase() !== "home"
   );

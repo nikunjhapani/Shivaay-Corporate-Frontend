@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import api from "../utils/axios";
 import Image from "next/image";
-import Link from "next/link";
 import CareerForm from "./CareerForm";
 
 type BannerItem = {
@@ -21,10 +20,11 @@ type Props = {
   pageName: string;
 };
 
+
 export default function Banner({ pageName }: Props) {
+  console.log('pageName', pageName);
   const [banners, setBanners] = useState<BannerItem[]>([]);
   const [loading, setLoading] = useState(true);
-  console.log(pageName, 'pageName');
   useEffect(() => {
     const fetchBanners = async () => {
       try {
@@ -55,10 +55,10 @@ export default function Banner({ pageName }: Props) {
           ""
         );
         return (
-          <>
+        <React.Fragment key={banner._id}>
             {pageName === "Career" ? (
              
-              <section key={banner._id} className="job-section"   style={{ backgroundImage: `url(${api.defaults.baseURL}/${banner.desktopImage})` }}>
+              <section className="job-section"   style={{ backgroundImage: `url(${api.defaults.baseURL}/${banner.desktopImage})` }}>
                 <div className="container">
                   <div className="row justify-center text-center">
                     <div className="col-xl-6 col-lg-6  d-flex items-center text-left">
@@ -93,7 +93,7 @@ export default function Banner({ pageName }: Props) {
                 </div>
               </section>
             ) : (
-              <section className="hero -type-1 z-1" key={banner._id}>
+              <section className="hero -type-1 z-1">
                 <div className="video-overlay01"></div>
                 <div className="hero__bg">
                   {isVideo ? (
@@ -167,7 +167,7 @@ export default function Banner({ pageName }: Props) {
                 </div>
               </section>
             )}
-          </>
+          </React.Fragment>
         );
       })}
     </>

@@ -61,7 +61,7 @@ export default function Awards() {
                   <Link href="/awards-certificates" className="baseCard -type-2">
                     <div className="baseCard__image ratio ratio-41:50">
                       <Image
-                        src={`${api.defaults.baseURL}/${item.certificateImage}`}
+                        src={`${api.defaults.baseURL}/${item.awardImage}`}
                         alt={item.title}
                         width={300}
                         height={365}
@@ -83,9 +83,9 @@ export default function Awards() {
                         dangerouslySetInnerHTML={{ __html: cleanDescription }}
                       ></h4>
 
-                      <div className="d-flex mt-15 md:d-none">
+                      {/* <div className="d-flex mt-15 md:d-none">
                         <Button>READ MORE</Button>
-                      </div>
+                      </div> */}
                     </div>
                   </Link>
                 </div>

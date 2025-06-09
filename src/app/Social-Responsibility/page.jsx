@@ -1,7 +1,10 @@
 import React from 'react'
+import Banner from "../../components/Banner";
 
 export default function page() {
   return (
-    <div>page Social Responsibility</div>
+    <div>
+       <Banner pageName="Social Responsibility" />
+    </div>
   )
 }
