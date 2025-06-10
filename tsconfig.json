@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/app/layout/Header.tsx"  ],
+, "src/app/layout/Header.tsx", "src/app/api/gallery.jsx"  ],
   "exclude": [
     "node_modules"
   ]

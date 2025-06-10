@@ -29,7 +29,6 @@ export { metadata };
 
 export default async function RootLayout({ children }) {
   const { settings, menu, submenuMap } = await getLayoutData();
-  console.log(settings, 'settings');
   return (
     <html lang="en">
       <body className={`${cinzel.variable} ${poppins.variable}`}>

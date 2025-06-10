@@ -1,52 +1,25 @@
-"use client";
 
 import React from "react";
 import Banner from "../../components/Banner";
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import api from "../../utils/axios";
 import {
   LightGallery,
   lgThumbnail,
   lgZoom,
 } from "../../utils/lightgallerySetup";
+import { fetchGalleryData } from "../api/gallery";
 
-export const fetchGalleryData = async () => {
-  const [titlesRes, imagesRes] = await Promise.all([
-    axios.post(`${api.defaults.baseURL}/api/gallaryTitle/getAllApi`),
-    axios.post(`${api.defaults.baseURL}/api/gallaryImage/getAllApi`),
-  ]);
 
-  if (titlesRes.status !== 200 || imagesRes.status !== 200) {
-    throw new Error("Failed to fetch gallery data");
-  }
 
-  const titles = titlesRes.data?.data || [];
-  const images = imagesRes.data?.data || [];
-
-  return titles.map((title) => ({
-    galleryTitleId: title._id,
-    title: title.title,
-    images: images
-      .filter((img) => img.galleryTitleId === title._id)
-      .sort((a, b) => a.sort_order_no - b.sort_order_no),
-  }));
-};
-
-export default function GalleryPage() {
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ["gallery"],
-    queryFn: fetchGalleryData,
-  });
+export default async function GalleryPage() {
+  // const galaryData = await fetchGalleryData();
+  // console.log(galaryData,'galaryData')
+ 
 
   return (
     <>
       <Banner pageName="Gallery" />
-
-      {isLoading && <p>Loading gallery...</p>}
-      {isError && <p>Failed to load gallery. Please try again later.</p>}
-
-      {!isLoading && !isError && (
+      {/* {!isLoading && !isError && (
         <section className="layout-pt-md layout-pb-lg">
           <div className="container">
             {data?.map(({ galleryTitleId, title, images }, index) => (
@@ -80,7 +53,7 @@ export default function GalleryPage() {
             ))}
           </div>
         </section>
-      )}
+      )} */}
     </>
   );
 }
