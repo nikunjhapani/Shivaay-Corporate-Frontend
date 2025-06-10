@@ -25,7 +25,7 @@ export default function page() {
           </div>
 
           {/* Line Grid */}
-          <div className="lineGrid -type-1 sm:pt-50">
+          <div className="lineGrid -type-1 md:pt-0 sm:pt-50">
             {/* CAD Technology */}
             <div className="lineGrid__content sm:mb-20">
               <div
@@ -37,9 +37,9 @@ export default function page() {
                 <Image
                   src="/img/AI01.jpg"
                   alt="CAD Technology"
-                  width={580}
-                  height={684}
-                  className="w-100 rounded-4 shadow-md"
+                  width={696}
+                  height={469}
+                  className="w-full rounded-4 shadow-md"
                 />
               </div>
               <div className="px-40 sm:px-20 text-center mb-60 md:mb-60 sm:mb-40">
@@ -65,9 +65,9 @@ export default function page() {
                 <Image
                   src="/img/AI02.jpg"
                   alt="3D Printing"
-                  width={800}
-                  height={500}
-                  className="w-100 rounded-4 shadow-md"
+                  width={696}
+                  height={469}
+                  className="w-full rounded-4 shadow-md"
                 />
               </div>
               <div className="px-40 sm:px-20 text-center mb-60 md:mb-60 sm:mb-40">
@@ -89,9 +89,9 @@ export default function page() {
                 <Image
                   src="/img/AI03.jpg"
                   alt="Research and Development"
-                  width={800}
-                  height={500}
-                  className="w-100 rounded-4 shadow-md"
+                  width={696}
+                  height={469}
+                  className="w-full rounded-4 shadow-md"
                 />
               </div>
               <div className="px-40 sm:px-20 text-center mb-60 md:mb-60 sm:mb-40">
