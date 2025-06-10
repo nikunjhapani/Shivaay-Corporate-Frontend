@@ -20,7 +20,7 @@ export default async function page() {
   return (
     <div>
       <Banner pageName="Social Responsibility" />
-      {/* <section className="layout-pt-md layout-pb-md">
+      <section className="layout-pt-md layout-pb-md">
         {data?.map((item, index) => (
           <React.Fragment key={item._id}>
             <div className="container">
@@ -103,7 +103,7 @@ export default async function page() {
             </div>
           </React.Fragment>
         ))}
-      </section> */}
+      </section>
     </div>
   );
 }

@@ -49,8 +49,7 @@ export default async function page() {
                         width={300}
                         height={365}
                         className="img-ratio"
-                      //  placeholder="blur"
-                       // blurDataURL="/img/cards/placeholder.png"
+                    
                       />
                     </div>
 

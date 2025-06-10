@@ -39,10 +39,7 @@ export default function HeroSlider({ sliderData }) {
                                                 className="img-ratio"
                                                 width={300}
                                                 height={400}
-                                                placeholder="blur"
-                                                blurDataURL="/img/cards/placeholder.png" // Optional small placeholder
-
-                                            />
+                                                                                           />
                                         </div>
                                     </div>
                                     <div className="baseCard__content d-flex flex-column justify-end text-center">
