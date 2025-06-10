@@ -1,37 +1,37 @@
-'use client'
+"use client";
 
-import React from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Mousewheel } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import Image from 'next/image'
+import React, { useState, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Mousewheel } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import Image from "next/image";
+import api from "../utils/axios";
+import { useQuery } from "@tanstack/react-query";
+import { postData } from "../utils/apiMethods";
+
+export const getData = async () => {
+  const res = await postData("api/socialActivity/getAllApi");
+  return res?.data || [];
+};
 
 export default function SocialResponsibility() {
-  const verticalSlides = [
-    {
-      icon: '/img/icon/environmentalsust-ainability.svg',
-      title: 'Environmental Sustainability',
-      text:
-        'Our commitment to environmental stewardship is reflected in our initiative to plant over 50,000 trees to date. With an ambitious goal of reaching 500,000 trees in the coming years.',
-    },
-    {
-      icon: '/img/icon/employeewelfare.svg',
-      title: 'Employee Welfare',
-      text:
-        'We place the well-being of our employees at the heart of our operations by offering free mediclaim coverage to all team members.',
-    },
-    {
-      icon: '/img/icon/aidprogram.svg',
-      title: 'Widow’s Aid Program',
-      text:
-        'As part of our commitment to social responsibility, we proudly support over 100 widows by providing consistent financial assistance.',
-    },
-  ]
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["socialActivity"],
+    queryFn: getData,
+  });
+
+  const [activeIndex, setActiveIndex] = useState(1);
+  const filteredData = data?.filter((item) => item.isActive) || [];
+
+
+  const handleSlideChange = (swiper) => {
+    setActiveIndex(swiper.realIndex);
+  };
+  
 
   return (
     <>
-      {/* Section Title */}
       <section className="layout-pt-md">
         <div className="container layout-pb-sm">
           <div className="row justify-center text-center">
@@ -57,79 +57,93 @@ export default function SocialResponsibility() {
         </div>
       </section>
 
-      {/* Vertical Slider Section */}
       <section className="verticalSlider-images relative z-0 bg-accent-3">
+        {/* Background Images */}
         <div className="sectionBg -left-2 w-1/2 lg:w-1/1 z-2">
           <div className="verticalSlider-images__images">
-            <div className="is-active">
-              <Image
-                src="/img/about/20/2.png"
-                alt="image"
-                className="img-ratio"
-                width={500}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                src="/img/about/20/3.png"
-                alt="image"
-                className="img-ratio"
-                width={500}
-                height={500}
-              />
-            </div>
-            <div>
-              <Image
-                src="/img/about/20/1.png"
-                alt="image"
-                className="img-ratio"
-                width={500}
-                height={500}
-              />
-            </div>
+            {filteredData.map((item, index) => (
+              <div
+                key={item._id}
+                className={index === activeIndex ? "is-active" : ""}
+              >
+                <Image
+                  src={`${api.defaults.baseURL}/${item?.socialActivityphoto}`}
+                  alt={item?.title || "Social responsibility image"}
+                  className="img-ratio"
+                  width={1920}
+                  height={1080}
+                />
+              </div>
+            ))}
           </div>
         </div>
 
+        {/* Vertical Slider */}
         <div className="container">
           <div className="row">
             <div className="col-xl-5 col-lg-4 offset-lg-7">
               <div className="verticalSlider__wrap">
-                <div
-                  className="verticalSlider js-verticalSlider"
-                  data-gap="130"
-                  data-vertical
-                  data-slider-cols="xl-3 lg-3 md-1 sm-1 base-1"
-                  data-pagination="js-verticalSlider-pagination"
+                <Swiper
+                  initialSlide={activeIndex}
+                  className="verticalSlider"
+                  direction="vertical"
+                  spaceBetween={130}
+                  slidesPerView={1}
+                  centeredSlides={true}
+                  loop={true}
+                  mousewheel={true}
+                  pagination={{
+                    el: ".js-verticalSlider-pagination",
+                    clickable: true,
+                    renderBullet: (index, className) => {
+                      return `<span class="pagination__item">0${
+                        index + 1
+                      }</span>`;
+                    },
+                  }}
+                  modules={[Pagination, Mousewheel]}
+                  onSlideChange={handleSlideChange}
+                  onInit={(swiper) => {
+                    swiper.pagination.init();
+                    swiper.pagination.render();
+                  }}
+                  breakpoints={{
+                    1200: { slidesPerView: 3 }, // xl-3
+                    992: { slidesPerView: 3 }, // lg-3
+                    768: { slidesPerView: 1 }, // md-1
+                    576: { slidesPerView: 1 }, // sm-1
+                    0: { slidesPerView: 1 }, // base-1
+                  }}
                 >
-                  <div className="swiper-wrapper flex-column h-auto">
-                    {verticalSlides.map((slide, idx) => (
-                      <div className="swiper-slide d-flex items-center" key={idx}>
+                  {filteredData.map((item) => (
+                    <SwiperSlide key={item._id}>
+                      <div className="d-flex items-center h-full">
                         <div>
                           <div className="sr-icon">
                             <Image
-                              src={slide.icon}
-                              alt={slide.title}
-                              width={60}
-                              height={60}
+                              src={`${api.defaults.baseURL}/${item?.socialActivityIcon}`}
+                              alt={item?.title || "Icon"}
+                              width={50}
+                              height={50}
                             />
                           </div>
                           <h4 className="text-30 lg:text-30 sm:text-20 text-white mt-20">
-                            {slide.title}
+                            {item?.title}
                           </h4>
-                          <p className="text-17 text-white mt-10">{slide.text}</p>
+                          <p className="text-17 text-white mt-10">
+                            {item?.description}
+                          </p>
                         </div>
                       </div>
-                    ))}
-                  </div>
-
+                    </SwiperSlide>
+                  ))}
                   <div className="verticalSlider__nav js-verticalSlider-pagination"></div>
-                </div>
+                </Swiper>
               </div>
             </div>
           </div>
         </div>
       </section>
     </>
-  )
+  );
 }
