@@ -1,14 +1,21 @@
 import Image from "next/image";
 import { useState } from "react";
 import clsx from "clsx";
+import { useQuery } from "@tanstack/react-query";
+import { postData } from "../utils/apiMethods";
+import api from "../utils/axios";
+export const getInnovation = async () => {
+  const res = await postData("/api/innovation/getAllApi");
+  return res?.data || [];
+};
 
-const imageList = [
-  "/img/about/21/1.png",
-  "/img/about/21/2.png",
-  "/img/about/21/3.png",
-];
-
-const InnovationCard = ({ title, subtitle, description, index, setActiveIndex }) => (
+const InnovationCard = ({
+  title,
+  subtitle,
+  description,
+  index,
+  setActiveIndex,
+}) => (
   <div
     className="imageCard -type-1 -hover-1"
     onMouseEnter={() => setActiveIndex(index)}
@@ -37,7 +44,10 @@ const InnovationCard = ({ title, subtitle, description, index, setActiveIndex })
 
 const InnovationSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["innovation"],
+    queryFn: getInnovation,
+  });
   return (
     <>
       <section className="layout-pt-md sm:mt-25">
@@ -68,54 +78,42 @@ const InnovationSection = () => {
       <section className="relative hoverTitleInteraction">
         <div className="sectionBg">
           <div className="hoverTitleInteraction__images -type-2">
-            {imageList.map((src, index) => (
-              <Image
-                key={index}
-                src={src}
-                alt={`image-${index}`}
-                fill
-                className={clsx("img-cover", {
-                  "is-active": activeIndex === index,
-                  "opacity-0": activeIndex !== index,
-                })}
-                style={{
-                  transition: "opacity 0.5s ease",
-                  opacity: activeIndex === index ? 1 : 0,
-                  zIndex: activeIndex === index ? 1 : 0,
-                }}
-              />
-            ))}
+            {data
+              ?.filter((item) => item.isActive)
+              .map((item, index) => (
+                <Image
+                  key={index}
+                  src={`${api.defaults.baseURL}/${item.innovationImage}`}
+                  alt={item.title}
+                  fill
+                  className={clsx("img-cover", {
+                    "is-active": activeIndex === index,
+                    "opacity-0": activeIndex !== index,
+                  })}
+                  style={{
+                    transition: "opacity 0.5s ease",
+                    opacity: activeIndex === index ? 1 : 0,
+                    zIndex: activeIndex === index ? 1 : 0,
+                  }}
+                />
+              ))}
           </div>
         </div>
 
         <div className="row border-row-1 hoverTitleInteraction__links">
-          <div className="col-md-4">
-            <InnovationCard
-              title="CAD Technology"
-              subtitle="Aided Design (CAD)"
-              description="We leverage cutting-edge Computer-Aided Design (CAD) software to bring unmatched accuracy and efficiency to every stage of the design process."
-              index={0}
-              setActiveIndex={setActiveIndex}
-            />
-          </div>
-          <div className="col-md-4">
-            <InnovationCard
-              title="3D Printing"
-              subtitle="Innovative Jewelry Designs"
-              description="We harness the power of advanced 3D printing technology to bring even the most complex and delicate jewelry designs to life."
-              index={1}
-              setActiveIndex={setActiveIndex}
-            />
-          </div>
-          <div className="col-md-4">
-            <InnovationCard
-              title="Continuous Research & Development"
-              subtitle="creativity and craftsmanship"
-              description="We are dedicated to continuous research and development. "
-              index={2}
-              setActiveIndex={setActiveIndex}
-            />
-          </div>
+          {data
+            ?.filter((item) => item.isActive)
+            .map((item, index) => (
+              <div className="col-md-4">
+                <InnovationCard
+                  title={item.title}
+                  subtitle={item.subTitle}
+                  description={item.description}
+                  index={index}
+                  setActiveIndex={setActiveIndex}
+                />
+              </div>
+            ))}
         </div>
       </section>
     </>
