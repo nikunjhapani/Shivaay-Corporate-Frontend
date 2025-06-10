@@ -3,7 +3,6 @@ import Link from "next/link";
 const Footer = ({ settings, menu, submenuMap }) => {
   const allSubmenus = Object.values(submenuMap || {}).flat();
   const data = settings;
-  console.log(settings, "data");
   const socialLinksMap = {
     facebook: data.fbLink,
     twitter: data.twitterLink,
@@ -11,7 +10,7 @@ const Footer = ({ settings, menu, submenuMap }) => {
     linkedin: data.linkedinLink,
     youtube: data.youtubeLink,
   };
-  
+
   const socialIcons = [
     "facebook",
     "twitter",
@@ -19,7 +18,6 @@ const Footer = ({ settings, menu, submenuMap }) => {
     "linkedin",
     "youtube",
   ];
-  console.log(socialIcons, "socialLinksMap");
   return (
     <>
       <footer className="footer footer-d -type-1 bg-accent-3 text-white">

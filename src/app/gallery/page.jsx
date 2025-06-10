@@ -1,4 +1,3 @@
-
 import React from "react";
 import Banner from "../../components/Banner";
 import api from "../../utils/axios";
@@ -9,12 +8,8 @@ import {
 } from "../../utils/lightgallerySetup";
 import { fetchGalleryData } from "../api/gallery";
 
-
-
 export default async function GalleryPage() {
   // const galaryData = await fetchGalleryData();
-  // console.log(galaryData,'galaryData')
- 
 
   return (
     <>

@@ -21,10 +21,10 @@ export default async function getLayoutData() {
   const menuResponse = await menuRes.json();
   const fullMenu = menuResponse?.data || [];
   const filteredMenuData = fullMenu.filter(
-    (item) => item.menuName?.toLowerCase() !== "home"
+    (item: any) => item.menuName?.toLowerCase() !== "home"
   );
-  const parentMenus = filteredMenuData.filter((item) => !item.parentId);
- const submenuMap = fullMenu.reduce((acc, item) => {
+  const parentMenus = filteredMenuData.filter((item: any) => !item.parentId);
+  const submenuMap = fullMenu.reduce((acc: any, item: any) => {
     if (item.parentId && item.parentId._id) {
       const parentKey = item.parentId._id;
       if (!acc[parentKey]) acc[parentKey] = [];

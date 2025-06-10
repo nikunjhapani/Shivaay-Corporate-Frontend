@@ -17,7 +17,6 @@ const getData = async () => {
 
 export default async function page() {
   const data = await getData();
-  console.log(data, "data");
   return (
     <div>
       <Banner pageName="Social Responsibility" />

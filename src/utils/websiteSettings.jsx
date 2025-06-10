@@ -1,7 +1,5 @@
 import api from "./axios";
 export default async function getWebsiteSettings() {
-  console.log("Fetching website settings...", api.defaults.baseURL);
-
   const res = await fetch(
     `${api.defaults.baseURL}/api/websiteSettings/getSettings`,
     {

@@ -1,7 +1,6 @@
 (function () {
   "use strict";
   window.App = {};
-console.log('call')
   App.config = {
     cursorFollower: {
       enabled: true,
@@ -98,7 +97,6 @@ console.log('call')
 
     function hoverImageInteraction() {
       const target = document.querySelector(".hoverTitleInteraction");
-      console.log('hoverTitleInteraction');
       if (!target) return;
 
       const images = target.querySelectorAll(

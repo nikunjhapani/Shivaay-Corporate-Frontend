@@ -20,9 +20,7 @@ type Props = {
   pageName: string;
 };
 
-
 export default function Banner({ pageName }: Props) {
-  console.log('pageName', pageName);
   const [banners, setBanners] = useState<BannerItem[]>([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -47,7 +45,6 @@ export default function Banner({ pageName }: Props) {
   if (banners.length === 0) return null;
   return (
     <>
-
       {banners.map((banner) => {
         const isVideo = banner.bannerType === "video";
         const cleanDescription = banner.description?.replace(
@@ -55,33 +52,37 @@ export default function Banner({ pageName }: Props) {
           ""
         );
         return (
-        <React.Fragment key={banner._id}>
+          <React.Fragment key={banner._id}>
             {pageName === "Career" ? (
-             
-              <section className="job-section"   style={{ backgroundImage: `url(${api.defaults.baseURL}/${banner.desktopImage})` }}>
+              <section
+                className="job-section"
+                style={{
+                  backgroundImage: `url(${api.defaults.baseURL}/${banner.desktopImage})`,
+                }}
+              >
                 <div className="container">
                   <div className="row justify-center text-center">
                     <div className="col-xl-6 col-lg-6  d-flex items-center text-left">
                       <div className="pr-50">
                         <h1
-                        className="hero__title text-white"
-                        data-aos="fade-up"
-                        data-aos-offset="0"
-                        data-aos-duration="1000"
-                      >
-                        {banner.bannerTitle}
-                      </h1>
-                      <div className="hero__content">
-                        <div
-                          className="hero__subtitle text-white"
+                          className="hero__title text-white"
                           data-aos="fade-up"
                           data-aos-offset="0"
                           data-aos-duration="1000"
-                          dangerouslySetInnerHTML={{ __html: cleanDescription }} >
-
+                        >
+                          {banner.bannerTitle}
+                        </h1>
+                        <div className="hero__content">
+                          <div
+                            className="hero__subtitle text-white"
+                            data-aos="fade-up"
+                            data-aos-offset="0"
+                            data-aos-duration="1000"
+                            dangerouslySetInnerHTML={{
+                              __html: cleanDescription,
+                            }}
+                          ></div>
                         </div>
-
-                      </div>
                       </div>
                     </div>
                     <div className="col-xl-6 col-lg-6 job-bg">
@@ -98,7 +99,6 @@ export default function Banner({ pageName }: Props) {
                 <div className="hero__bg">
                   {isVideo ? (
                     <>
-
                       <video
                         width="100%"
                         className="desktop-v"
@@ -107,7 +107,10 @@ export default function Banner({ pageName }: Props) {
                         muted
                         playsInline
                       >
-                        <source src={`${api.defaults.baseURL}/${banner.desktopImage}`} type="video/mp4" />
+                        <source
+                          src={`${api.defaults.baseURL}/${banner.desktopImage}`}
+                          type="video/mp4"
+                        />
                       </video>
                       <video
                         width="100%"
@@ -117,8 +120,12 @@ export default function Banner({ pageName }: Props) {
                         muted
                         playsInline
                       >
-                        <source src={`${api.defaults.baseURL}/${banner.desktopImage}`} type="video/mp4" />
-                      </video></>
+                        <source
+                          src={`${api.defaults.baseURL}/${banner.desktopImage}`}
+                          type="video/mp4"
+                        />
+                      </video>
+                    </>
                   ) : (
                     <>
                       <Image
@@ -137,7 +144,6 @@ export default function Banner({ pageName }: Props) {
                       />
                     </>
                   )}
-
                 </div>
 
                 <div className="container">
@@ -157,10 +163,8 @@ export default function Banner({ pageName }: Props) {
                           data-aos="fade-up"
                           data-aos-offset="0"
                           data-aos-duration="1000"
-                          dangerouslySetInnerHTML={{ __html: cleanDescription }} >
-
-                        </div>
-
+                          dangerouslySetInnerHTML={{ __html: cleanDescription }}
+                        ></div>
                       </div>
                     </div>
                   </div>
