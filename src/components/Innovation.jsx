@@ -1,5 +1,4 @@
 import Image from "next/image";
-import clsx from "clsx";
 import { useState } from "react";
 const imageList = [
   "/img/about/21/1.png",
@@ -67,7 +66,7 @@ const InnovationSection = () => {
                 src={src}
                 alt="image"
                 fill
-                className={clsx("img-cover is-active", {
+                className={("img-cover is-active", {
                   "is-active": activeIndex === index,
                   "opacity-0": activeIndex !== index,
                 })}
