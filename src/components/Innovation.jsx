@@ -104,7 +104,7 @@ const InnovationSection = () => {
           {data
             ?.filter((item) => item.isActive)
             .map((item, index) => (
-              <div className="col-md-4">
+              <div className="col-md-4" key={index}>
                 <InnovationCard
                   title={item.title}
                   subtitle={item.subTitle}
