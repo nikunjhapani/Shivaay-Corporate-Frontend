@@ -2,8 +2,18 @@ import React from "react";
 import Essence from "../../components/Essence";
 import Banner from "../../components/Banner";
 import Image from "next/image";
-
+import { postData } from "../../utils/apiMethods";
+import { useQuery } from "@tanstack/react-query";
+export const getData = async () => {
+  const res = await postData("/api/innovation/getAllApi");
+  return res?.data || [];
+};
 export default function page() {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["innovation"],
+    queryFn: getData,
+  });
+  
   return (
     <>
       <Banner pageName="Artistry Innovation" />
