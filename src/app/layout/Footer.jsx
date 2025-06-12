@@ -1,8 +1,15 @@
+'use client';
 import Link from "next/link";
+import { useEffect } from "react";
 
 const Footer = ({ settings, menu, submenuMap }) => {
+  useEffect(() => {
+    Accordion.init();
+  }, []);
+
   const allSubmenus = Object.values(submenuMap || {}).flat();
   const data = settings;
+
   const socialLinksMap = {
     facebook: data.fbLink,
     twitter: data.twitterLink,
@@ -18,76 +25,121 @@ const Footer = ({ settings, menu, submenuMap }) => {
     "linkedin",
     "youtube",
   ];
+
+  const footerSections = [
+    {
+      title: "Information",
+      links: menu
+        ?.filter((item) => item.menuName !== "About Us")
+        .map((item) => [item.menuName, item.menuURL]),
+    },
+    {
+      title: "ABOUT US",
+      links: allSubmenus.map((item) => [item.menuName, item.menuURL]),
+    },
+    {
+      title: "GET IN TOUCH",
+      content: (
+        <>
+          <p className="text-16 text-white-60 lh-17 mb-5">{data.title}</p>
+          <a className="d-block text-15 text-white-60 lh-17" href="#">
+           
+            {data.address.replace(/<\/?p>/g, '')}
+          </a>
+          <div className="mt-25">
+            <a
+              className="d-block text-15 text-white-60"
+              href={`mailto:${data.email}`}
+            >
+              <i className="icon-email text-15 text-white mr-10"></i>
+              {data.email}
+            </a>
+          </div>
+          <div className="mt-10">
+            <a
+              className="d-block text-15 text-white-60"
+              href={`tel:${data.phone}`}
+            >
+              <i className="icon-phone text-15 text-white mr-10"></i>
+              {data.phone}
+            </a>
+          </div>
+        </>
+      ),
+    },
+  ];
+  const Accordion = (() => {
+    function init() {
+      const targets = document.querySelectorAll(".js-accordion");
+    if (!targets) return;
+
+    for (let i = 0; i < targets.length; i++) {
+      const items = targets[i].querySelectorAll('.accordion__item');
+
+      for (let l = 0; l < items.length; l++) {
+        const button = items[l].querySelector('.accordion__button')
+        const content = items[l].querySelector('.accordion__content')
+        const titleChange = items[l].querySelector('[data-open-change-title]')
+        let buttonOrigTitle
+        let buttonNewTitle
+
+        if (items[l].classList.contains('js-accordion-item-active')) {
+          items[l].classList.toggle('is-active')
+          content.style.maxHeight = content.scrollHeight + "px"
+        }
+
+        if (titleChange) {
+          buttonOrigTitle = titleChange.innerHTML
+          buttonNewTitle = titleChange.getAttribute('data-open-change-title')
+        }
+        
+        button.addEventListener("click", (e) => {
+          items[l].classList.toggle('is-active');
+
+          if (titleChange) {
+            if (items[l].classList.contains('is-active')) {
+              titleChange.innerHTML = buttonNewTitle
+            } else {
+              titleChange.innerHTML = buttonOrigTitle
+            }
+          }
+  
+          if (content.style.maxHeight) {
+            content.style.maxHeight = null
+          } else {
+            content.style.maxHeight = content.scrollHeight + "px"
+          }
+        })
+      }
+    }
+    }
+
+    return { init };
+  })();
+  
   return (
     <>
+      {/* Desktop Footer */}
       <footer className="footer footer-d -type-1 bg-accent-3 text-white">
         <div className="footer__main">
           <div className="container">
             <div className="footer__grid">
-              <div>
-                <h4 className="text-30 fw-500 text-white">INFORMATION</h4>
-                <div className="y-gap-10 text-15 text-white-60 mt-20 md:mt-20">
-                  {menu
-                    ?.filter((item) => item.menuName !== "About Us")
-                    .map((item) => (
-                      <Link
-                        className="d-block"
-                        key={item._id}
-                        href={item.menuURL}
-                      >
-                        {item.menuName}
-                      </Link>
-                    ))}
-                </div>
-              </div>
-
-              <div>
-                <h4 className="text-30 fw-500 text-white">ABOUT US</h4>
-                <div className="y-gap-10 text-15 text-white-60 mt-20 md:mt-20">
-                  {allSubmenus?.map((item) => (
-                    <Link
-                      className="d-block"
-                      key={item._id}
-                      href={item.menuURL}
-                    >
-                      {item.menuName}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h4 className="text-30 fw-500 text-white">GET IN TOUCH</h4>
-                <div className="d-flex flex-column mt-20 md:mt-20">
-                  <div>
-                    <p className="text-16 text-white-60 lh-17 mb-5">
-                      {data.title}
-                    </p>
-                    <a className="d-block text-15 text-white-60 lh-17" href="#">
-                      {data.address}
-                    </a>
-                  </div>
-                  <div className="mt-25">
-                    <a
-                      className="d-block text-15 text-white-60"
-                      href={`mailto:${data.email}`}
-                    >
-                      <i className="icon-email text-15 text-white mr-10"></i>
-                      {data.email}
-                    </a>
-                  </div>
-                  <div className="mt-10">
-                    <a
-                      className="d-block text-15 text-white-60"
-                      href={`tel:${data.phone}`}
-                    >
-                      <i className="icon-phone text-15 text-white mr-10"></i>{" "}
-                      {data.phone}
-                    </a>
+              {footerSections.map((section, index) => (
+                <div key={index}>
+                  <h4 className="text-30 fw-500 text-white">{section.title}</h4>
+                  <div className="y-gap-10 text-15 text-white-60 mt-20 md:mt-20">
+                    {section.links
+                      ? section.links.map(([label, href], i) => (
+                          <Link className="d-block" href={href} key={i}>
+                            {label}
+                          </Link>
+                        ))
+                      : section.content }
                   </div>
                 </div>
-              </div>
+              ))}
 
+              {/* Social Icons */}
               <div>
                 <h4 className="text-30 fw-500 text-white">FOLLOW US</h4>
                 <div className="row mt-30">
@@ -96,7 +148,6 @@ const Footer = ({ settings, menu, submenuMap }) => {
                     return (
                       <div className="col-auto" key={icon}>
                         <a
-                          key={icon}
                           href={url}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -119,7 +170,7 @@ const Footer = ({ settings, menu, submenuMap }) => {
             <div className="row y-gap-30 justify-between md:justify-center items-center">
               <div className="col-md-auto">
                 <div className="text-15 text-center text-white-60">
-                  © 2025 Shivaay Jewels.
+                  © {new Date().getFullYear()} {data.title}.
                 </div>
               </div>
             </div>
@@ -127,74 +178,14 @@ const Footer = ({ settings, menu, submenuMap }) => {
         </div>
       </footer>
 
-      {/* Mobile/Accordion Footer */}
+      {/* Mobile Footer - Accordion Style */}
       <footer className="footer footer-m -type-1 bg-accent-3 text-white">
         <div className="footer__main">
           <div className="container">
             <div className="row justify-center">
               <div className="col-xl-8 col-lg-10">
                 <div className="accordion -type-1 row y-gap-10 js-accordion">
-                  {/* Accordion Items */}
-                  {[
-                    {
-                      title: "Information",
-                      links: [
-                        ["Artistry & Innovation", "/artistry-innovation.html"],
-                        ["Global Presence", "/global-presence.html"],
-                        [
-                          "Social Responsibility",
-                          "/social-responsibility.html",
-                        ],
-                        ["Awards & Certificates", "/awards-certificates.html"],
-                        ["Career", "/career.html"],
-                        ["Contact Us", "/contact-us.html"],
-                      ],
-                    },
-                    {
-                      title: "ABOUT US",
-                      links: [
-                        ["Our Journey", "/our-journey.html"],
-                        ["Our Philosophy", "/our-philosophy.html"],
-                        ["Vision", "/vision.html"],
-                        ["Mission", "/mission.html"],
-                        ["Management Team", "/management-team.html"],
-                      ],
-                    },
-                    {
-                      title: "GET IN TOUCH",
-                      content: (
-                        <>
-                          <p className="text-16 text-white-60 lh-17 mb-5">
-                            Shivaay Jewels
-                          </p>
-                          <a
-                            className="d-block text-15 text-white-60 lh-17"
-                            href="#"
-                          >
-                            {data.address}
-                          </a>
-                          <div className="mt-25">
-                            <a
-                              className="d-block text-15 text-white-60"
-                              href={`mailto:${data.email}`}
-                            >
-                              <i className="icon-email text-15 text-white mr-10"></i>{" "}
-                              {data.email}
-                            </a>
-                          </div>
-                          <div className="mt-10">
-                            <a
-                              className="d-block text-15 text-white-60"
-                              href={`tel:${data.phone}`}
-                            >
-                              <i className="icon-phone text-15 text-white mr-10"></i>
-                              {data.phone}
-                            </a>
-                          </div>
-                        </>
-                      ),
-                    },
-                  ].map((section, index) => (
+                  {footerSections.map((section, index) => (
                     <div className="col-12" key={index}>
                       <div className="accordion__item">
                         <div className="accordion__button d-flex items-center justify-between px-10 py-15">
@@ -240,7 +231,6 @@ const Footer = ({ settings, menu, submenuMap }) => {
                         return (
                           <div className="col-auto" key={icon}>
                             <a
-                              key={icon}
                               href={url}
                               target="_blank"
                               rel="noopener noreferrer"
@@ -265,7 +255,7 @@ const Footer = ({ settings, menu, submenuMap }) => {
             <div className="row y-gap-30 justify-center items-center">
               <div className="col-md-auto">
                 <div className="text-15 text-center text-white-60">
-                  ©{new Date().getFullYear()} {data.title}.
+                  © {new Date().getFullYear()} {data.title}.
                 </div>
               </div>
             </div>
