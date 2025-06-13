@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Mousewheel } from "swiper/modules";
+import { Mousewheel } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
@@ -25,6 +25,30 @@ export default function SocialResponsibility() {
   const [activeIndex, setActiveIndex] = useState(0);
   const filteredData = data?.filter((item) => item.isActive) || [];
 
+  const containerRef = useRef(null);
+  const hasActivatedOnce = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasActivatedOnce.current) {
+          hasActivatedOnce.current = true;
+          if (swiperRef.current?.swiper) {
+            swiperRef.current.swiper.slideToLoop(0);
+            setActiveIndex(0);
+          }
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (containerRef.current) observer.observe(containerRef.current);
+
+    return () => {
+      if (containerRef.current) observer.unobserve(containerRef.current);
+    };
+  }, [filteredData]);
+
   const handleSlideChange = (swiper) => {
     setActiveIndex(swiper.realIndex);
   };
@@ -32,8 +56,12 @@ export default function SocialResponsibility() {
   const handlePaginationClick = (index) => {
     if (swiperRef.current?.swiper) {
       swiperRef.current.swiper.slideToLoop(index);
+      setActiveIndex(index);
     }
   };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError || !filteredData.length) return <div>No data found.</div>;
 
   return (
     <>
@@ -78,23 +106,16 @@ export default function SocialResponsibility() {
               <div className="verticalSlider__wrap relative">
                 <Swiper
                   ref={swiperRef}
-                  initialSlide={activeIndex}
-                  className="verticalSlider"
                   direction="vertical"
-                  spaceBetween={130}
-                  slidesPerView={1}
-                  centeredSlides={true}
                   loop={true}
+                  centeredSlides={true}
+                  slidesPerView={3}
+                  spaceBetween={10}
                   mousewheel={true}
-                  modules={[Pagination, Mousewheel]}
+                  initialSlide={0}
+                  modules={[Mousewheel]}
+                  className="verticalSlider"
                   onSlideChange={handleSlideChange}
-                  breakpoints={{
-                    1200: { slidesPerView: 3 },
-                    992: { slidesPerView: 3 },
-                    768: { slidesPerView: 1 },
-                    576: { slidesPerView: 1 },
-                    0: { slidesPerView: 1 },
-                  }}
                 >
                   {filteredData.map((item) => (
                     <SwiperSlide key={item._id}>

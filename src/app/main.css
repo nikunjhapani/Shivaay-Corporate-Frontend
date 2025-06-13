@@ -10145,7 +10145,7 @@ body.is-cursor-active * {
 }
 
 .rounded-16 {
-  border-radius: 16px;
+  border-radius: 16px !important;
 }
 
 .rounded-40 {

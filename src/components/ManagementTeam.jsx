@@ -39,7 +39,7 @@ export default function ManagementTeam() {
             data-aos-offset="0"
             data-aos-duration="1500"
           >
-            <Link href="/management-team" className="baseCard -type-4">
+            <Link href="/management-team" className="baseCard -type-4 ">
               <div className="baseCard__image ratio ratio-95:80 rounded-16">
                 <Image
                   src={`${BASE_URL}/${item.profile}`}
