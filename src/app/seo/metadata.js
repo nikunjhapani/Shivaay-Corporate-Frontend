@@ -1,3 +1,5 @@
+
+
 export const metadata = {
   title: {
     default: "Shivaay Corporate - Innovative Business Solutions",
@@ -5,4 +7,7 @@ export const metadata = {
   },
   description:
     "Shivaay Corporate provides cutting-edge technology solutions for businesses of all sizes.",
+  icons: {
+    icon: 'favicon.ico',
+  },
 };
