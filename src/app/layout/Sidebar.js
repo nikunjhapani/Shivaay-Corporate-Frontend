@@ -12,8 +12,6 @@ const Sidebar = ({
 }) => {
   const [closing, setClosing] = useState(false);
 
-  console.log("menu", menu);
-
   const toggleSidebar = () => {
     if (sidebarOpen) {
       setClosing(true);
@@ -76,7 +74,7 @@ const Sidebar = ({
                       >
                         <Link
                           href={submenuItem?.menuURL}
-                          // onClick={handleLinkClick}
+                          onClick={toggleSidebar}
                         >
                           {submenuItem?.menuName}
                         </Link>

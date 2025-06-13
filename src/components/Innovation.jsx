@@ -84,7 +84,7 @@ const InnovationSection = () => {
               .map((item, index) => (
                 <Image
                   key={item?._id}
-                  src={`${api.defaults.baseURL}/${item.innovationImage}`}
+                  src={`${api.defaults.baseURL}${item.innovationImage}`}
                   alt={item.title}
                   fill
                   className={clsx("img-cover", {

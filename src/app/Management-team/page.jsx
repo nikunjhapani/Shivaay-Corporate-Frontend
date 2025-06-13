@@ -4,7 +4,7 @@ import api from "../../utils/axios";
 import HeroSlider from "../../components/HeroSlider";
 
 const getManagementTeam = async () => {
-  const res = await fetch(`${api.defaults.baseURL}/api/managementTeam/getAllApi`, {
+  const res = await fetch(`${api.defaults.baseURL}api/managementTeam/getAllApi`, {
     method: "POST",
     cache: "no-store", // SSR: always fresh data
   });
@@ -86,7 +86,7 @@ export default async function Page() {
                   }`}
                 >
                   <Image
-                    src={`${api.defaults.baseURL}/${item.profile}`}
+                    src={`${api.defaults.baseURL}${item.profile}`}
                     alt={`Profile of ${item.name}`}
                     className="rounded-16"
                     width={584}

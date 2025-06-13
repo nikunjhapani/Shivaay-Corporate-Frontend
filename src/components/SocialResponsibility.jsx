@@ -61,7 +61,7 @@ export default function SocialResponsibility() {
                 className={index === activeIndex ? "is-active" : ""}
               >
                 <Image
-                  src={`${api.defaults.baseURL}/${item?.socialActivityphoto}`}
+                  src={`${api.defaults.baseURL}${item?.socialActivityphoto}`}
                   alt={item?.title || "Social responsibility image"}
                   className="img-ratio"
                   width={1920}
@@ -102,7 +102,7 @@ export default function SocialResponsibility() {
                         <div>
                           <div className="sr-icon">
                             <Image
-                              src={`${api.defaults.baseURL}/${item?.socialActivityIcon}`}
+                              src={`${api.defaults.baseURL}${item?.socialActivityIcon}`}
                               alt={item?.title || "Icon"}
                               width={50}
                               height={50}

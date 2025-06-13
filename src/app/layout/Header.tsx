@@ -102,7 +102,7 @@ export default function Header({ settings, setSidebarOpen, menu, submenuMap }) {
           </button>
 
           <div className="menuFullScreen-links js-menuFullScreen-links">
-            {menu.map((item: any, index: number) => (
+            {menu?.map((item: any, index: number) => (
               <div
                 className="menuFullScreen-links__item js-menuFullScreen-has-children"
                 key={index}
@@ -119,7 +119,7 @@ export default function Header({ settings, setSidebarOpen, menu, submenuMap }) {
 
                 {submenuMap[item._id] && submenuMap[item._id].length > 0 && (
                   <div className="menuFullScreen-links-subnav js-menuFullScreen-subnav">
-                    {submenuMap[item._id].map((sub) => (
+                    {submenuMap[item._id].map((sub:any) => (
                       <div
                         className="menuFullScreen-links-subnav__item"
                         key={sub._id}
@@ -131,64 +131,10 @@ export default function Header({ settings, setSidebarOpen, menu, submenuMap }) {
                 )}
               </div>
             ))}
-
-            {/* <div className="menuFullScreen-links__item js-menuFullScreen-has-children">
-              <Link href="#">
-                ABOUT US
-                <i className="icon-arrow-right"></i>
-                <i className="icon-chevron-right"></i>
-              </Link>
-
-              <div className="menuFullScreen-links-subnav js-menuFullScreen-subnav">
-                <div className="menuFullScreen-links-subnav__item">
-                  <Link href="#">OUR JOURNEY</Link>
-                </div>
-                <div className="menuFullScreen-links-subnav__item">
-                  <Link href="#">OUR PHILOSOPHY</Link>
-                </div>
-                <div className="menuFullScreen-links-subnav__item">
-                  <Link href="#">VISION</Link>
-                </div>
-                <div className="menuFullScreen-links-subnav__item">
-                  <Link href="#">MISSION</Link>
-                </div>
-                <div className="menuFullScreen-links-subnav__item">
-                  <Link href="#">GALLERY</Link>
-                </div>
-              </div>
-            </div> */}
-
-            {/* <div className="menuFullScreen-links__item">
-              <Link href="#">ARTISTRY & INNOVATION</Link>
-            </div>
-
-            <div className="menuFullScreen-links__item">
-              <Link href="#">GLOBAL PRESENCE</Link>
-            </div>
-
-            <div className="menuFullScreen-links__item">
-              <Link href="#">SOCIAL RESPONSIBILITY</Link>
-            </div>
-
-            <div className="menuFullScreen-links__item">
-              <Link href="#">GALLERY</Link>
-            </div>
-
-            <div className="menuFullScreen-links__item">
-              <Link href="#">AWARDS & CERTIFICATES</Link>
-            </div>
-
-            <div className="menuFullScreen-links__item">
-              <Link href="#">CAREER</Link>
-            </div>
-
-            <div className="menuFullScreen-links__item">
-              <Link href="#">CONTACT US</Link>
-            </div> */}
           </div>
         </div>
 
-        <div className="menuFullScreen__right js-menuFullScreen-right">
+        {/* <div className="menuFullScreen__right js-menuFullScreen-right">
           <div className="text-center">
             <div className="mt-40">
               <div className="text-24 text-sec fw-500 text-white">Location</div>
@@ -223,7 +169,7 @@ export default function Header({ settings, setSidebarOpen, menu, submenuMap }) {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

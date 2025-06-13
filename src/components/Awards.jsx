@@ -13,7 +13,7 @@ export default function Awards() {
   useEffect(() => {
     const getAwards = async () => {
       try {
-        const res = await api.post("/api/awards/getAllApi");
+        const res = await api.post("api/awards/getAllApi");
         setAwardsData(res.data?.data || []);
       } catch (error) {
         console.error("Error fetching awards:", error);
@@ -61,7 +61,7 @@ export default function Awards() {
                   <Link href="/awards-certificates" className="baseCard -type-2">
                     <div className="baseCard__image ratio ratio-41:50">
                       <Image
-                        src={`${api.defaults.baseURL}/${item.awardImage}`}
+                        src={`${api.defaults.baseURL}${item.awardImage}`}
                         alt={item.title}
                         width={300}
                         height={365}

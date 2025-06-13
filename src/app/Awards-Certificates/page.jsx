@@ -9,7 +9,7 @@ export const metadata = {
   description: "Government and Other Recognitions",
 };
 const getAwards = async () => {
-  const res = await fetch(`${api.defaults.baseURL}/api/awards/getAllApi`, {
+  const res = await fetch(`${api.defaults.baseURL}api/awards/getAllApi`, {
     method: "POST",
     cache: "no-store", // SSR: always fresh data
   });
@@ -44,7 +44,7 @@ export default async function page() {
                    
                     <div className="baseCard__image ratio ratio-41:50">
                       <Image
-                        src={`${api.defaults.baseURL}/${item.awardImage}`}
+                        src={`${api.defaults.baseURL}${item.awardImage}`}
                         alt={item.title}
                         width={300}
                         height={365}
