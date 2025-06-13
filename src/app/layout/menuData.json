@@ -1,0 +1,40 @@
+[
+  {
+    "title": "ABOUT US",
+    "hasSubnav": true,
+    "subnav": [
+      { "label": "OUR JOURNEY", "link": "/our-journey" },
+      { "label": "OUR PHILOSOPHY", "link": "/our-philosophy" },
+      { "label": "VISION", "link": "/vision" },
+      { "label": "MISSION", "link": "/mission" }
+    ]
+  },
+  {
+    "title": "ARTISTRY & INNOVATION",
+    "link": "/artistry-innovation"
+  },
+  {
+    "title": "GLOBAL PRESENCE",
+    "link": "/global-presence"
+  },
+  {
+    "title": "SOCIAL RESPONSIBILITY",
+    "link": "/social-responsibility"
+  },
+  {
+    "title": "GALLERY",
+    "link": "/gallery"
+  },
+  {
+    "title": "AWARDS & CERTIFICATES",
+    "link": "/certificates"
+  },
+  {
+    "title": "CAREER",
+    "link": "/career"
+  },
+  {
+    "title": "CONTACT US",
+    "link": "/contact-us"
+  }
+]

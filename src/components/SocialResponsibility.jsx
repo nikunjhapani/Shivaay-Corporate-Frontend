@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Mousewheel } from "swiper/modules";
 import "swiper/css";
@@ -21,14 +21,19 @@ export default function SocialResponsibility() {
     queryFn: getData,
   });
 
-  const [activeIndex, setActiveIndex] = useState(1);
+  const swiperRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
   const filteredData = data?.filter((item) => item.isActive) || [];
-
 
   const handleSlideChange = (swiper) => {
     setActiveIndex(swiper.realIndex);
   };
-  
+
+  const handlePaginationClick = (index) => {
+    if (swiperRef.current?.swiper) {
+      swiperRef.current.swiper.slideToLoop(index);
+    }
+  };
 
   return (
     <>
@@ -36,20 +41,10 @@ export default function SocialResponsibility() {
         <div className="container layout-pb-sm">
           <div className="row justify-center text-center">
             <div className="col-auto">
-              <div
-                className="text-15 sm:text-13 uppercase mb-5"
-                data-aos="fade-up"
-                data-aos-offset="0"
-                data-aos-duration="1000"
-              >
+              <div className="text-15 sm:text-13 uppercase mb-5">
                 Committed to Making a Difference
               </div>
-              <h2
-                className="text-34 md:text-30 sm:text-24 capitalize"
-                data-aos="fade-up"
-                data-aos-offset="0"
-                data-aos-duration="1000"
-              >
+              <h2 className="text-34 md:text-30 sm:text-24 capitalize">
                 Social Responsibility
               </h2>
             </div>
@@ -58,7 +53,6 @@ export default function SocialResponsibility() {
       </section>
 
       <section className="verticalSlider-images relative z-0 bg-accent-3">
-        {/* Background Images */}
         <div className="sectionBg -left-2 w-1/2 lg:w-1/1 z-2">
           <div className="verticalSlider-images__images">
             {filteredData.map((item, index) => (
@@ -78,12 +72,12 @@ export default function SocialResponsibility() {
           </div>
         </div>
 
-        {/* Vertical Slider */}
         <div className="container">
           <div className="row">
             <div className="col-xl-5 col-lg-4 offset-lg-7">
-              <div className="verticalSlider__wrap">
+              <div className="verticalSlider__wrap relative">
                 <Swiper
+                  ref={swiperRef}
                   initialSlide={activeIndex}
                   className="verticalSlider"
                   direction="vertical"
@@ -92,27 +86,14 @@ export default function SocialResponsibility() {
                   centeredSlides={true}
                   loop={true}
                   mousewheel={true}
-                  pagination={{
-                    el: ".js-verticalSlider-pagination",
-                    clickable: true,
-                    renderBullet: (index, className) => {
-                      return `<span class="pagination__item">0${
-                        index + 1
-                      }</span>`;
-                    },
-                  }}
                   modules={[Pagination, Mousewheel]}
                   onSlideChange={handleSlideChange}
-                  onInit={(swiper) => {
-                    swiper.pagination.init();
-                    swiper.pagination.render();
-                  }}
                   breakpoints={{
-                    1200: { slidesPerView: 3 }, // xl-3
-                    992: { slidesPerView: 3 }, // lg-3
-                    768: { slidesPerView: 1 }, // md-1
-                    576: { slidesPerView: 1 }, // sm-1
-                    0: { slidesPerView: 1 }, // base-1
+                    1200: { slidesPerView: 3 },
+                    992: { slidesPerView: 3 },
+                    768: { slidesPerView: 1 },
+                    576: { slidesPerView: 1 },
+                    0: { slidesPerView: 1 },
                   }}
                 >
                   {filteredData.map((item) => (
@@ -137,8 +118,20 @@ export default function SocialResponsibility() {
                       </div>
                     </SwiperSlide>
                   ))}
-                  <div className="verticalSlider__nav js-verticalSlider-pagination"></div>
                 </Swiper>
+              </div>
+              <div className="verticalSlider__nav js-verticalSlider-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-vertical">
+                {filteredData.map((_, index) => (
+                  <span
+                    key={index}
+                    className={`pagination__item cursor-hover-target cursor-pointer ${
+                      activeIndex === index ? "is-active" : ""
+                    }`}
+                    onClick={() => handlePaginationClick(index)}
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                ))}
               </div>
             </div>
           </div>

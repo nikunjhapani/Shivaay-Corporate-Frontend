@@ -7,13 +7,13 @@ const items = [
     title: "Vision",
     imgSrc: "/img/about/12/vision.jpg",
     text: `Our vision at Shivaay Jewels is to lead the global jewelry market, not just in design and quality, but in ethical business practices. We aspire to redefine the standards of luxury jewelry, blending creativity, integrity, and innovation to set the benchmark for excellence.`,
-    link: "/vision.html",
+    link: "/vision",
   },
   {
     title: "Mission",
     imgSrc: "/img/about/12/mision.jpg",
     text: `Our mission at Shivaay Jewels is clear: to create jewelry that is more than just a product but a masterpiece. Every piece we design is crafted with care and precision to inspire generations, transcending time and trends.`,
-    link: "/mission.html",
+    link: "/mission",
   },
 ];
 
@@ -23,7 +23,7 @@ export default function VisionMissionSection() {
       <div className="container">
         <div className="row">
           {items.map((item, i) => (
-            <div className="col-lg-6 col-md-6 sm:mb-40" key={i}>
+            <div className="col-lg-6 col-md-6" key={i}>
               <div className="row items-center">
                 <div
                   className="col-lg-6 mb-3 sm:px-40"

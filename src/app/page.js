@@ -11,6 +11,7 @@ import VisionMissionSection from "../components/VisionMissionSection";
 import About from "../components/AboutSection";
 import { useEffect, useState } from "react";
 import Button from "../components/ui/Button";
+import Link from "next/link";
 
 export default function Home() {
 
@@ -59,7 +60,7 @@ export default function Home() {
                   who appreciate both luxury and craftsmanship.
                 </p>
 
-                <a href="/global-presence.html">
+                <Link href="/global-presence">
                   <button className="button -type-1 text-white mt-40">
                     <i className="-icon">
                       <svg
@@ -80,7 +81,7 @@ export default function Home() {
                     </i>
                     READ MORE
                   </button>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

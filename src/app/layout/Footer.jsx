@@ -139,25 +139,25 @@ const Footer = ({ settings, menu, submenuMap }) => {
                     {
                       title: "Information",
                       links: [
-                        ["Artistry & Innovation", "/artistry-innovation.html"],
-                        ["Global Presence", "/global-presence.html"],
+                        ["Artistry & Innovation", "/artistry-innovation"],
+                        ["Global Presence", "/global-presence"],
                         [
                           "Social Responsibility",
-                          "/social-responsibility.html",
+                          "/social-responsibility",
                         ],
-                        ["Awards & Certificates", "/awards-certificates.html"],
-                        ["Career", "/career.html"],
-                        ["Contact Us", "/contact-us.html"],
+                        ["Awards & Certificates", "/awards-certificates"],
+                        ["Career", "/career"],
+                        ["Contact Us", "/contact-us"],
                       ],
                     },
                     {
                       title: "ABOUT US",
                       links: [
-                        ["Our Journey", "/our-journey.html"],
-                        ["Our Philosophy", "/our-philosophy.html"],
-                        ["Vision", "/vision.html"],
-                        ["Mission", "/mission.html"],
-                        ["Management Team", "/management-team.html"],
+                        ["Our Journey", "/our-journey"],
+                        ["Our Philosophy", "/our-philosophy"],
+                        ["Vision", "/vision"],
+                        ["Mission", "/mission"],
+                        ["Management Team", "/management-team"],
                       ],
                     },
                     {

@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { useQuery } from "@tanstack/react-query";
 import { postData } from "../utils/apiMethods";
 import api from "../utils/axios";
+import Link from "next/link";
 export const getInnovation = async () => {
   const res = await postData("/api/innovation/getAllApi");
   return res?.data || [];
@@ -31,11 +32,11 @@ const InnovationCard = ({
           <div>{description}</div>
         </div>
         <div className="d-flex mt-30">
-          <a href="/artistry-innovation.html">
+          <Link href="/artistry-innovationl">
             <button className="button -md -type-2 -outline-white text-white">
               Discover More
             </button>
-          </a>
+          </Link>
         </div>
       </div>
     </div>
@@ -50,7 +51,7 @@ const InnovationSection = () => {
   });
   return (
     <>
-      <section className="layout-pt-md sm:mt-25">
+      <section className="layout-pt-md">
         <div className="container layout-pb-sm">
           <div className="row justify-center text-center">
             <div className="col-auto">
@@ -82,7 +83,7 @@ const InnovationSection = () => {
               ?.filter((item) => item.isActive)
               .map((item, index) => (
                 <Image
-                  key={index}
+                  key={item?._id}
                   src={`${api.defaults.baseURL}/${item.innovationImage}`}
                   alt={item.title}
                   fill
@@ -104,7 +105,7 @@ const InnovationSection = () => {
           {data
             ?.filter((item) => item.isActive)
             .map((item, index) => (
-              <div className="col-md-4">
+              <div className="col-md-4" key={item._id}>
                 <InnovationCard
                   title={item.title}
                   subtitle={item.subTitle}
