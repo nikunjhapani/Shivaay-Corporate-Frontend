@@ -3,13 +3,24 @@ import React, { useState } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 
-const ParentHeader = () => {
+const ParentHeader = ({ settings, menu, submenuMap }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <>
-      <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      <Header
+        settings={settings}
+        setSidebarOpen={setSidebarOpen}
+        menu={menu}
+        submenuMap={submenuMap}
+      />
+      <Sidebar
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+        menu={menu}
+        submenuMap={submenuMap}
+        settings={settings}
+      />
     </>
   );
 };

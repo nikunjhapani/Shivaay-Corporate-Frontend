@@ -1,13 +1,18 @@
 "use client";
 import React, { useState } from "react";
 import "./Sidebar.css";
-// import { Link } from "react-router-dom";
-// import img1 from "../assets/imgs/homeImgs/bg01.png";
-import sidebarMenuData from "./menuData.json";
 import Link from "next/link";
 
-const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
+const Sidebar = ({
+  sidebarOpen,
+  setSidebarOpen,
+  menu,
+  submenuMap,
+  settings,
+}) => {
   const [closing, setClosing] = useState(false);
+
+  console.log("menu", menu);
 
   const toggleSidebar = () => {
     if (sidebarOpen) {
@@ -43,32 +48,37 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
           </button>
 
           <div className="menuFullScreen-links js-menuFullScreen-links">
-            {sidebarMenuData.map((item, index) => (
+            {menu?.map((item, index) => (
               <div
                 key={index}
                 className={`menuFullScreen-links__item ${
-                  item.hasSubnav ? "js-menuFullScreen-has-children" : ""
+                  item?.menuType === "Sub Menu"
+                    ? "js-menuFullScreen-has-children"
+                    : ""
                 }`}
               >
-                <Link href={item.link || "#"} onClick={toggleSidebar}>
-                  {item.title}
-                  {item.hasSubnav && (
+                <Link href={item?.menuURL || "#"} onClick={toggleSidebar}>
+                  {item?.menuName}
+                  {item?.menuType === "Sub Menu" && (
                     <>
-                      <i className="icon-arrow-right" />
-                      <i className="icon-chevron-right" />
+                      <i className="icon-arrow-right"></i>
+                      <i className="icon-chevron-right"></i>
                     </>
                   )}
                 </Link>
 
-                {item.hasSubnav && (
+                {submenuMap[item?._id] && submenuMap[item?._id]?.length > 0 && (
                   <div className="menuFullScreen-links-subnav js-menuFullScreen-subnav">
-                    {item.subnav.map((sub, subIndex) => (
+                    {submenuMap[item?._id].map((submenuItem) => (
                       <div
-                        key={subIndex}
+                        key={submenuItem?._id}
                         className="menuFullScreen-links-subnav__item"
                       >
-                        <Link href={sub.link} onClick={toggleSidebar}>
-                          {sub.label}
+                        <Link
+                          href={submenuItem?.menuURL}
+                          // onClick={handleLinkClick}
+                        >
+                          {submenuItem?.menuName}
                         </Link>
                       </div>
                     ))}
@@ -91,12 +101,15 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 <div className="text-24 text-sec fw-500 text-white">
                   Location
                 </div>
-                <div className="mt-10 text-white">
-                  Plot No. 101-102, Surat Special Economic Zone,
-                  <br />
-                  Sursez, Sachin, Surat, <br />
-                  Gujarat 394230
-                </div>
+                <div
+                  className="mt-10 text-white"
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      typeof settings?.address === "string"
+                        ? settings.address
+                        : "",
+                  }}
+                ></div>
               </div>
 
               <div className="mt-40">
@@ -105,10 +118,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 </div>
                 <div className="mt-10 text-white">
                   <div>
-                    <Link href="#">0261 239 9533</Link>
+                    <Link href="#">{settings?.phone}</Link>
                   </div>
                   <div>
-                    <Link href="#">info@shivaayjewels.com</Link>
+                    <Link href="#">{settings?.email}</Link>
                   </div>
                 </div>
               </div>
@@ -118,7 +131,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                   Connect With Us
                 </div>
                 <div className="mt-10 text-white">
-                  <Link href="#">+ 91 98981 98982</Link>
+                  <Link href="#">{settings?.mobile}</Link>
                 </div>
               </div>
             </div>

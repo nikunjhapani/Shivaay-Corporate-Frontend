@@ -30,9 +30,8 @@ const poppins = Poppins({
 export { metadata };
 
 export default async function RootLayout({ children }) {
-
-    
   const { settings, menu, submenuMap } = await getLayoutData();
+
   return (
     <html lang="en">
       <body className={`${cinzel.variable} ${poppins.variable}`}>
@@ -41,7 +40,11 @@ export default async function RootLayout({ children }) {
             <CustomCursor />
             <main>
               {/* <Header settings={settings} /> */}
-    <ParentHeader settings={settings} />
+              <ParentHeader
+                settings={settings}
+                menu={menu}
+                submenuMap={submenuMap}
+              />
               {children}
 
               <Footer settings={settings} menu={menu} submenuMap={submenuMap} />

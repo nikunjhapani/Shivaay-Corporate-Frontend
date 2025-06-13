@@ -1,16 +1,10 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import api from "../../utils/axios";
 
-export default function Header({ sidebarOpen, setSidebarOpen }) {
-  const [siteSettings, setSiteSettings] = useState(null);
-  const [menuData, setMenuData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const [isOpen, setIsOpen] = useState(false);
+export default function Header({ settings, setSidebarOpen, menu, submenuMap }) {
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [headerColor, setHeaderColor] = useState("-blur");
 
   useEffect(() => {
@@ -26,14 +20,9 @@ export default function Header({ sidebarOpen, setSidebarOpen }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // const toggleMenu = () => {
-  //   setIsOpen(!isOpen);
-  // };
-
-    const openSidebar = () =>{
-    setSidebarOpen((prev)=>!prev)
-  }
-
+  const openSidebar = () => {
+    setSidebarOpen((prev: any) => !prev);
+  };
 
   return (
     <>
@@ -61,7 +50,7 @@ export default function Header({ sidebarOpen, setSidebarOpen }) {
             <div className="header__logo">
               <Link href="/">
                 <Image
-                  src={`${api.defaults.baseURL}/${siteSettings?.websiteLogo}`}
+                  src={`${baseUrl}${settings?.websiteLogo}`}
                   alt="logo"
                   width={120}
                   height={40}
@@ -84,7 +73,6 @@ export default function Header({ sidebarOpen, setSidebarOpen }) {
         </div>
       </header>
 
-
       <div className="menuFullScreen js-menuFullScreen">
         <div className="menuFullScreen__topMobile js-menuFullScreen-topMobile">
           <div className="d-flex items-center text-white js-menuFullScreen-toggle">
@@ -94,7 +82,7 @@ export default function Header({ sidebarOpen, setSidebarOpen }) {
             </div>
           </div>
           <div className="menuFullScreen__img">
-            <img src='img/logo/logo.png' alt="logo" />
+            <img src="img/logo/logo.png" alt="logo" />
           </div>
         </div>
 
@@ -114,7 +102,37 @@ export default function Header({ sidebarOpen, setSidebarOpen }) {
           </button>
 
           <div className="menuFullScreen-links js-menuFullScreen-links">
-            <div className="menuFullScreen-links__item js-menuFullScreen-has-children">
+            {menu.map((item: any, index: number) => (
+              <div
+                className="menuFullScreen-links__item js-menuFullScreen-has-children"
+                key={index}
+              >
+                <Link href={item?.menuURL}>
+                  {item?.menuName}
+                  {item?.menuType === "Sub Menu" && (
+                    <>
+                      <i className="icon-arrow-right"></i>
+                      <i className="icon-chevron-right"></i>
+                    </>
+                  )}
+                </Link>
+
+                {submenuMap[item._id] && submenuMap[item._id].length > 0 && (
+                  <div className="menuFullScreen-links-subnav js-menuFullScreen-subnav">
+                    {submenuMap[item._id].map((sub) => (
+                      <div
+                        className="menuFullScreen-links-subnav__item"
+                        key={sub._id}
+                      >
+                        <Link href={sub.menuURL}>{sub.menuName}</Link>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+
+            {/* <div className="menuFullScreen-links__item js-menuFullScreen-has-children">
               <Link href="#">
                 ABOUT US
                 <i className="icon-arrow-right"></i>
@@ -138,9 +156,9 @@ export default function Header({ sidebarOpen, setSidebarOpen }) {
                   <Link href="#">GALLERY</Link>
                 </div>
               </div>
-            </div>
+            </div> */}
 
-            <div className="menuFullScreen-links__item">
+            {/* <div className="menuFullScreen-links__item">
               <Link href="#">ARTISTRY & INNOVATION</Link>
             </div>
 
@@ -166,7 +184,7 @@ export default function Header({ sidebarOpen, setSidebarOpen }) {
 
             <div className="menuFullScreen-links__item">
               <Link href="#">CONTACT US</Link>
-            </div>
+            </div> */}
           </div>
         </div>
 
