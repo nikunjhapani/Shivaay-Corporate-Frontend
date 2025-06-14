@@ -8,7 +8,7 @@ import Link from 'next/link';
 export default function HeroSlider({ sliderData }) {
     return (
         <section className="pt-90 sm:pt-40 layout-pb-md bg-accent-1">
-            <div className="container">
+            <div data-anim-wrap className="container">
                 <div className="pt-50">
                     <Swiper
                         modules={[Navigation]}

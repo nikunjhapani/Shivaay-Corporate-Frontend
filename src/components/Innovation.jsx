@@ -50,7 +50,7 @@ const InnovationSection = () => {
   });
   return (
     <>
-      <section className="layout-pt-md sm:mt-25">
+      <section className="layout-pt-md mt-0 sm:mt-25">
         <div className="container layout-pb-sm">
           <div className="row justify-center text-center">
             <div className="col-auto">

@@ -27,22 +27,17 @@ const poppins = Poppins({
 export { metadata };
 
 export default async function RootLayout({ children }) {
-  
   const { settings, menu, submenuMap } = await getLayoutData();
-  console.log(menu, "settings");
   return (
     <html lang="en">
       <body className={`${cinzel.variable} ${poppins.variable}`}>
         <ReactQueryProvider>
           <AOSProvider>
-          
+            <Header settings={settings} />
             <main>
-              <Header settings={settings} />
-<ClientLayout>{children}</ClientLayout>
-           
-
-              <Footer settings={settings} menu={menu} submenuMap={submenuMap} />
+              <ClientLayout>{children}</ClientLayout>
             </main>
+            <Footer settings={settings} menu={menu} submenuMap={submenuMap} />
           </AOSProvider>
         </ReactQueryProvider>
         <Script src="/js/main.js" strategy="afterInteractive" />
