@@ -23,7 +23,7 @@ export default function VisionMissionSection() {
       <div className="container">
         <div className="row">
           {items.map((item, i) => (
-            <div className="col-lg-6 col-md-6 mb-0 sm:mb-40" key={i}>
+            <div className="col-lg-6 col-md-6 sm:mb-10" key={i}>
               <div className="row items-center">
                 <div
                   className="col-lg-6 mb-3 sm:px-40"

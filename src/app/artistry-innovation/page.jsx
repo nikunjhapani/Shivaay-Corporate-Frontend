@@ -9,10 +9,10 @@ export const getData = async () => {
   return res?.data || [];
 };
 export default function page() {
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ["innovation"],
-    queryFn: getData,
-  });
+  // const { data, isLoading, isError } = useQuery({
+  //   queryKey: ["innovation"],
+  //   queryFn: getData,
+  // });
   
   return (
     <>
