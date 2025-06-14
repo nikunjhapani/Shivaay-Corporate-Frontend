@@ -98,7 +98,7 @@ export default function Header() {
           </div>
 
           <div className="menuFullScreen__img">
-            <img src="img/general/logo.png" alt="logo" />
+            <Image src={`${api.defaults.baseURL}/${siteSettings?.websiteLogo}`} width={100} height={100} alt="logo" />
           </div>
         </div>
 
@@ -126,7 +126,7 @@ export default function Header() {
                 transition={{ duration: 1 }}
               >
                 <div className="menuFullScreen__bg js-menuFullScreen-bg">
-                  <img src="img/menu/bg.png" alt="image" />
+                  <Image src={`${api.defaults.baseURL}/${siteSettings?.menuImage}`} width={100} height={100} alt="image" />
                 </div>
 
                 <button
@@ -225,9 +225,7 @@ export default function Header() {
       </div>
 
       <header
-        className="header -h-110 -mx-60 -blur -border-bottom-1 js-header is-hidden-on-scroll bg-accent-1 is-sticky"
-        data-add-bg="bg-accent-1"
-        data-x="header"
+        className="header -h-110 -mx-60 -blur -border-bottom-1 js-header mx-0" data-add-bg="bg-accent-1" data-x="header"
         data-x-toggle="-is-menu-opened"
         ref={headerRef}
       >
@@ -252,7 +250,6 @@ export default function Header() {
                   alt="logo"
                   width={120}
                   height={40}
-                  priority
                 />
               </Link>
             </div>
@@ -261,7 +258,7 @@ export default function Header() {
           <div className="header__right d-flex items-center h-full">
             <div className="line -vertical bg-white-10 h-full ml-90 mr-90 xl:d-none"></div>
 
-            <Link href="#">
+            <Link href="/contact-us">
               <button className="button text-white mr-30 xl:d-none">
                 <i className="icon-phone text-20 text-white mr-15"></i>
                 CONTACT US
