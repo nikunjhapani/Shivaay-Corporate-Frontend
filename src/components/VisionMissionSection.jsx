@@ -1,28 +1,39 @@
 import Link from "next/link";
 import Image from "next/image";
-import ArrowIcon from "./ui/ArrowIcon"; // Create this separately if needed
-
-const items = [
-  {
-    title: "Vision",
-    imgSrc: "/img/about/12/vision.jpg",
-    text: `Our vision at Shivaay Jewels is to lead the global jewelry market, not just in design and quality, but in ethical business practices. We aspire to redefine the standards of luxury jewelry, blending creativity, integrity, and innovation to set the benchmark for excellence.`,
-    link: "/vision.html",
-  },
-  {
-    title: "Mission",
-    imgSrc: "/img/about/12/mision.jpg",
-    text: `Our mission at Shivaay Jewels is clear: to create jewelry that is more than just a product but a masterpiece. Every piece we design is crafted with care and precision to inspire generations, transcending time and trends.`,
-    link: "/mission.html",
-  },
-];
+import Button from "./ui/Button";
+import { postData } from "../utils/apiMethods";
+import { useQuery } from "@tanstack/react-query";
+import api from "../utils/axios";
+export const getsData = async () => {
+  const res = await postData("/api/cms/getAllApi");
+  return res?.data || [];
+};
+const stripHtmlAndLimit = (html = "", maxLength = 200) => {
+  const text = html.replace(/<[^>]*>?/gm, "");
+  return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+};
 
 export default function VisionMissionSection() {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["VisionMission"],
+    queryFn: getsData,
+  });
+  const items = data
+    ?.filter(
+      (item) =>
+        item.page_title === "Our Vision" || item.page_title === "Our Mission"
+    )
+    .map((item) => ({
+      ...item,
+      shortText: stripHtmlAndLimit(item.page_editor, 250),
+      cleanTitle: item.page_title.replace(/^Our\s+/i, ""),
+    }));
+  console.log(items, "VisionMission");
   return (
     <section className="relative layout-pt-lg">
       <div className="container">
         <div className="row">
-          {items.map((item, i) => (
+          {items?.map((item, i) => (
             <div className="col-lg-6 col-md-6 sm:mb-10" key={i}>
               <div className="row items-center">
                 <div
@@ -32,8 +43,8 @@ export default function VisionMissionSection() {
                   data-aos-duration="1000"
                 >
                   <Image
-                    src={item.imgSrc}
-                    alt={item.title}
+                    src={`${api.defaults.baseURL}/${item.page_image}`}
+                    alt={item.cleanTitle}
                     className="rounded-8"
                     width={300}
                     height={300}
@@ -41,16 +52,11 @@ export default function VisionMissionSection() {
                   />
                 </div>
                 <div className="col-lg-6 text-left sm:px-40">
-                  <h3 className="mb-5">{item.title}</h3>
-                  <p className="text-15 text-justify">{item.text}</p>
+                  <h3 className="mb-5">{item.cleanTitle}</h3>
+                  <p className="text-15 text-justify">{item.shortText}</p>
                   <div className="mt-15">
-                    <Link href={item.link}>
-                      <button className="button -type-1">
-                        <i className="-icon">
-                          <ArrowIcon color="#122223" />
-                        </i>
-                        READ MORE
-                      </button>
+                    <Link href={item.page_link}>
+                      <Button>READ MORE</Button>
                     </Link>
                   </div>
                 </div>

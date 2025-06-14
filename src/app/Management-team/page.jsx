@@ -4,10 +4,13 @@ import api from "../../utils/axios";
 import HeroSlider from "../../components/HeroSlider";
 
 const getManagementTeam = async () => {
-  const res = await fetch(`${api.defaults.baseURL}/api/managementTeam/getAllApi`, {
-    method: "POST",
-    cache: "no-store", // SSR: always fresh data
-  });
+  const res = await fetch(
+    `${api.defaults.baseURL}/api/managementTeam/getAllApi`,
+    {
+      method: "POST",
+      cache: "no-store", // SSR: always fresh data
+    }
+  );
   const json = await res.json();
   return json?.data || [];
 };
@@ -16,42 +19,12 @@ export const metadata = {
   title: "Management Team",
   description: "Meet the visionaries behind the sparkle",
 };
-const sliderData = [
-  {
-    title: 'Our Journey',
-    link: '/our-journey',
-    image: '/img/cards/1/1.png',
-  },
-  {
-    title: 'Our Philosophy',
-    link: '/our-philosophy',
-    image: '/img/cards/1/2.png',
-  },
-  {
-    title: 'Vision',
-    link: '/vision',
-    image: '/img/cards/1/3.png',
-  },
-  {
-    title: 'Mission',
-    link: '/mission',
-    image: '/img/cards/1/4.png',
-  },
-  {
-    title: 'Management Team',
-    link: '/management-team',
-    image: '/img/cards/1/5.png',
-  },
-];
-
-
-
 export default async function Page() {
   const data = await getManagementTeam();
 
   return (
     <>
-      <HeroSlider sliderData={sliderData} />
+      <HeroSlider />
       <section className="layout-pt-md layout-pb-md">
         <div className="container">
           <div className="row justify-center">
@@ -76,7 +49,9 @@ export default async function Page() {
         return (
           <section
             key={item._id}
-            className={`layout-pt-sm ${isLast ? "layout-pb-lg" : "layout-pb-sm"}`}
+            className={`layout-pt-sm ${
+              isLast ? "layout-pb-lg" : "layout-pb-sm"
+            }`}
           >
             <div className="container">
               <div className="row justify-between items-center">

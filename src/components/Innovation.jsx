@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { useQuery } from "@tanstack/react-query";
 import { postData } from "../utils/apiMethods";
 import api from "../utils/axios";
+import Link from "next/link";
 export const getInnovation = async () => {
   const res = await postData("/api/innovation/getAllApi");
   return res?.data || [];
@@ -31,11 +32,11 @@ const InnovationCard = ({
           <div>{description}</div>
         </div>
         <div className="d-flex mt-30">
-          <a href="/artistry-innovation.html">
+          <Link href="/artistry-innovation">
             <button className="button -md -type-2 -outline-white text-white">
               Discover More
             </button>
-          </a>
+          </Link>
         </div>
       </div>
     </div>
@@ -78,13 +79,12 @@ const InnovationSection = () => {
       <section className="relative hoverTitleInteraction">
         <div className="sectionBg">
           <div className="hoverTitleInteraction__images -type-2">
-            {data
-              ?.filter((item) => item.isActive)
+            {data?.filter((item) => item.isActive)
               .map((item, index) => (
                 <Image
                   key={index}
                   src={`${api.defaults.baseURL}/${item.innovationImage}`}
-                  alt={item.title}
+                  alt={item?.subTitle}
                   fill
                   className={clsx("img-cover", {
                     "is-active": activeIndex === index,
