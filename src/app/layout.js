@@ -39,7 +39,7 @@ export default async function RootLayout({ children }) {
               <ClientLayout>{children}</ClientLayout>
 
 
-              <Footer settings={settings} menu={menu} submenuMap={submenuMap} />
+          
             </main>
             <Footer settings={settings} menu={menu} submenuMap={submenuMap} />
           </AOSProvider>
