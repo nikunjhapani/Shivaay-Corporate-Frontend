@@ -33,9 +33,13 @@ export default async function RootLayout({ children }) {
       <body className={`${cinzel.variable} ${poppins.variable}`}>
         <ReactQueryProvider>
           <AOSProvider>
-            <Header settings={settings} />
+
             <main>
+              <Header settings={settings} />
               <ClientLayout>{children}</ClientLayout>
+
+
+              <Footer settings={settings} menu={menu} submenuMap={submenuMap} />
             </main>
             <Footer settings={settings} menu={menu} submenuMap={submenuMap} />
           </AOSProvider>

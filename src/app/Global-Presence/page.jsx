@@ -46,7 +46,6 @@ export default function page() {
       setActiveTab(data[0]._id);
     }
   }, [data]);
-  console.log(activeTab, "data");
 
   return (
     <div>

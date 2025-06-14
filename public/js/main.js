@@ -12,9 +12,10 @@
   App.body = document.querySelector("body");
 
   window.onload = function () {
-    if (App.config.cursorFollower.enabled) {
+    if (App.config.cursorFollower.enabled && typeof Cursor !== "undefined") {
       Cursor.init();
     }
+
 
     document.fonts.ready.then(function () {
       initialReveal();
@@ -39,6 +40,6 @@
       initAOS();
       initParallax();
     }
-    
+
   };
 })();
