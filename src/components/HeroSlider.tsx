@@ -52,7 +52,7 @@ export default function HeroSlider() {
                                             <div className="-hover-image-scale__image">
                                                 <Image
                                                     src={`${api.defaults.baseURL}/${item.page_image}`}
-                                                    alt={item.page_title}
+                                                    alt={`${item.page_title} || title`}
                                                     className="img-ratio"
                                                     width={300}
                                                     height={400}

@@ -28,7 +28,6 @@ export default function VisionMissionSection() {
       shortText: stripHtmlAndLimit(item.page_editor, 250),
       cleanTitle: item.page_title.replace(/^Our\s+/i, ""),
     }));
-  console.log(items, "VisionMission");
   return (
     <section className="relative layout-pt-lg">
       <div className="container">
@@ -49,6 +48,7 @@ export default function VisionMissionSection() {
                     width={300}
                     height={300}
                     layout="responsive"
+                    
                   />
                 </div>
                 <div className="col-lg-6 text-left sm:px-40">
