@@ -39,7 +39,10 @@ export default function Awards() {
           </div>
 
           <div className="col-auto">
-            <Button>VIEW ALL</Button>
+            <Link href={"/awards-certificates"}>
+             <Button>VIEW ALL</Button>
+            </Link>
+           
           </div>
         </div>
 
