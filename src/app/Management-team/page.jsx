@@ -13,10 +13,6 @@ const getManagementTeam = async () => {
   return json?.data || [];
 };
 
-// export const metadata = {
-//   title: "Management Team",
-//   description: "Meet the visionaries behind the sparkle",
-// };
 const sliderData = [
   {
     title: 'Our Journey',
@@ -55,7 +51,7 @@ export default async function Page() {
 
   return (
     <>
-      <HeroSlider sliderData={sliderData} />
+      <HeroSlider />
       <section className="layout-pt-md layout-pb-md">
         <div className="container">
           <div className="row justify-center">
@@ -80,7 +76,9 @@ export default async function Page() {
         return (
           <section
             key={item._id}
-            className={`layout-pt-sm ${isLast ? "layout-pb-lg" : "layout-pb-sm"}`}
+            className={`layout-pt-sm ${
+              isLast ? "layout-pb-lg" : "layout-pb-sm"
+            }`}
           >
             <div className="container">
               <div className="row justify-between items-center">

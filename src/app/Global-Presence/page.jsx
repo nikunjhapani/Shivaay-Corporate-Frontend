@@ -119,7 +119,7 @@ export default function page() {
                               >
                                 <img
                                   className="rounded-8"
-                                  src={`${api.defaults.baseURL}${location.globalImage}`}
+                                  src={`${api.defaults.baseURL}${location.globalImage}`
                                   alt={location.countryName}
                                 />
                               </div>

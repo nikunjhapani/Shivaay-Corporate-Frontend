@@ -23,7 +23,7 @@ const cinzel = Cinzel({
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "600", "700"], // customize as needed
+  weight: ["400", "600", "700"],
   variable: "--font-poppins",
   display: "swap",
 });
@@ -39,6 +39,7 @@ export default async function RootLayout({ children }) {
           <AOSProvider>
             <CustomCursor />
             <main>
+
               {/* <Header settings={settings} /> */}
               <ParentHeader
                 settings={settings}
@@ -49,6 +50,7 @@ export default async function RootLayout({ children }) {
 
               <Footer settings={settings} menu={menu} submenuMap={submenuMap} />
             </main>
+            <Footer settings={settings} menu={menu} submenuMap={submenuMap} />
           </AOSProvider>
         </ReactQueryProvider>
         <Script src="/js/main.js" strategy="afterInteractive" />

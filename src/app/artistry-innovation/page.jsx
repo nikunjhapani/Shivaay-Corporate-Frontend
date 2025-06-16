@@ -22,6 +22,7 @@ export async function generateMetadata() {
 export default async function Page() {
   const data = await getCMSData();
 
+
   return (
     <>
       <Banner pageName="Artistry Innovation" />
@@ -141,6 +142,7 @@ export default async function Page() {
               );
             })}
           </div>
+          
         </div>
       </section>
       <Essence />

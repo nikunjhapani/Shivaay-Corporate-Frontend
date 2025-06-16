@@ -36,9 +36,10 @@ export async function generateMetadata() {
 }
 
 export default function page() {
+
   return (
     <div>
-      <HeroSlider sliderData={sliderData} />
+      <HeroSlider />
        <section className="layout-pt-md layout-pb-md">
       <div className="container">
         {/* Heading */}
