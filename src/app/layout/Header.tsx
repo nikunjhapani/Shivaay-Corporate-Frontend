@@ -82,94 +82,17 @@ export default function Header({ settings, setSidebarOpen, menu, submenuMap }) {
             </div>
           </div>
           <div className="menuFullScreen__img">
-            <img src="img/logo/logo.png" alt="logo" />
+            <Image
+              src={`${baseUrl}${settings?.websiteLogo}`}
+              alt="logo"
+              width={120}
+              height={40}
+              priority
+            />
           </div>
         </div>
 
         <div className="menuFullScreen__mobile__bg js-menuFullScreen-mobile-bg"></div>
-
-        <div className="menuFullScreen__left">
-          <div className="menuFullScreen__bg js-menuFullScreen-bg">
-            <img src="img/menu/bg.png" alt="menu-bg" />
-          </div>
-
-          <button className="menuFullScreen__close js-menuFullScreen-toggle js-menuFullScreen-close-btn">
-            <span className="icon">
-              <span></span>
-              <span></span>
-            </span>
-            CLOSE
-          </button>
-
-          <div className="menuFullScreen-links js-menuFullScreen-links">
-            {menu?.map((item: any, index: number) => (
-              <div
-                className="menuFullScreen-links__item js-menuFullScreen-has-children"
-                key={index}
-              >
-                <Link href={item?.menuURL}>
-                  {item?.menuName}
-                  {item?.menuType === "Sub Menu" && (
-                    <>
-                      <i className="icon-arrow-right"></i>
-                      <i className="icon-chevron-right"></i>
-                    </>
-                  )}
-                </Link>
-
-                {submenuMap[item._id] && submenuMap[item._id].length > 0 && (
-                  <div className="menuFullScreen-links-subnav js-menuFullScreen-subnav">
-                    {submenuMap[item._id].map((sub:any) => (
-                      <div
-                        className="menuFullScreen-links-subnav__item"
-                        key={sub._id}
-                      >
-                        <Link href={sub.menuURL}>{sub.menuName}</Link>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* <div className="menuFullScreen__right js-menuFullScreen-right">
-          <div className="text-center">
-            <div className="mt-40">
-              <div className="text-24 text-sec fw-500 text-white">Location</div>
-              <div className="mt-10 text-white">
-                Plot No. 101-102, Surat Special Economic Zone,
-                <br />
-                Sursez, Sachin, Surat, <br />
-                Gujarat 394230
-              </div>
-            </div>
-
-            <div className="mt-40">
-              <div className="text-24 text-sec text-white fw-500">
-                Phone Support
-              </div>
-              <div className="mt-10 text-white">
-                <div>
-                  <Link href="#">0261 239 9533</Link>
-                </div>
-                <div>
-                  <Link href="#">info@shivaayjewels.com</Link>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-40">
-              <div className="text-24 text-white text-sec fw-500">
-                Connect With Us
-              </div>
-              <div className="mt-10 text-white">
-                <Link href="#">+ 91 98981 98982</Link>
-              </div>
-            </div>
-          </div>
-        </div> */}
       </div>
     </>
   );
