@@ -1,5 +1,6 @@
 import React from 'react'
 import HeroSlider from "../../components/HeroSlider";
+import getMetadataForSlug from '../../utils/getMetadataForSlug';
 
 const sliderData = [
   {
@@ -28,6 +29,10 @@ const sliderData = [
     image: '/img/cards/1/5.png',
   },
 ];
+
+export async function generateMetadata() {
+  return await getMetadataForSlug("our-philosophy");
+}
 
 export default function page() {
   return (

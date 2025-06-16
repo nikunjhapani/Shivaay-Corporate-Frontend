@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import api from "../../utils/axios";
 import HeroSlider from "../../components/HeroSlider";
+import getMetadataForSlug from "../../utils/getMetadataForSlug";
 
 const getManagementTeam = async () => {
   const res = await fetch(`${api.defaults.baseURL}api/managementTeam/getAllApi`, {
@@ -12,10 +13,10 @@ const getManagementTeam = async () => {
   return json?.data || [];
 };
 
-export const metadata = {
-  title: "Management Team",
-  description: "Meet the visionaries behind the sparkle",
-};
+// export const metadata = {
+//   title: "Management Team",
+//   description: "Meet the visionaries behind the sparkle",
+// };
 const sliderData = [
   {
     title: 'Our Journey',
@@ -44,6 +45,9 @@ const sliderData = [
   },
 ];
 
+export async function generateMetadata() {
+  return await getMetadataForSlug("management-team");
+}
 
 
 export default async function Page() {

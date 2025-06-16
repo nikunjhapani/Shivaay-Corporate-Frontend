@@ -2,6 +2,11 @@ import React from "react";
 import Essence from "../../components/Essence";
 import Banner from "../../components/Banner";
 import Image from "next/image";
+import getMetadataForSlug from "../../utils/getMetadataForSlug";
+
+export async function generateMetadata() {
+  return await getMetadataForSlug("artistry-innovation"); 
+}
 
 export default function page() {
   return (

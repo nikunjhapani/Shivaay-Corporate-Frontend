@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 
 import HeroSlider from "../../components/HeroSlider";
+import getMetadataForSlug from "../../utils/getMetadataForSlug";
 const sliderData = [
   {
     title: "Our Journey",
@@ -29,6 +30,10 @@ const sliderData = [
     image: "/img/cards/1/5.png",
   },
 ];
+
+export async function generateMetadata() {
+  return await getMetadataForSlug("vision"); 
+}
 
 export default function Vision() {
   return (

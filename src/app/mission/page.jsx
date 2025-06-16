@@ -1,3 +1,4 @@
+import getMetadataForSlug from "../../utils/getMetadataForSlug";
 import HeroSlider from "../../components/HeroSlider";
 import Image from "next/image";
 import React from "react";
@@ -28,6 +29,10 @@ const sliderData = [
     image: '/img/cards/1/5.png',
   },
 ];
+
+export async function generateMetadata() {
+  return await getMetadataForSlug("mission");
+}
 
 export default function Mission() {
   return (

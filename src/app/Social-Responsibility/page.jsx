@@ -2,6 +2,7 @@
 import React from "react";
 import Banner from "../../components/Banner";
 import Image from "next/image";
+import getMetadataForSlug from "../../utils/getMetadataForSlug";
 
 const getData = async () => {
   const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -28,6 +29,10 @@ const getData = async () => {
     return [];
   }
 };
+
+export async function generateMetadata() {
+  return await getMetadataForSlug("social-responsibility"); 
+}
 
 export default async function Page() {
   const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
