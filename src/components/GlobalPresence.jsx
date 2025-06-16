@@ -21,22 +21,40 @@ export default function GlobalPresence() {
 
   return (
     <section className="global-bg-section">
-      {banner?.bannerType === "video" ? (
-        <>
-          <video width="100%" className="desktop-v" autoPlay loop muted>
-            <source
+      {["video", "image"].includes(banner?.bannerType) &&
+        (banner.bannerType === "video" ? (
+          <>
+            <video width="100%" className="desktop-v" autoPlay loop muted>
+              <source
+                src={`${api.defaults.baseURL}/${banner.desktopImage}`}
+                type="video/mp4"
+              />
+            </video>
+            <video width="100%" className="mobile-v" autoPlay loop muted>
+              <source
+                src={`${api.defaults.baseURL}/${banner.mobileImage}`}
+                type="video/mp4"
+              />
+            </video>
+          </>
+        ) : (
+          <>
+            <Image
               src={`${api.defaults.baseURL}/${banner.desktopImage}`}
-              type="video/mp4"
+              alt={banner.bannerTitle}
+              width={1920}
+              height={800}
+              className="hidden md:block w-full object-cover"
             />
-          </video>
-          <video width="100%" className="mobile-v" autoPlay loop muted>
-            <source
+            <Image
               src={`${api.defaults.baseURL}/${banner.mobileImage}`}
-              type="video/mp4"
+              alt={banner.bannerTitle}
+              width={768}
+              height={500}
+              className="md:hidden w-full object-cover"
             />
-          </video>
-        </>
-      ) : null}
+          </>
+        ))}
 
       <div className="global-text-p">
         <div className="container">
