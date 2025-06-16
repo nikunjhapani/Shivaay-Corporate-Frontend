@@ -38,6 +38,7 @@ export default async function page() {
                   data-aos-duration={item.delay || "1000"}
                 >
                   <Link
+                    target="_blank"
                     href={`${api.defaults.baseURL}/${item.awardPdf}`}
                     className="baseCard -type-2"
                   >
