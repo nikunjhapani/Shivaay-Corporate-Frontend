@@ -4,10 +4,16 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Button from "../../components/ui/Button";
-export const metadata = {
-  title: "Awards & Certificates",
-  description: "Government and Other Recognitions",
-};
+import getMetadataForSlug from "../../utils/getMetadataForSlug";
+// export const metadata = {
+//   title: "Awards & Certificates",
+//   description: "Government and Other Recognitions",
+// };
+
+export async function generateMetadata() {
+  return await getMetadataForSlug("awards-certificates"); 
+}
+
 const getAwards = async () => {
   const res = await fetch(`${api.defaults.baseURL}api/awards/getAllApi`, {
     method: "POST",

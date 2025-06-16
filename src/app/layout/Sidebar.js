@@ -190,8 +190,12 @@ const Sidebar = ({
                   >
                     <Link href={item?.menuURL || "#"}>{item?.menuName}</Link>
                     {hasSubmenu && (
-                      <span className="accordion-toggle">
-                        {openAccordionIndex === index ? "-" : "+"}
+                      <span
+                        className={`accordion-toggle ${
+                          openAccordionIndex === index ? "rotate" : ""
+                        }`}
+                      >
+                        <i className="icon-chevron-right"></i>
                       </span>
                     )}
                   </div>

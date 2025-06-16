@@ -212,8 +212,19 @@
 .accordion-subitem a {
     color: #fff;
     font-size: 14px;
+    text-transform: uppercase;
 }
 
 .accordion-menu .accordion-item {
     border-bottom: none;
+}
+
+.accordion-toggle {
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.accordion-toggle.rotate {
+  transform: rotate(90deg);
 }
