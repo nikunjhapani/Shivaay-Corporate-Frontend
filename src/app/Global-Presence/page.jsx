@@ -1,8 +1,16 @@
 "use client";
-import React, { useState } from 'react'
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Banner from "../../components/Banner";
-import OurClients from '../../components/OurClients';
+import OurClients from "../../components/OurClients";
+import { postData } from "../../utils/apiMethods";
+import { useQuery } from "@tanstack/react-query";
+import api from "../../utils/axios";
+
+export const getTabData = async () => {
+  const res = await postData("api/globalPresence/getAllApi");
+  return res?.data || [];
+};
 
 const featuresData = [
   {
@@ -27,115 +35,17 @@ const featuresData = [
   },
 ];
 
-const tabLocationsData = [
-  {
-    id: 1,
-    name: "New York",
-    image: "/img/JD01.jpg",
-    content: `
-    Shivaay Jewels has established a significant global footprint. Our jewelry is sold across
-    continents,
-    from New York to Paris, Dubai to Hong Kong. With flagship stores and exclusive showrooms
-    worldwide,
-    our designs are cherished by customers who appreciate both luxury and craftsmanship.
-
-    Shivaay Jewels has established a significant global footprint. Our jewelry is sold across
-    continents,
-    from New York to Paris, Dubai to Hong Kong. With flagship stores and exclusive showrooms
-    worldwide,
-    our designs are cherished by customers who appreciate both luxury and craftsmanship.
-
-    <br><br>
-    Shivaay Jewels has established a significant global footprint. Our jewelry is sold across
-    continents,
-    from New York to Paris, Dubai to Hong Kong. With flagship stores and exclusive showrooms
-    worldwide,
-    our designs are cherished by customers who appreciate both luxury and craftsmanship.`,
-    imageLeft: true,
-  },
-  {
-    id: 2,
-    name: "Paris",
-    image: "/img/JD01.jpg",
-    content: `
-    Shivaay Jewels has established a significant global footprint. Our jewelry is sold across
-    continents,
-    from New York to Paris, Dubai to Hong Kong. With flagship stores and exclusive showrooms
-    worldwide,
-    our designs are cherished by customers who appreciate both luxury and craftsmanship.
-
-    Shivaay Jewels has established a significant global footprint. Our jewelry is sold across
-    continents,
-    from New York to Paris, Dubai to Hong Kong. With flagship stores and exclusive showrooms
-    worldwide,
-    our designs are cherished by customers who appreciate both luxury and craftsmanship.
-
-    <br><br>
-    Shivaay Jewels has established a significant global footprint. Our jewelry is sold across
-    continents,
-    from New York to Paris, Dubai to Hong Kong. With flagship stores and exclusive showrooms
-    worldwide,
-    our designs are cherished by customers who appreciate both luxury and craftsmanship.
-    `,
-    imageLeft: false,
-  },
-  {
-    id: 3,
-    name: "Dubai",
-    image: "/img/JD01.jpg",
-    content: `
-    Shivaay Jewels has established a significant global footprint. Our jewelry is sold across
-    continents,
-    from New York to Paris, Dubai to Hong Kong. With flagship stores and exclusive showrooms
-    worldwide,
-    our designs are cherished by customers who appreciate both luxury and craftsmanship.
-
-    Shivaay Jewels has established a significant global footprint. Our jewelry is sold across
-    continents,
-    from New York to Paris, Dubai to Hong Kong. With flagship stores and exclusive showrooms
-    worldwide,
-    our designs are cherished by customers who appreciate both luxury and craftsmanship.
-
-    <br><br>
-    Shivaay Jewels has established a significant global footprint. Our jewelry is sold across
-    continents,
-    from New York to Paris, Dubai to Hong Kong. With flagship stores and exclusive showrooms
-    worldwide,
-    our designs are cherished by customers who appreciate both luxury and craftsmanship.
-    `,
-    imageLeft: true,
-  },
-  {
-    id: 4,
-    name: "Hong Kong",
-    image: "/img/JD01.jpg",
-    content: `
-    Shivaay Jewels has established a significant global footprint. Our jewelry is sold across
-    continents,
-    from New York to Paris, Dubai to Hong Kong. With flagship stores and exclusive showrooms
-    worldwide,
-    our designs are cherished by customers who appreciate both luxury and craftsmanship.
-
-    Shivaay Jewels has established a significant global footprint. Our jewelry is sold across
-    continents,
-    from New York to Paris, Dubai to Hong Kong. With flagship stores and exclusive showrooms
-    worldwide,
-    our designs are cherished by customers who appreciate both luxury and craftsmanship.
-
-    <br><br>
-    Shivaay Jewels has established a significant global footprint. Our jewelry is sold across
-    continents,
-    from New York to Paris, Dubai to Hong Kong. With flagship stores and exclusive showrooms
-    worldwide,
-    our designs are cherished by customers who appreciate both luxury and craftsmanship.
-    `,
-    imageLeft: false,
-  },
-];
-
 export default function page() {
-
-  const [activeTab, setActiveTab] = useState(tabLocationsData[0].id);
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["tabData"],
+    queryFn: getTabData,
+  });
+  const [activeTab, setActiveTab] = useState(null);
+  useEffect(() => {
+    if (data && data.length > 0) {
+      setActiveTab(data[0]._id);
+    }
+  }, [data]);
 
   return (
     <div>
@@ -173,22 +83,23 @@ export default function page() {
           <div className="col-lg-12">
             <div className="tabs -underline-2">
               <div className="tabs__controls mt-3 justify-center row x-gap-30 lg:x-gap-20">
-                {tabLocationsData.map((location) => (
-                  <div className="col-auto" key={location.id}>
+                {data?.filter((item) => item.isActive).map((location) => (
+                  <div className="col-auto" key={location._id}>
                     <button
-                      className={`tabs__button fw-500 pb-15 ${activeTab === location.id ? "is-tab-el-active" : ""
-                        }`}
-                      onClick={() => setActiveTab(location.id)}
+                      className={`tabs__button fw-500 pb-15 ${
+                        activeTab === location._id ? "is-tab-el-active" : ""
+                      }`}
+                      onClick={() => setActiveTab(location._id)}
                     >
-                      {location.name}
+                      {location.countryName}
                     </button>
                   </div>
                 ))}
               </div>
               <div className="tabs__content layout-pb-sm layout-pt-sm">
                 <AnimatePresence mode="wait">
-                  {tabLocationsData.map((location) =>
-                    activeTab === location.id ? (
+                  {data?.filter((item) => item.isActive).map((location, index) =>
+                    activeTab === location._id ? (
                       <motion.div
                         key={location.id}
                         initial={{ opacity: 0, y: 30 }}
@@ -198,8 +109,8 @@ export default function page() {
                         className="tabs__pane is-tab-el-active"
                       >
                         <div className="container">
-                          <div className="row y-gap-40 justify-between items-center">
-                            {location.imageLeft && (
+                          {index % 2 === 0 ? (
+                            <div className="row y-gap-40 justify-between items-center">
                               <div
                                 className="col-xl-6 col-lg-6"
                                 data-aos="zoom-in"
@@ -208,32 +119,52 @@ export default function page() {
                               >
                                 <img
                                   className="rounded-8"
-                                  src={location.image}
-                                  alt={location.name}
+                                  src={`${api.defaults.baseURL}${location.globalImage}`}
+                                  alt={location.countryName}
                                 />
                               </div>
-                            )}
 
-                            <div className="col-xl-6 col-lg-6">
-                              <h2
-                                className="text-30 md:text-24 sm:text-24"
-                                data-aos="fade-up"
-                                data-aos-offset="0"
-                                data-aos-duration="1000"
-                              >
-                                {location.name}
-                              </h2>
-                              <div
-                                className="lh-17 text-15 sm:text-13 mt-15 mb-10 text-justify"
-                                data-aos="fade-up"
-                                data-aos-offset="0"
-                                data-aos-duration="1000"
-                                dangerouslySetInnerHTML={{ __html: location.content }}
-                              ></div>
-
+                              <div className="col-xl-6 col-lg-6">
+                                <h2
+                                  className="text-30 md:text-24 sm:text-24"
+                                  data-aos="fade-up"
+                                  data-aos-offset="0"
+                                  data-aos-duration="1000"
+                                >
+                                  {location.countryName}
+                                </h2>
+                                <div
+                                  className="lh-17 text-15 sm:text-13 mt-15 mb-10 text-justify"
+                                  data-aos="fade-up"
+                                  data-aos-offset="0"
+                                  data-aos-duration="1000"
+                                  dangerouslySetInnerHTML={{
+                                    __html: location.description,
+                                  }}
+                                ></div>
+                              </div>
                             </div>
-
-                            {!location.imageLeft && (
+                          ) : (
+                            <div className="row y-gap-40 justify-between items-center">
+                              <div className="col-xl-6 col-lg-6">
+                                <h2
+                                  className="text-30 md:text-24 sm:text-24"
+                                  data-aos="fade-up"
+                                  data-aos-offset="0"
+                                  data-aos-duration="1000"
+                                >
+                                  {location.name}
+                                </h2>
+                                <div
+                                  className="lh-17 text-15 sm:text-13 mt-15 mb-10 text-justify"
+                                  data-aos="fade-up"
+                                  data-aos-offset="0"
+                                  data-aos-duration="1000"
+                                  dangerouslySetInnerHTML={{
+                                    __html: location.description,
+                                  }}
+                                ></div>
+                              </div>
                               <div
                                 className="col-xl-6 col-lg-6"
                                 data-aos="zoom-in"
@@ -242,12 +173,12 @@ export default function page() {
                               >
                                 <img
                                   className="rounded-8"
-                                  src={location.image}
-                                  alt={location.name}
+                                  src={`${api.defaults.baseURL}/${location.globalImage}`}
+                                  alt={location.countryName}
                                 />
                               </div>
-                            )}
-                          </div>
+                            </div>
+                          )}
                         </div>
                       </motion.div>
                     ) : null
@@ -260,5 +191,5 @@ export default function page() {
       </section>
       <OurClients />
     </div>
-  )
+  );
 }

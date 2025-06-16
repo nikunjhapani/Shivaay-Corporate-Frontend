@@ -5,25 +5,23 @@ import Link from "next/link";
 import Image from "next/image";
 import Button from "../../components/ui/Button";
 import getMetadataForSlug from "../../utils/getMetadataForSlug";
-// export const metadata = {
-//   title: "Awards & Certificates",
-//   description: "Government and Other Recognitions",
-// };
+
+const getAwards = async () => {
+  const res = await fetch(`${api.defaults.baseURL}api/awards/getAllApi`, {
+    method: "POST",
+    cache: "no-store", 
+  });
+  const json = await res.json();
+  return json?.data || [];
+};
 
 export async function generateMetadata() {
   return await getMetadataForSlug("awards-certificates"); 
 }
 
-const getAwards = async () => {
-  const res = await fetch(`${api.defaults.baseURL}api/awards/getAllApi`, {
-    method: "POST",
-    cache: "no-store", // SSR: always fresh data
-  });
-  const json = await res.json();
-  return json?.data || [];
-};
 export default async function page() {
   const awardsData = await getAwards();
+
   return (
     <div>
       <Banner pageName="Awards & Certificates" />
@@ -31,7 +29,6 @@ export default async function page() {
         <div className="container">
           <div className="row y-gap-30 justify-between pt-10">
             {awardsData.slice(0, 4).map((item, index) => {
-              // Optional: remove outer <p> tags from description
               const cleanDescription = item.description?.replace(
                 /^<p>|<\/p>$/g,
                 ""
@@ -44,10 +41,10 @@ export default async function page() {
                   data-aos-duration={item.delay || "1000"}
                 >
                   <Link
-                    href="/awards-certificates"
+                    href={`${api.defaults.baseURL}${item.awardPdf}`}
+                    target="_blank"
                     className="baseCard -type-2"
                   >
-                   
                     <div className="baseCard__image ratio ratio-41:50">
                       <Image
                         src={`${api.defaults.baseURL}${item.awardImage}`}
@@ -55,7 +52,6 @@ export default async function page() {
                         width={300}
                         height={365}
                         className="img-ratio"
-                    
                       />
                     </div>
 
@@ -71,9 +67,9 @@ export default async function page() {
                         dangerouslySetInnerHTML={{ __html: cleanDescription }}
                       ></h4>
 
-                      {/* <div className="d-flex mt-15 md:d-none">
+                      <div className="d-flex mt-15 md:d-none">
                         <Button>READ MORE</Button>
-                      </div> */}
+                      </div>
                     </div>
                   </Link>
                 </div>
