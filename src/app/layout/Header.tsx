@@ -98,7 +98,9 @@ export default function Header() {
           </div>
 
           <div className="menuFullScreen__img">
-            <Image src={`${api.defaults.baseURL}/${siteSettings?.websiteLogo}`} width={100} height={100} alt="logo" />
+             {siteSettings?.websiteLogo && (
+              <Image src={`${api.defaults.baseURL}/${siteSettings?.websiteLogo}`} width={120} height={60} alt="logo" />
+            )}
           </div>
         </div>
 
@@ -245,12 +247,14 @@ export default function Header() {
           <div className="header__center">
             <div className="header__logo">
               <Link href="/">
-                <Image
-                  src={`${api.defaults.baseURL}/${siteSettings?.websiteLogo}`}
-                  alt="logo"
-                  width={120}
-                  height={40}
-                />
+                {siteSettings?.websiteLogo && (
+                  <Image
+                    src={`${api.defaults.baseURL}/${siteSettings?.websiteLogo}`}
+                    alt="logo"
+                    width={120}
+                    height={60}
+                  />
+                )}
               </Link>
             </div>
           </div>
