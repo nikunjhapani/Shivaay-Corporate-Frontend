@@ -2,10 +2,11 @@ import React from "react";
 import Banner from "../../components/Banner";
 import api from "../../utils/axios";
 import Image from "next/image";
+import getMetadataForSlug from "../../utils/getMetadataForSlug";
 
 const getData = async () => {
   const res = await fetch(
-    `${api.defaults.baseURL}/api/socialActivity/getAllApi`,
+    `${api.defaults.baseURL}api/socialActivity/getAllApi`,
     {
       method: "POST",
       body: JSON.stringify({}),
@@ -14,6 +15,10 @@ const getData = async () => {
   const json = await res.json();
   return json?.data || [];
 };
+
+export async function generateMetadata() {
+  return await getMetadataForSlug("social-responsibility"); 
+}
 
 export default async function page() {
   const data = await getData();
@@ -29,7 +34,7 @@ export default async function page() {
                   <div className="row justify-between items-center">
                     <div className="col-xl-6 col-lg-6md:order-1 sm:order-1 p-0">
                       <img
-                        src={`${api.defaults.baseURL}/${item?.socialActivityphoto}`}
+                        src={`${api.defaults.baseURL}${item?.socialActivityphoto}`}
                         alt="Environmental Sustainability"
                       />
                     </div>
@@ -42,7 +47,7 @@ export default async function page() {
                         data-aos-duration="1000"
                       >
                         <Image
-                          src={`${api.defaults.baseURL}/${item?.socialActivityIcon}`}
+                          src={`${api.defaults.baseURL}${item?.socialActivityIcon}`}
                           alt="Icon"
                           width={50}
                           height={50}
@@ -67,7 +72,7 @@ export default async function page() {
                   <div className="row justify-between items-center  bg-accent-1">
                     <div className="col-xl-6 col-lg-6 md:order-1 sm:order-1 p-0">
                       <img
-                        src={`${api.defaults.baseURL}/${item?.socialActivityphoto}`}
+                        src={`${api.defaults.baseURL}${item?.socialActivityphoto}`}
                         alt="Environmental Sustainability"
                       />
                     </div>
@@ -79,7 +84,7 @@ export default async function page() {
                         data-aos-duration="1000"
                       >
                         <Image
-                          src={`${api.defaults.baseURL}/${item?.socialActivityIcon}`}
+                          src={`${api.defaults.baseURL}${item?.socialActivityIcon}`}
                           alt="Icon"
                           width={50}
                           height={50}

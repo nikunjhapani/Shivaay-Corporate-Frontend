@@ -1,6 +1,43 @@
 import React from "react";
 import HeroSlider from "../../components/HeroSlider";
+
 import api from "../../utils/axios";
+import getMetadataForSlug from '../../utils/getMetadataForSlug';
+
+const sliderData = [
+  {
+    title: 'Our Journey',
+    link: '/our-journey',
+    image: '/img/cards/1/1.png',
+  },
+  {
+    title: 'Our Philosophy',
+    link: '/our-philosophy',
+    image: '/img/cards/1/2.png',
+  },
+  {
+    title: 'Vision',
+    link: '/vision',
+    image: '/img/cards/1/3.png',
+  },
+  {
+    title: 'Mission',
+    link: '/mission',
+    image: '/img/cards/1/4.png',
+  },
+  {
+    title: 'Management Team',
+    link: '/management-team',
+    image: '/img/cards/1/5.png',
+  },
+];
+
+export async function generateMetadata() {
+  return await getMetadataForSlug("our-philosophy");
+}
+
+export default function page() {
+  
 async function getCMSData() {
   const res = await fetch(`${api.defaults.baseURL}/api/cms/getAllApi`, {
     method: "POST",
@@ -11,7 +48,6 @@ async function getCMSData() {
   const json = await res.json();
   return json?.data || [];
 }
-export default async function Page() {
   const data = await getCMSData();
   const items = data.filter((item) => item.page_title === "Our Philosophy");
   return (

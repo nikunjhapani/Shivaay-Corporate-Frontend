@@ -2,23 +2,50 @@ import React from "react";
 import Image from "next/image";
 import api from "../../utils/axios";
 import HeroSlider from "../../components/HeroSlider";
+import getMetadataForSlug from "../../utils/getMetadataForSlug";
 
 const getManagementTeam = async () => {
-  const res = await fetch(
-    `${api.defaults.baseURL}/api/managementTeam/getAllApi`,
-    {
-      method: "POST",
-      cache: "no-store", // SSR: always fresh data
-    }
-  );
+  const res = await fetch(`${api.defaults.baseURL}api/managementTeam/getAllApi`, {
+    method: "POST",
+    cache: "no-store", // SSR: always fresh data
+  });
   const json = await res.json();
   return json?.data || [];
 };
 
-export const metadata = {
-  title: "Management Team",
-  description: "Meet the visionaries behind the sparkle",
-};
+const sliderData = [
+  {
+    title: 'Our Journey',
+    link: '/our-journey',
+    image: '/img/cards/1/1.png',
+  },
+  {
+    title: 'Our Philosophy',
+    link: '/our-philosophy',
+    image: '/img/cards/1/2.png',
+  },
+  {
+    title: 'Vision',
+    link: '/vision',
+    image: '/img/cards/1/3.png',
+  },
+  {
+    title: 'Mission',
+    link: '/mission',
+    image: '/img/cards/1/4.png',
+  },
+  {
+    title: 'Management Team',
+    link: '/management-team',
+    image: '/img/cards/1/5.png',
+  },
+];
+
+export async function generateMetadata() {
+  return await getMetadataForSlug("management-team");
+}
+
+
 export default async function Page() {
   const data = await getManagementTeam();
 
@@ -61,7 +88,7 @@ export default async function Page() {
                   }`}
                 >
                   <Image
-                    src={`${api.defaults.baseURL}/${item.profile}`}
+                    src={`${api.defaults.baseURL}${item.profile}`}
                     alt={`Profile of ${item.name}`}
                     className="rounded-16"
                     width={584}

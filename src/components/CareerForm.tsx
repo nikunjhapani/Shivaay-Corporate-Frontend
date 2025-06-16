@@ -28,7 +28,7 @@ export default function CareerForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${api.defaults.baseURL}/api/career/createApi`, formData, {
+      const response = await axios.post(`${api.defaults.baseURL}api/career/createApi`, formData, {
         headers: {
           "Content-Type": "application/json",
         },

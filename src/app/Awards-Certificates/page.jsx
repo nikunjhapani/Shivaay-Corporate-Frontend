@@ -4,21 +4,24 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Button from "../../components/ui/Button";
-export const metadata = {
-  title: "Awards & Certificates",
-  description: "Government and Other Recognitions",
-};
+import getMetadataForSlug from "../../utils/getMetadataForSlug";
+
 const getAwards = async () => {
-  const res = await fetch(`${api.defaults.baseURL}/api/awards/getAllApi`, {
+  const res = await fetch(`${api.defaults.baseURL}api/awards/getAllApi`, {
     method: "POST",
     cache: "no-store", 
   });
   const json = await res.json();
   return json?.data || [];
 };
+
+export async function generateMetadata() {
+  return await getMetadataForSlug("awards-certificates"); 
+}
+
 export default async function page() {
   const awardsData = await getAwards();
-  console.log(awardsData, "awardsData");
+
   return (
     <div>
       <Banner pageName="Awards & Certificates" />
@@ -38,13 +41,13 @@ export default async function page() {
                   data-aos-duration={item.delay || "1000"}
                 >
                   <Link
+                    href={`${api.defaults.baseURL}${item.awardPdf}`}
                     target="_blank"
-                    href={`${api.defaults.baseURL}/${item.awardPdf}`}
                     className="baseCard -type-2"
                   >
                     <div className="baseCard__image ratio ratio-41:50">
                       <Image
-                        src={`${api.defaults.baseURL}/${item.awardImage}`}
+                        src={`${api.defaults.baseURL}${item.awardImage}`}
                         alt={item.title}
                         width={300}
                         height={365}

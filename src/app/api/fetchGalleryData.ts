@@ -1,11 +1,11 @@
 import api from "../../utils/axios";
 export const fetchGalleryData = async () => {
   const [titlesRes, imagesRes] = await Promise.all([
-    fetch(`${api.defaults.baseURL}/api/gallaryTitle/getAllApi`, {
+    fetch(`${api.defaults.baseURL}api/gallaryTitle/getAllApi`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
     }),
-    fetch(`${api.defaults.baseURL}/api/gallaryImage/getAllApi`, {
+    fetch(`${api.defaults.baseURL}api/gallaryImage/getAllApi`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
     }),

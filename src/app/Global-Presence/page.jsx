@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import api from "../../utils/axios";
 
 export const getTabData = async () => {
-  const res = await postData("/api/globalPresence/getAllApi");
+  const res = await postData("api/globalPresence/getAllApi");
   return res?.data || [];
 };
 
@@ -119,7 +119,7 @@ export default function page() {
                               >
                                 <img
                                   className="rounded-8"
-                                  src={`${api.defaults.baseURL}/${location.globalImage}`}
+                                  src={`${api.defaults.baseURL}${location.globalImage}`
                                   alt={location.countryName}
                                 />
                               </div>

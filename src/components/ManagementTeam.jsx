@@ -5,6 +5,7 @@ import { BASE_URL } from "../utils/config";
 
 import Button from "./ui/Button";
 import SectionTitle from "./ui/SectionTitle";
+import Link from "next/link";
 
 const fetchData = async () => {
   const { data } = await api.post("/api/managementTeam/getAllApi");
@@ -38,7 +39,7 @@ export default function ManagementTeam() {
             data-aos-offset="0"
             data-aos-duration="1500"
           >
-            <a href="/management-team" className="baseCard -type-4">
+            <Link href="/management-team" className="baseCard -type-4 ">
               <div className="baseCard__image ratio ratio-95:80 rounded-16">
                 <Image
                   src={`${BASE_URL}/${item.profile}`}
@@ -64,7 +65,7 @@ export default function ManagementTeam() {
                   </Button>
                 </div>
               </div>
-            </a>
+            </Link>
           </div>
         ))}
       </div>

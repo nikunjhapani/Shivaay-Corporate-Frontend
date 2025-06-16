@@ -187,7 +187,67 @@ const Footer = ({ settings, menu, submenuMap }) => {
             <div className="row justify-center">
               <div className="col-xl-8 col-lg-10">
                 <div className="accordion -type-1 row y-gap-10 js-accordion">
-                  {footerSections.map((section, index) => (
+                  {/* Accordion Items */}
+                  {[
+                    {
+                      title: "Information",
+                      links: [
+                        ["Artistry & Innovation", "/artistry-innovation"],
+                        ["Global Presence", "/global-presence"],
+                        [
+                          "Social Responsibility",
+                          "/social-responsibility",
+                        ],
+                        ["Awards & Certificates", "/awards-certificates"],
+                        ["Career", "/career"],
+                        ["Contact Us", "/contact-us"],
+                      ],
+                    },
+                    {
+                      title: "ABOUT US",
+                      links: [
+                        ["Our Journey", "/our-journey"],
+                        ["Our Philosophy", "/our-philosophy"],
+                        ["Vision", "/vision"],
+                        ["Mission", "/mission"],
+                        ["Management Team", "/management-team"],
+                      ],
+                    },
+                    {
+                      title: "GET IN TOUCH",
+                      content: (
+                        <>
+                          <p className="text-16 text-white-60 lh-17 mb-5">
+                            Shivaay Jewels
+                          </p>
+                          <a
+                            className="d-block text-15 text-white-60 lh-17"
+                            href="#"
+                          >
+                            {data.address}
+                          </a>
+                          <div className="mt-25">
+                            <a
+                              className="d-block text-15 text-white-60"
+                              href={`mailto:${data.email}`}
+                            >
+                              <i className="icon-email text-15 text-white mr-10"></i>{" "}
+                              {data.email}
+                            </a>
+                          </div>
+                          <div className="mt-10">
+                            <a
+                              className="d-block text-15 text-white-60"
+                              href={`tel:${data.phone}`}
+                            >
+                              <i className="icon-phone text-15 text-white mr-10"></i>
+                              {data.phone}
+                            </a>
+                          </div>
+                        </>
+                      ),
+                    },
+                  ].map((section, index) => (
                     <div className="col-12" key={index}>
                       <div className="accordion__item">
                         <div className="accordion__button d-flex items-center justify-between px-10 py-15">

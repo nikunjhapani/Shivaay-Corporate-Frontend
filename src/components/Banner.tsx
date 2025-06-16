@@ -26,7 +26,7 @@ export default function Banner({ pageName }: Props) {
   useEffect(() => {
     const fetchBanners = async () => {
       try {
-        const res = await api.post("/api/banner/getAllApi", { pageName });
+        const res = await api.post("api/banner/getAllApi", { pageName });
         const Filter = res.data?.data?.filter(
           (item: BannerItem) =>
             item.pageName === pageName && item.isActive === true
@@ -57,7 +57,7 @@ export default function Banner({ pageName }: Props) {
               <section
                 className="job-section"
                 style={{
-                  backgroundImage: `url(${api.defaults.baseURL}/${banner.desktopImage})`,
+                  backgroundImage: `url(${api.defaults.baseURL}${banner.desktopImage})`,
                 }}
               >
                 <div className="container">
@@ -108,7 +108,7 @@ export default function Banner({ pageName }: Props) {
                         playsInline
                       >
                         <source
-                          src={`${api.defaults.baseURL}/${banner.desktopImage}`}
+                          src={`${api.defaults.baseURL}${banner.desktopImage}`}
                           type="video/mp4"
                         />
                       </video>
@@ -121,7 +121,7 @@ export default function Banner({ pageName }: Props) {
                         playsInline
                       >
                         <source
-                          src={`${api.defaults.baseURL}/${banner.desktopImage}`}
+                          src={`${api.defaults.baseURL}${banner.desktopImage}`}
                           type="video/mp4"
                         />
                       </video>
@@ -129,14 +129,14 @@ export default function Banner({ pageName }: Props) {
                   ) : (
                     <>
                       <Image
-                        src={`${api.defaults.baseURL}/${banner.desktopImage}`}
+                        src={`${api.defaults.baseURL}${banner.desktopImage}`}
                         alt={banner.bannerTitle}
                         width={1920}
                         height={800}
                         className="hidden md:block w-full object-cover"
                       />
                       <Image
-                        src={`${api.defaults.baseURL}/${banner.mobileImage}`}
+                        src={`${api.defaults.baseURL}${banner.mobileImage}`}
                         alt={banner.bannerTitle}
                         width={768}
                         height={500}
