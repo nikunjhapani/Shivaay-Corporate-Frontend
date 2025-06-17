@@ -10,7 +10,7 @@ export async function generateMetadata() {
 export default function Vision() {
   return (
     <>
-      <HeroSlider sliderData={sliderData} />
+      <HeroSlider />
       <section className="layout-pt-md layout-pb-lg">
         <div className="container">
           <div className="row justify-center">
