@@ -9,6 +9,7 @@ import {
   lgZoom,
 } from "../utils/lightgallerySetup";
 import { fetchGalleryData } from "../app/api/fetchGalleryData";
+import Image from "next/image";
 
 export default function GallerySection() {
   const { data, isLoading, isError } = useQuery({
@@ -37,13 +38,16 @@ export default function GallerySection() {
               {images.map(({ _id, gallaryImage, sort_order_no }) => (
                 <a
                   key={_id}
-                  href={`${api.defaults.baseURL}/${gallaryImage}`}
+                  href={`${api.defaults.baseURL}${gallaryImage}`}
                   className="col-md-4"
                   data-sub-html={`<h4>${title}</h4><p>Image ${sort_order_no}</p>`}
                 >
-                  <img
-                    src={`${api.defaults.baseURL}/${gallaryImage}`}
+                  <Image
+                    src={`${api.defaults.baseURL}${gallaryImage}`}
                     alt={`Image ${sort_order_no}`}
+                    width={600}
+                    height={400}
+                    priority
                     style={{ width: "100%", height: "auto" }}
                   />
                 </a>

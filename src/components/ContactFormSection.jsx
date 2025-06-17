@@ -22,7 +22,7 @@ export default function ContactFormSection() {
 
     try {
       const response = await axios.post(
-        `${api.defaults.baseURL}/api/inquiry/createApi`,
+        `${api.defaults.baseURL}api/inquiry/createApi`,
         formData,
         {
           headers: {

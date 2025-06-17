@@ -3,11 +3,14 @@ import Image from "next/image";
 
 import HeroSlider from "../../../components/HeroSlider";
 
+export async function generateMetadata() {
+  return await getMetadataForSlug("vision"); 
+}
 
 export default function Vision() {
   return (
     <>
-      <HeroSlider />
+      <HeroSlider sliderData={sliderData} />
       <section className="layout-pt-md layout-pb-lg">
         <div className="container">
           <div className="row justify-center">

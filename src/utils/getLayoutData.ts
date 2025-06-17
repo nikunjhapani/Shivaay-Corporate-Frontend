@@ -2,12 +2,15 @@
 import api from "./axios";
 
 export default async function getLayoutData() {
+
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
   const [settingsRes, menuRes] = await Promise.all([
-    fetch(`${api.defaults.baseURL}/api/websiteSettings/getSettings`, {
+    fetch(`${api.defaults.baseURL}api/websiteSettings/getSettings`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     }),
-    fetch(`${api.defaults.baseURL}/api/menu/getAllApi`, {
+    fetch(`${api.defaults.baseURL}api/menu/getAllApi`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
     }),

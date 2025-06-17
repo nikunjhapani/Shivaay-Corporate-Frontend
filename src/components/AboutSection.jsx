@@ -9,7 +9,7 @@ import { postData } from "../utils/apiMethods";
 import api from "../utils/axios";
 import Link from "next/link";
 export const getAboutImages = async () => {
-  const res = await postData("/api/about/getAllApi");
+  const res = await postData("api/about/getAllApi");
   return res?.data || [];
 };
 
@@ -32,7 +32,7 @@ export default function About() {
                 key={item.id || index}
               >
                 <Image
-                  src={`${api.defaults.baseURL}/${item?.aboutImage}`}
+                  src={`${api.defaults.baseURL}${item?.aboutImage}`}
                   alt="image"
                   className="rounded-16"
                   width={500}

@@ -1,11 +1,44 @@
+import getMetadataForSlug from "../../utils/getMetadataForSlug";
 import HeroSlider from "../../components/HeroSlider";
 import Image from "next/image";
 import React from "react";
 
+const sliderData = [
+  {
+    title: 'Our Journey',
+    link: '/our-journey',
+    image: '/img/cards/1/1.png',
+  },
+  {
+    title: 'Our Philosophy',
+    link: '/our-philosophy',
+    image: '/img/cards/1/2.png',
+  },
+  {
+    title: 'Vision',
+    link: '/vision',
+    image: '/img/cards/1/3.png',
+  },
+  {
+    title: 'Mission',
+    link: '/mission',
+    image: '/img/cards/1/4.png',
+  },
+  {
+    title: 'Management Team',
+    link: '/management-team',
+    image: '/img/cards/1/5.png',
+  },
+];
+
+export async function generateMetadata() {
+  return await getMetadataForSlug("mission");
+}
+
 export default function Mission() {
   return (
     <>
-     <HeroSlider />
+     <HeroSlider sliderData={sliderData} />
     <section className="layout-pt-md layout-pb-md">
       <div className="container">
         {/* Heading */}

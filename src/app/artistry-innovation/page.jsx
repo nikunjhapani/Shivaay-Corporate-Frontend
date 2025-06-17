@@ -3,8 +3,9 @@ import Essence from "../../components/Essence";
 import Banner from "../../components/Banner";
 import Image from "next/image";
 import api from "../../utils/axios";
+import getMetadataForSlug from "../../utils/getMetadataForSlug";
 async function getCMSData() {
-  const res = await fetch(`${api.defaults.baseURL}/api/innovation/getAllApi`, {
+  const res = await fetch(`${api.defaults.baseURL}api/innovation/getAllApi`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     cache: "no-store",
@@ -14,9 +15,13 @@ async function getCMSData() {
   return json?.data || [];
 }
 
+export async function generateMetadata() {
+  return await getMetadataForSlug("artistry-innovation"); 
+}
+
 export default async function Page() {
   const data = await getCMSData();
-  console.log(data, "data");
+
 
   return (
     <>
@@ -59,7 +64,7 @@ export default async function Page() {
                       data-aos-duration="1000"
                     >
                       <Image
-                        src={`${api.defaults.baseURL}/${leftItem?.innovationImage}`}
+                        src={`${api.defaults.baseURL}${leftItem?.innovationImage}`}
                         alt={leftItem?.subTitle}
                         width={696}
                         height={469}
@@ -68,10 +73,10 @@ export default async function Page() {
                     </div>
                     <div className="px-40 sm:px-20 text-center mb-60 md:mb-60 sm:mb-40">
                       <h3 className="text-32 sm:text-24 mb-10">
-                      {leftItem?.subTitle}
+                        {leftItem?.subTitle}
                       </h3>
                       <p className="text-16 leading-md">
-                         {leftItem?.description}
+                        {leftItem?.description}
                       </p>
                     </div>
                   </div>
@@ -89,7 +94,7 @@ export default async function Page() {
                           data-aos-duration="1000"
                         >
                           <Image
-                           src={`${api.defaults.baseURL}/${rightItem1?.innovationImage}`}
+                            src={`${api.defaults.baseURL}${rightItem1?.innovationImage}`}
                             alt={rightItem1?.subTitle}
                             width={696}
                             height={469}
@@ -98,10 +103,10 @@ export default async function Page() {
                         </div>
                         <div className="px-40 sm:px-20 text-center mb-60 md:mb-60 sm:mb-40">
                           <h3 className="text-32 sm:text-24 mb-10">
-                           {rightItem1?.subTitle}
+                            {rightItem1?.subTitle}
                           </h3>
                           <p className="text-16 leading-md">
-                           {rightItem1?.description}
+                            {rightItem1?.description}
                           </p>
                         </div>
                       </>
@@ -115,8 +120,8 @@ export default async function Page() {
                           data-aos-duration="1000"
                         >
                           <Image
-                           src={`${api.defaults.baseURL}/${rightItem2?.innovationImage}`}
-                           alt={rightItem2?.subTitle}
+                            src={`${api.defaults.baseURL}${rightItem2?.innovationImage}`}
+                            alt={rightItem2?.subTitle}
                             width={696}
                             height={469}
                             className="w-full rounded-4 shadow-md"

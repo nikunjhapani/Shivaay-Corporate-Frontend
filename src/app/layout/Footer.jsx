@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import Link from "next/link";
 import { useEffect } from "react";
 
@@ -11,11 +11,11 @@ const Footer = ({ settings, menu, submenuMap }) => {
   const data = settings;
 
   const socialLinksMap = {
-    facebook: data?.fbLink,
-    twitter: data?.twitterLink,
-    instagram: data?.instaLink,
-    linkedin: data?.linkedinLink,
-    youtube: data?.youtubeLink,
+    facebook: data.fbLink,
+    twitter: data.twitterLink,
+    instagram: data.instaLink,
+    linkedin: data.linkedinLink,
+    youtube: data.youtubeLink,
   };
 
   const socialIcons = [
@@ -43,7 +43,8 @@ const Footer = ({ settings, menu, submenuMap }) => {
         <>
           <p className="text-16 text-white-60 lh-17 mb-5">{data.title}</p>
           <a className="d-block text-15 text-white-60 lh-17" href="#">
-            {data.address.replace(/<\/?p>/g, "")}
+           
+            {data.address.replace(/<\/?p>/g, '')}
           </a>
           <div className="mt-25">
             <a
@@ -70,54 +71,52 @@ const Footer = ({ settings, menu, submenuMap }) => {
   const Accordion = (() => {
     function init() {
       const targets = document.querySelectorAll(".js-accordion");
-      if (!targets) return;
+    if (!targets) return;
 
-      for (let i = 0; i < targets.length; i++) {
-        const items = targets[i].querySelectorAll(".accordion__item");
+    for (let i = 0; i < targets.length; i++) {
+      const items = targets[i].querySelectorAll('.accordion__item');
 
-        for (let l = 0; l < items.length; l++) {
-          const button = items[l].querySelector(".accordion__button");
-          const content = items[l].querySelector(".accordion__content");
-          const titleChange = items[l].querySelector(
-            "[data-open-change-title]"
-          );
-          let buttonOrigTitle;
-          let buttonNewTitle;
+      for (let l = 0; l < items.length; l++) {
+        const button = items[l].querySelector('.accordion__button')
+        const content = items[l].querySelector('.accordion__content')
+        const titleChange = items[l].querySelector('[data-open-change-title]')
+        let buttonOrigTitle
+        let buttonNewTitle
 
-          if (items[l].classList.contains("js-accordion-item-active")) {
-            items[l].classList.toggle("is-active");
-            content.style.maxHeight = content.scrollHeight + "px";
-          }
+        if (items[l].classList.contains('js-accordion-item-active')) {
+          items[l].classList.toggle('is-active')
+          content.style.maxHeight = content.scrollHeight + "px"
+        }
+
+        if (titleChange) {
+          buttonOrigTitle = titleChange.innerHTML
+          buttonNewTitle = titleChange.getAttribute('data-open-change-title')
+        }
+        
+        button.addEventListener("click", (e) => {
+          items[l].classList.toggle('is-active');
 
           if (titleChange) {
-            buttonOrigTitle = titleChange.innerHTML;
-            buttonNewTitle = titleChange.getAttribute("data-open-change-title");
-          }
-
-          button.addEventListener("click", (e) => {
-            items[l].classList.toggle("is-active");
-
-            if (titleChange) {
-              if (items[l].classList.contains("is-active")) {
-                titleChange.innerHTML = buttonNewTitle;
-              } else {
-                titleChange.innerHTML = buttonOrigTitle;
-              }
-            }
-
-            if (content.style.maxHeight) {
-              content.style.maxHeight = null;
+            if (items[l].classList.contains('is-active')) {
+              titleChange.innerHTML = buttonNewTitle
             } else {
-              content.style.maxHeight = content.scrollHeight + "px";
+              titleChange.innerHTML = buttonOrigTitle
             }
-          });
-        }
+          }
+  
+          if (content.style.maxHeight) {
+            content.style.maxHeight = null
+          } else {
+            content.style.maxHeight = content.scrollHeight + "px"
+          }
+        })
       }
+    }
     }
 
     return { init };
   })();
-
+  
   return (
     <>
       {/* Desktop Footer */}
@@ -135,7 +134,7 @@ const Footer = ({ settings, menu, submenuMap }) => {
                             {label}
                           </Link>
                         ))
-                      : section.content}
+                      : section.content }
                   </div>
                 </div>
               ))}
@@ -144,9 +143,8 @@ const Footer = ({ settings, menu, submenuMap }) => {
               <div>
                 <h4 className="text-30 fw-500 text-white">FOLLOW US</h4>
                 <div className="row mt-30">
-                  {socialIcons?.map((icon) => {
+                  {socialIcons.map((icon) => {
                     const url = socialLinksMap[icon];
-                    if (!url) return null;
                     return (
                       <div className="col-auto" key={icon}>
                         <a

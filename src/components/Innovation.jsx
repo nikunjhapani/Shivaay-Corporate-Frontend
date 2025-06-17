@@ -32,7 +32,7 @@ const InnovationCard = ({
           <div>{description}</div>
         </div>
         <div className="d-flex mt-30">
-          <Link href="/artistry-innovation">
+          <Link href="/artistry-innovationl">
             <button className="button -md -type-2 -outline-white text-white">
               Discover More
             </button>
@@ -51,7 +51,7 @@ const InnovationSection = () => {
   });
   return (
     <>
-      <section className="">
+      <section className="layout-pt-md">
         <div className="container layout-pb-sm">
           <div className="row justify-center text-center">
             <div className="col-auto">
@@ -79,12 +79,13 @@ const InnovationSection = () => {
       <section className="relative hoverTitleInteraction">
         <div className="sectionBg">
           <div className="hoverTitleInteraction__images -type-2">
-            {data?.filter((item) => item.isActive)
+            {data
+              ?.filter((item) => item.isActive)
               .map((item, index) => (
                 <Image
-                  key={index}
-                  src={`${api.defaults.baseURL}/${item.innovationImage}`}
-                   alt={`${item?.subTitle} || title`}
+                  key={item?._id}
+                  src={`${api.defaults.baseURL}${item.innovationImage}`}
+                  alt={item.title}
                   fill
                   className={clsx("img-cover", {
                     "is-active": activeIndex === index,
@@ -104,7 +105,7 @@ const InnovationSection = () => {
           {data
             ?.filter((item) => item.isActive)
             .map((item, index) => (
-              <div className="col-md-4" key={index}>
+              <div className="col-md-4" key={item._id}>
                 <InnovationCard
                   title={item.title}
                   subtitle={item.subTitle}
