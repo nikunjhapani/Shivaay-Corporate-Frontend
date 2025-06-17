@@ -106,7 +106,7 @@ const Sidebar = ({
                     Location
                   </div>
                   <div
-                    className="mt-10 text-white"
+                    className="mt-10 text-white force-white"
                     dangerouslySetInnerHTML={{
                       __html:
                         typeof settings?.address === "string"
