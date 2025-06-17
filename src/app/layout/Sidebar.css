@@ -130,6 +130,10 @@
     }
 }
 
+.force-white p{
+    color: white !important;
+}
+
 /* Hide Mobile Sidebar on desktop */
 @media (min-width: 992px) {
     .sidebar-overlay-mobile {
