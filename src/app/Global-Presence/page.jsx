@@ -7,6 +7,7 @@ import { postData } from "../../utils/apiMethods";
 import { useQuery } from "@tanstack/react-query";
 import api from "../../utils/axios";
 import { getTabData } from "../../utils/tabData";
+import Image from "next/image";
 
 const featuresData = [
   {
@@ -59,10 +60,12 @@ export default function page() {
               >
                 <div className="flex flex-col justify-center items-center text-center bg-white h-full min-h-[250px] sm:py-6 px-4 sm:px-2 rounded-8">
                   <div className="mb-4">
-                    <img
+                    <Image
                       src={feature.icon}
                       alt={`Feature ${index + 1}`}
                       className="w-[60px] h-[60px] object-contain mx-auto"
+                      width={60}
+                      height={60}
                     />
                   </div>
                   <h4 className="text-20 lg:text-20 sm:text-17">
@@ -117,10 +120,12 @@ export default function page() {
                                   data-aos-offset="0"
                                   data-aos-duration="1000"
                                 >
-                                  <img
+                                  <Image
                                     className="rounded-8"
                                     src={`${api.defaults.baseURL}${location.globalImage}`}
                                     alt={location.countryName}
+                                    width={600}
+                                    height={400}
                                   />
                                 </div>
 
@@ -171,10 +176,12 @@ export default function page() {
                                   data-aos-offset="0"
                                   data-aos-duration="1000"
                                 >
-                                  <img
+                                  <Image
                                     className="rounded-8"
                                     src={`${api.defaults.baseURL}/${location.globalImage}`}
                                     alt={location.countryName}
+                                    width={600}
+                                    height={400}
                                   />
                                 </div>
                               </div>

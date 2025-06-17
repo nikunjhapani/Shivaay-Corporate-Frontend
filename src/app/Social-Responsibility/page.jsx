@@ -159,10 +159,12 @@ export default async function Page() {
                   data-aos-offset="0"
                   data-aos-duration="1000"
                 >
-                  <img
+                  <Image
                     src={`${api.defaults.baseURL}${item?.socialActivityphoto}`}
                     alt={item.title}
                     className="w-full h-auto object-cover"
+                    width={600}
+                    height={400}
                   />
                 </div>
 

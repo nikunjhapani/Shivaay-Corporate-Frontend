@@ -211,10 +211,12 @@ const OurClients = () => {
                 <SwiperSlide key={i}>
                   <div>
                     <div className="d-flex items-center">
-                      <img
+                      <Image
                         src={slide.image}
                         alt={slide.country}
                         className="size-80"
+                        width={80}
+                        height={80}
                       />
                       <div className="ml-20">
                         <h5>Client from {slide.country}</h5>

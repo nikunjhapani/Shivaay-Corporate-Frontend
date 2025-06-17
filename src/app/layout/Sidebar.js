@@ -98,7 +98,7 @@ const Sidebar = ({
               sidebarOpen && !closing ? "show" : closing ? "closing" : ""
             }`}
           >
-            <img src="/img/bg01.png" alt="Sidebar Banner" />
+            <Image src="/img/bg01.png" alt="Sidebar Banner" width={600} height={400} />
             <div className="text-on-image">
               <div className="text-center">
                 <div className="mt-40">

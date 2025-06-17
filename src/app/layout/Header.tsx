@@ -63,7 +63,7 @@ export default function Header({ settings, setSidebarOpen, menu, submenuMap }) {
           <div className="header__right d-flex items-center h-full">
             <div className="line -vertical bg-white-10 h-full ml-90 mr-90 xl:d-none"></div>
 
-            <Link href="#">
+            <Link href="/contact-us">
               <button className="button text-white mr-30 xl:d-none">
                 <i className="icon-phone text-20 text-white mr-15"></i>
                 CONTACT US
