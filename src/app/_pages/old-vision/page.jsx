@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-import HeroSlider from "../../components/HeroSlider";
+import HeroSlider from "../../../components/HeroSlider";
 
 
 export default function Vision() {
