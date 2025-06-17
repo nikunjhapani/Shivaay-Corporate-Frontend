@@ -9,7 +9,7 @@ export async function generateMetadata() {
   return await getMetadataForSlug("contact-us");
 }
 
-export default function page() {
+export default function Page() {
   return (
     <>
       <Banner pageName="Contact Us" />

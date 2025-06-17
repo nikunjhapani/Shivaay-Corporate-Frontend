@@ -178,7 +178,7 @@ export default function page() {
                                 >
                                   <Image
                                     className="rounded-8"
-                                    src={`${api.defaults.baseURL}/${location.globalImage}`}
+                                    src={`${api.defaults.baseURL}${location.globalImage}`}
                                     alt={location.countryName}
                                     width={600}
                                     height={400}

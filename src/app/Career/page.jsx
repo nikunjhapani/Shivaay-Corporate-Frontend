@@ -6,7 +6,7 @@ export async function generateMetadata() {
   return await getMetadataForSlug("career"); 
 }
 
-export default function page() {
+export default function Page() {
   return (
     <div>
        <Banner pageName="Career" />

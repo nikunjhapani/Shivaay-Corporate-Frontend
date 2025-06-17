@@ -40,9 +40,8 @@ export default function Awards() {
 
           <div className="col-auto">
             <Link href={"/awards-certificates"}>
-             <Button>VIEW ALL</Button>
+              <Button>VIEW ALL</Button>
             </Link>
-           
           </div>
         </div>
 
@@ -52,7 +51,10 @@ export default function Awards() {
           <div className="row y-gap-30 justify-between pt-10">
             {awardsData.slice(0, 4).map((item, index) => {
               // Optional: remove outer <p> tags from description
-              const cleanDescription = item.description?.replace(/^<p>|<\/p>$/g, '');
+              const cleanDescription = item?.description?.replace(
+                /^<p>|<\/p>$/g,
+                ""
+              );
 
               return (
                 <div
@@ -61,15 +63,18 @@ export default function Awards() {
                   data-aos="fade-up"
                   data-aos-duration={item.delay || "1000"}
                 >
-                  <Link href="/awards-certificates" className="baseCard -type-2">
+                  <Link
+                    href={`${api.defaults.baseURL}${item?.awardPdf}`}
+                    target="_blank"
+                    className="baseCard -type-2"
+                  >
                     <div className="baseCard__image ratio ratio-41:50">
                       <Image
-                        src={`${api.defaults.baseURL}${item.awardImage}`}
+                        src={`${api.defaults.baseURL}${item?.awardImage}`}
                         alt={item.title}
                         width={300}
                         height={365}
                         className="img-ratio"
-                       
                       />
                     </div>
 
@@ -85,9 +90,9 @@ export default function Awards() {
                         dangerouslySetInnerHTML={{ __html: cleanDescription }}
                       ></h4>
 
-                      {/* <div className="d-flex mt-15 md:d-none">
+                      <div className="d-flex mt-15 md:d-none">
                         <Button>READ MORE</Button>
-                      </div> */}
+                      </div>
                     </div>
                   </Link>
                 </div>

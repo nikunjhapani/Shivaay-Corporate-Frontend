@@ -26,13 +26,13 @@ export default function GlobalPresence() {
           <>
             <video width="100%" className="desktop-v" autoPlay loop muted>
               <source
-                src={`${api.defaults.baseURL}/${banner.desktopImage}`}
+                src={`${api.defaults.baseURL}${banner?.desktopImage}`}
                 type="video/mp4"
               />
             </video>
             <video width="100%" className="mobile-v" autoPlay loop muted>
               <source
-                src={`${api.defaults.baseURL}/${banner.mobileImage}`}
+                src={`${api.defaults.baseURL}${banner?.mobileImage}`}
                 type="video/mp4"
               />
             </video>
@@ -40,14 +40,14 @@ export default function GlobalPresence() {
         ) : (
           <>
             <Image
-              src={`${api.defaults.baseURL}/${banner.desktopImage}`}
+              src={`${api.defaults.baseURL}${banner?.desktopImage}`}
               alt={banner.bannerTitle}
               width={1920}
               height={800}
               className="hidden md:block w-full object-cover"
             />
             <Image
-              src={`${api.defaults.baseURL}/${banner.mobileImage}`}
+              src={`${api.defaults.baseURL}${banner?.mobileImage}`}
               alt={banner.bannerTitle}
               width={768}
               height={500}
@@ -64,9 +64,9 @@ export default function GlobalPresence() {
               data-aos-offset="0"
               data-aos-duration="1500"
             >
-              <div className="text-15 sm:text-13 uppercase mb-5 text-white">
+              {/* <div className="text-15 sm:text-13 uppercase mb-5 text-white">
                 A Worldwide Influence in Jewelry Design
-              </div>
+              </div> */}
               <h2 className="text-34 md:text-30 sm:text-24 text-white mb-20">
                 {banner?.bannerTitle}
               </h2>

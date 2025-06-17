@@ -33,13 +33,11 @@ export default async function CmsPage({ params }) {
   const { slug } = params;
   
   const cmsData = await getCMSData(slug);
-  console.log("slug", cmsData);
-
   if (!cmsData) notFound();
 
   return (
     <>
-      {/* <HeroSlider /> */}
+      <HeroSlider />
       <Suspense fallback={<div>Loading content...</div>}>
         <section className="layout-pt-md layout-pb-md">
           <div className="container text-center">
