@@ -142,11 +142,12 @@ const Footer = ({ settings, menu, submenuMap }) => {
 
               {/* Social Icons */}
               <div>
-                <h4 className="text-30 fw-500 text-white">FOLLOW US</h4>
+                <h4 className="text-30 fw-500 text-white">FOLLOW US1</h4>
                 <div className="row mt-30">
                   {socialIcons.map((icon) => {
                     const url = socialLinksMap[icon];
                     if (!url) return null;
+                    const displayIcon = icon === "youtube" ? "twitter" : icon;
                     return (
                       <div className="col-auto" key={icon}>
                         <a
@@ -154,9 +155,9 @@ const Footer = ({ settings, menu, submenuMap }) => {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="d-block text-white-60"
-                          aria-label={icon}
+                          aria-label={displayIcon}
                         >
-                          <i className={`icon-${icon} text-20`}></i>
+                          <i className={`icon-${displayIcon} text-20`}></i>
                         </a>
                       </div>
                     );
@@ -230,6 +231,10 @@ const Footer = ({ settings, menu, submenuMap }) => {
                     <div className="row mt-30 mx-auto">
                       {socialIcons.map((icon) => {
                         const url = socialLinksMap[icon];
+                        if (!url) return null;
+                        const displayIcon =
+                          icon === "youtube" ? "twitter" : icon;
+
                         return (
                           <div className="col-auto" key={icon}>
                             <a
@@ -237,9 +242,9 @@ const Footer = ({ settings, menu, submenuMap }) => {
                               target="_blank"
                               rel="noopener noreferrer"
                               className="d-block text-white-60"
-                              aria-label={icon}
+                              aria-label={displayIcon}
                             >
-                              <i className={`icon-${icon} text-20`}></i>
+                              <i className={`icon-${displayIcon} text-20`}></i>
                             </a>
                           </div>
                         );

@@ -1,4 +1,3 @@
-// next.config.js
 module.exports = {
   images: {
     domains: ["localhost", "api.shivaayjewels.com"],
