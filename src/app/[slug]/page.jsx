@@ -4,7 +4,7 @@ import api from "../../utils/axios";
 import { Suspense } from "react";
 
 async function getCMSData(slug) {
-  const res = await fetch(`${api.defaults.baseURL}/api/menu/getAllApi`, {
+  const res = await fetch(`${api.defaults.baseURL}api/menu/getAllApi`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     cache: "no-store",
@@ -31,13 +31,15 @@ export async function generateMetadata({ params }) {
 
 export default async function CmsPage({ params }) {
   const { slug } = params;
+  
   const cmsData = await getCMSData(slug);
+  console.log("slug", cmsData);
 
   if (!cmsData) notFound();
 
   return (
     <>
-      <HeroSlider />
+      {/* <HeroSlider /> */}
       <Suspense fallback={<div>Loading content...</div>}>
         <section className="layout-pt-md layout-pb-md">
           <div className="container text-center">
