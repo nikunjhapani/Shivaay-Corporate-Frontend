@@ -50,7 +50,7 @@ export default async function RootLayout({ children }) {
 
               <Footer settings={settings} menu={menu} submenuMap={submenuMap} />
             </main>
-            <Footer settings={settings} menu={menu} submenuMap={submenuMap} />
+            {/* <Footer settings={settings} menu={menu} submenuMap={submenuMap} /> */}
           </AOSProvider>
         </ReactQueryProvider>
         <Script src="/js/main.js" strategy="afterInteractive" />

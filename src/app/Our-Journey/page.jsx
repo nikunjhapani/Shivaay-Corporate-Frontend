@@ -39,7 +39,7 @@ export default function page() {
 
   return (
     <div>
-      <HeroSlider />
+      <HeroSlider sliderData={sliderData} />
        <section className="layout-pt-md layout-pb-md">
       <div className="container">
         {/* Heading */}

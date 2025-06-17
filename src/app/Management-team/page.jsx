@@ -51,7 +51,7 @@ export default async function Page() {
 
   return (
     <>
-      <HeroSlider />
+      <HeroSlider sliderData={sliderData} />
       <section className="layout-pt-md layout-pb-md">
         <div className="container">
           <div className="row justify-center">

@@ -2,6 +2,9 @@
 import api from "./axios";
 
 export default async function getLayoutData() {
+
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
   const [settingsRes, menuRes] = await Promise.all([
     fetch(`${api.defaults.baseURL}api/websiteSettings/getSettings`, {
       method: "GET",
