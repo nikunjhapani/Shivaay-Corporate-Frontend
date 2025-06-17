@@ -55,6 +55,7 @@ export default function Header({ settings, setSidebarOpen, menu, submenuMap }) {
                   width={120}
                   height={40}
                   priority
+                  style={{ width: "auto", height: "auto" }}
                 />
               </Link>
             </div>
@@ -64,7 +65,7 @@ export default function Header({ settings, setSidebarOpen, menu, submenuMap }) {
             <div className="line -vertical bg-white-10 h-full ml-90 mr-90 xl:d-none"></div>
 
             <Link href="https://lajo.in/" target="_blank">
-              <button className="button text-white mr-30 ">
+              <button className="button text-white">
                 <svg
                   className="icon"
                   width="24"
@@ -88,7 +89,7 @@ export default function Header({ settings, setSidebarOpen, menu, submenuMap }) {
                     strokeLinejoin="round"
                   ></path>
                 </svg>
-                <span className="ps-2 xl:d-none">LOGIN</span>
+                <span className="ps-2 sm:d-none">LOGIN</span>
               </button>
             </Link>
           </div>

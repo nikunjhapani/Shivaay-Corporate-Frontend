@@ -3,13 +3,9 @@
 import React from "react";
 import api from "../utils/axios";
 import { useQuery } from "@tanstack/react-query";
-import {
-  LightGallery,
-  lgThumbnail,
-  lgZoom,
-} from "../utils/lightgallerySetup";
 import { fetchGalleryData } from "../app/api/fetchGalleryData";
 import Image from "next/image";
+import Fancybox from "../components/ui/FancyBox";
 
 export default function GallerySection() {
   const { data, isLoading, isError } = useQuery({
@@ -26,33 +22,56 @@ export default function GallerySection() {
         {data?.map(({ galleryTitleId, title, images }, index) => (
           <div
             key={galleryTitleId}
-            className={`${index === 0 ? "" : "layout-pt-md "}`}
+            className={`${index === 0 ? "" : "layout-pt-md"}`}
           >
             <h2 className="text-34 md:text-30 sm:text-24 mb-20">{title}</h2>
 
-            <LightGallery
-              speed={500}
-              plugins={[lgThumbnail, lgZoom]}
-              elementClassNames="row g-4"
+            <Fancybox
             >
-              {images.map(({ _id, gallaryImage, sort_order_no }) => (
-                <a
-                  key={_id}
-                  href={`${api.defaults.baseURL}${gallaryImage}`}
-                  className="col-md-4"
-                  data-sub-html={`<h4>${title}</h4><p>Image ${sort_order_no}</p>`}
-                >
-                  <Image
-                    src={`${api.defaults.baseURL}${gallaryImage}`}
-                    alt={`Image ${sort_order_no}`}
-                    width={600}
-                    height={400}
-                    priority
-                    style={{ width: "100%", height: "auto" }}
-                  />
-                </a>
-              ))}
-            </LightGallery>
+              <div className="row g-4">
+                {images.map(({ _id, gallaryImage, sort_order_no, gallaryType }) => {
+                  const fileUrl = `${api.defaults.baseURL}${gallaryImage}`;
+                  return gallaryType === "video" ? (
+                    <a
+                      key={_id}
+                      href={fileUrl}
+                      className="col-md-4"
+                      data-fancybox={galleryTitleId}
+                      data-type="video"
+                    >
+                      <div className="media-container">
+                        <video
+                          src={fileUrl}
+                          width={300}
+                          height={200}
+                          style={{ objectFit: "cover" }}
+                          controls
+                        />
+                      </div>
+                    </a>
+                  ) : (
+                    <a
+                      key={_id}
+                      href={fileUrl}
+                      className="col-md-4"
+                      data-fancybox={galleryTitleId}
+                      data-caption={`<h4>${title}</h4><p>Image ${sort_order_no}</p>`}
+                    >
+                      <div className="media-container">
+                        <Image
+                          src={fileUrl}
+                          alt={`Image ${sort_order_no}`}
+                          width={300}
+                          height={200}
+                          style={{ objectFit: "cover" }}
+                          priority
+                        />
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
+            </Fancybox>
           </div>
         ))}
       </div>
