@@ -1,4 +1,5 @@
 import api from "../../utils/axios";
+
 export const fetchGalleryData = async () => {
   const [titlesRes, imagesRes] = await Promise.all([
     fetch(`${api.defaults.baseURL}api/gallaryTitle/getAllApi`, {
@@ -18,11 +19,16 @@ export const fetchGalleryData = async () => {
   const titles = (await titlesRes.json())?.data || [];
   const images = (await imagesRes.json())?.data || [];
 
-  return titles.map((title: any) => ({
-    galleryTitleId: title._id,
-    title: title.title,
-    images: images
-      .filter((img: any) => img.galleryTitleId === title._id)
-      .sort((a: any, b: any) => a.sort_order_no - b.sort_order_no),
-  }));
+  return titles
+    .filter((title: any) => title.isActive)
+    .map((title: any) => ({
+      galleryTitleId: title._id,
+      title: title.title,
+      images: images
+        .filter(
+          (img: any) =>
+            img.galleryTitleId === title._id && img.isActive
+        )
+        .sort((a: any, b: any) => a.sort_order_no - b.sort_order_no),
+    }));
 };

@@ -1,4 +1,4 @@
-'use client';
+import React from "react";
 import SocialResponsibility from "../components/SocialResponsibility";
 import Awards from "../components/Awards";
 import Banner from "../components/Banner";
@@ -10,9 +10,6 @@ import CounterSection from "../components/Counter";
 import VisionMissionSection from "../components/VisionMissionSection";
 import GlobalPresence from "../components/GlobalPresence";
 import About from "../components/AboutSection";
-import { useEffect, useState } from "react";
-import Button from "../components/ui/Button";
-import Link from "next/link";
 
 export default function Home() {
 

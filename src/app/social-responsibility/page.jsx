@@ -128,7 +128,7 @@ const getData = async () => {
     }
   );
   const json = await res.json();
-  return json?.data || [];
+  return (json?.data || []).filter((item) => item.isActive);
 };
 
 export async function generateMetadata() {
@@ -152,9 +152,8 @@ export default async function Page() {
               <div className="row justify-between items-center">
                 {/* Image column */}
                 <div
-                  className={`col-xl-6 col-lg-6 p-0 ${
-                    isEven ? "" : "order-lg-2 order-1"
-                  }`}
+                  className={`col-xl-6 col-lg-6 p-0 ${isEven ? "" : "order-lg-2 order-1"
+                    }`}
                   data-aos="zoom-in"
                   data-aos-offset="0"
                   data-aos-duration="1000"
@@ -170,9 +169,8 @@ export default async function Page() {
 
                 {/* Text column */}
                 <div
-                  className={`col-xl-6 col-lg-6 p-lg-5 px-md-3 p-4 ${
-                    isEven ? "" : "order-lg-1 order-2"
-                  }`}
+                  className={`col-xl-6 col-lg-6 p-lg-5 px-md-3 p-4 ${isEven ? "" : "order-lg-1 order-2"
+                    }`}
                 >
                   <div
                     className="sr-icon mb-3"
@@ -186,9 +184,8 @@ export default async function Page() {
                     />
                   </div>
                   <h4
-                    className={`text-30 lg:text-30 sm:text-20 mt-15 ${
-                      isEven ? "" : "text-white"
-                    }`}
+                    className={`text-30 lg:text-30 sm:text-20 mt-15 ${isEven ? "" : "text-white"
+                      }`}
                     data-aos="fade-up"
                     data-aos-offset="0"
                     data-aos-duration="1000"
@@ -196,9 +193,8 @@ export default async function Page() {
                     {item.title}
                   </h4>
                   <p
-                    className={`text-16 sm:text-15 mt-15 ${
-                      isEven ? "" : "text-white"
-                    }`}
+                    className={`text-16 sm:text-15 mt-15 ${isEven ? "" : "text-white"
+                      }`}
                   >
                     {item.description}
                   </p>

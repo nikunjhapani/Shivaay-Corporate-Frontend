@@ -6,17 +6,22 @@ import Image from "next/image";
 import Button from "../../components/ui/Button";
 import getMetadataForSlug from "../../utils/getMetadataForSlug";
 
+export const revalidate = 60;
+
 const getAwards = async () => {
   const res = await fetch(`${api.defaults.baseURL}api/awards/getAllApi`, {
     method: "POST",
-    cache: "no-store", 
+    cache: "no-store",
   });
+
   const json = await res.json();
-  return json?.data || [];
+  const allAwards = json?.data || [];
+
+  return allAwards.filter((item) => item.isActive === true);
 };
 
 export async function generateMetadata() {
-  return await getMetadataForSlug("awards-certificates"); 
+  return await getMetadataForSlug("awards-certificates");
 }
 
 export default async function page() {

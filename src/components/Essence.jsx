@@ -6,11 +6,11 @@ import Image from "next/image";
 
 export const getEssence = async () => {
   const res = await postData("/api/essence/getAllApi");
-  return res?.data || [];
+  return (res?.data || []).filter((item) => item.isActive);
 };
 
 export default function Essence() {
-  const { data, isLoading, isError } = useQuery({
+  const { data } = useQuery({
     queryKey: ["essence"],
     queryFn: getEssence,
   });
@@ -40,7 +40,7 @@ export default function Essence() {
                 <div className="iconCard -type-1 -hover-2 text-center p-4">
                   <div className="iconCard__bg rounded-16"></div>
                   <div className="iconCard__icon text-50">
-                    <Image src={`${api.defaults.baseURL}${item.icon}`} width={75} height={75} alt= {item.label} />
+                    <Image src={`${api.defaults.baseURL}${item.icon}`} width={75} height={75} alt={item.label} />
                   </div>
                   <h4 className="text-20 sm:text-17 lh-1 mt-20 sm:mt-15">
                     {item.label}

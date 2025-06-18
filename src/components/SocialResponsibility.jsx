@@ -12,7 +12,7 @@ import { postData } from "../utils/apiMethods";
 
 export const getData = async () => {
   const res = await postData("api/socialActivity/getAllApi");
-  return res?.data || [];
+  return (res?.data || []).filter((item) => item.isActive);
 };
 
 export default function SocialResponsibility() {
@@ -145,9 +145,8 @@ export default function SocialResponsibility() {
                 {filteredData.map((_, index) => (
                   <span
                     key={index}
-                    className={`pagination__item cursor-hover-target cursor-pointer ${
-                      activeIndex === index ? "is-active" : ""
-                    }`}
+                    className={`pagination__item cursor-hover-target cursor-pointer ${activeIndex === index ? "is-active" : ""
+                      }`}
                     onClick={() => handlePaginationClick(index)}
                   >
                     {String(index + 1).padStart(2, "0")}

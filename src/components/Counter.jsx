@@ -1,13 +1,13 @@
+"use client"
 import React from "react";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 import { postData } from "../utils/apiMethods";
 import { useQuery } from "@tanstack/react-query";
 
-// Fetch Stats Data from the API
 export const getStats = async () => {
   const res = await postData("/api/counters/getAllApi");
-  return res?.data || [];
+  return (res?.data || []).filter((item) => item.isActive);
 };
 
 const CounterSection = () => {
@@ -16,7 +16,7 @@ const CounterSection = () => {
     threshold: 0.2,
   });
 
-  const { data, isLoading, isError } = useQuery({
+  const { data } = useQuery({
     queryKey: ["stats"],
     queryFn: getStats,
   });

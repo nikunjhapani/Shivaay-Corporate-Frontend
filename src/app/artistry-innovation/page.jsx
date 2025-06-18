@@ -4,6 +4,7 @@ import Banner from "../../components/Banner";
 import Image from "next/image";
 import api from "../../utils/axios";
 import getMetadataForSlug from "../../utils/getMetadataForSlug";
+
 async function getCMSData() {
   const res = await fetch(`${api.defaults.baseURL}api/innovation/getAllApi`, {
     method: "POST",
@@ -12,11 +13,11 @@ async function getCMSData() {
   });
 
   const json = await res.json();
-  return json?.data || [];
+  return (json?.data || []).filter((item) => item.isActive);
 }
 
 export async function generateMetadata() {
-  return await getMetadataForSlug("artistry-innovation"); 
+  return await getMetadataForSlug("artistry-innovation");
 }
 
 export default async function Page() {
@@ -142,7 +143,7 @@ export default async function Page() {
               );
             })}
           </div>
-          
+
         </div>
       </section>
       <Essence />

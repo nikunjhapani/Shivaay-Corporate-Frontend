@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { useState } from "react";
 import clsx from "clsx";
@@ -7,7 +8,7 @@ import api from "../utils/axios";
 import Link from "next/link";
 export const getInnovation = async () => {
   const res = await postData("/api/innovation/getAllApi");
-  return res?.data || [];
+  return (res?.data || []).filter((item) => item.isActive);
 };
 
 const InnovationCard = ({

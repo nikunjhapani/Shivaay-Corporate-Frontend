@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import api from "../utils/axios";
@@ -8,8 +9,8 @@ import SectionTitle from "./ui/SectionTitle";
 import Link from "next/link";
 
 const fetchData = async () => {
-  const { data } = await api.post("api/managementTeam/getAllApi");
-  return data?.data || []; // Assuming response is { success: true, data: [...] }
+  const { data } = await api.post("/api/managementTeam/getAllApi");
+  return data?.data?.filter((item) => item.isActive) || [];
 };
 
 export default function ManagementTeam() {

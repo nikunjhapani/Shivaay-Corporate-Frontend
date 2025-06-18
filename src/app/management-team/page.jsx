@@ -7,24 +7,24 @@ import getMetadataForSlug from "../../utils/getMetadataForSlug";
 const getManagementTeam = async () => {
   const res = await fetch(`${api.defaults.baseURL}api/managementTeam/getAllApi`, {
     method: "POST",
-    cache: "no-store", // SSR: always fresh data
   });
-  const json = await res.json();
-  return json?.data || [];
-};
 
+  const json = await res.json();
+  return (json?.data || []).filter((item) => item.isActive);
+};
 
 export async function generateMetadata() {
   return await getMetadataForSlug("management-team");
 }
-
 
 export default async function Page() {
   const data = await getManagementTeam();
 
   return (
     <>
-      <HeroSlider  />
+      <HeroSlider />
+
+      {/* Section Title */}
       <section className="layout-pt-md layout-pb-md">
         <div className="container">
           <div className="row justify-center">
@@ -43,22 +43,22 @@ export default async function Page() {
         </div>
       </section>
 
-      {data?.map((item, index) => {
+      {/* Team Members */}
+      {data.map((item, index) => {
         const isEven = index % 2 === 0;
         const isLast = index === data.length - 1;
+
         return (
           <section
             key={item._id}
-            className={`layout-pt-sm ${
-              isLast ? "layout-pb-lg" : "layout-pb-sm"
-            }`}
+            className={`layout-pt-sm ${isLast ? "layout-pb-lg" : "layout-pb-sm"}`}
           >
             <div className="container">
               <div className="row justify-between items-center">
+                {/* Image */}
                 <div
-                  className={`col-xl-5 col-lg-5 col-12 text-center p-lg-0 p-4 ${
-                    isEven ? "order-1" : "order-2"
-                  }`}
+                  className={`col-xl-5 col-lg-5 col-12 text-center p-lg-0 p-4 ${isEven ? "order-1" : "order-2"
+                    }`}
                 >
                   <Image
                     src={`${api.defaults.baseURL}${item.profile}`}
@@ -66,14 +66,15 @@ export default async function Page() {
                     className="rounded-16"
                     width={584}
                     height={494}
-                    loading="lazy"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    priority={index === 0}
                   />
                 </div>
 
+                {/* Content */}
                 <div
-                  className={`col-xl-7 col-lg-7 col-12 px-50 px-lg-4 ${
-                    isEven ? "order-2" : "order-1"
-                  }`}
+                  className={`col-xl-7 col-lg-7 col-12 px-50 px-lg-4 ${isEven ? "order-2" : "order-1"
+                    }`}
                 >
                   <div className="baseCard__content d-flex flex-column justify-end">
                     <h2 className="text-34 lg:text-30 sm:text-20 mt-15">

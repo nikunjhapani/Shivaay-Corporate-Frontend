@@ -10,7 +10,7 @@ import api from "../utils/axios";
 import Link from "next/link";
 export const getAboutImages = async () => {
   const res = await postData("api/about/getAllApi");
-  return res?.data || [];
+  return (res?.data || []).filter((item) => item.isActive);
 };
 
 export default function About() {

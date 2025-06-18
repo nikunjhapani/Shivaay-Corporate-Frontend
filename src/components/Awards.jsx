@@ -1,29 +1,28 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import api from "../utils/axios";
 import Button from "./ui/Button";
 
-export default function Awards() {
-  const [awardsData, setAwardsData] = useState([]);
-  const [loading, setLoading] = useState(true);
+export const revalidate = 60;
 
-  useEffect(() => {
-    const getAwards = async () => {
-      try {
-        const res = await api.post("api/awards/getAllApi");
-        setAwardsData(res.data?.data || []);
-      } catch (error) {
-        console.error("Error fetching awards:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+const getAwards = async () => {
+  try {
+    const res = await fetch(`${api.defaults.baseURL}api/awards/getAllApi`, {
+      method: "POST",
+      cache: "no-store",
+    });
+    const data = await res.json();
+    const allAwards = data?.data || [];
+    return allAwards.filter((item) => item.isActive);
+  } catch (error) {
+    console.error("Error fetching awards:", error);
+    return [];
+  }
+};
 
-    getAwards();
-  }, []);
+export default async function Awards() {
+  const awardsData = await getAwards();
 
   return (
     <section className="layout-pt-md layout-pb-lg">
@@ -33,9 +32,7 @@ export default function Awards() {
             <div className="text-15 sm:text-13 uppercase mb-5">
               Government and Other Recognitions
             </div>
-            <h2 className="text-34 md:text-30 sm:text-24">
-              AWARDS & CERTIFICATES
-            </h2>
+            <h2 className="text-34 md:text-30 sm:text-24">AWARDS & CERTIFICATES</h2>
           </div>
 
           <div className="col-auto">
@@ -45,61 +42,53 @@ export default function Awards() {
           </div>
         </div>
 
-        {loading ? (
-          <div className="pt-30 text-center text-16">Loading...</div>
-        ) : (
-          <div className="row y-gap-30 justify-between pt-10">
-            {awardsData.slice(0, 4).map((item, index) => {
-              // Optional: remove outer <p> tags from description
-              const cleanDescription = item?.description?.replace(
-                /^<p>|<\/p>$/g,
-                ""
-              );
+        <div className="row y-gap-30 justify-between pt-10">
+          {awardsData.slice(0, 4).map((item, index) => {
+            const cleanDescription = item?.description?.replace(/^<p>|<\/p>$/g, "");
 
-              return (
-                <div
-                  key={index}
-                  className="col-lg-3 col-md-6 col-6"
-                  data-aos="fade-up"
-                  data-aos-duration={item.delay || "1000"}
+            return (
+              <div
+                key={index}
+                className="col-lg-3 col-md-6 col-6"
+                data-aos="fade-up"
+                data-aos-duration={item.delay || "1000"}
+              >
+                <Link
+                  href={`${api.defaults.baseURL}${item?.awardPdf}`}
+                  target="_blank"
+                  className="baseCard -type-2"
                 >
-                  <Link
-                    href={`${api.defaults.baseURL}${item?.awardPdf}`}
-                    target="_blank"
-                    className="baseCard -type-2"
-                  >
-                    <div className="baseCard__image ratio ratio-41:50">
-                      <Image
-                        src={`${api.defaults.baseURL}${item?.awardImage}`}
-                        alt={item.title}
-                        width={300}
-                        height={365}
-                        className="img-ratio"
-                      />
-                    </div>
+                  <div className="baseCard__image ratio ratio-41:50">
+                    <Image
+                      src={`${api.defaults.baseURL}${item?.awardImage}`}
+                      alt={item.title}
+                      width={300}
+                      height={365}
+                      className="img-ratio"
+                    />
+                  </div>
 
-                    <div className="baseCard__content mt-10">
-                      <div className="row x-gap-10">
-                        <div className="col-auto lh-14 text-16 md:text-13">
-                          {item.title}
-                        </div>
-                      </div>
-
-                      <h4
-                        className="text-20 md:text-17 mt-10"
-                        dangerouslySetInnerHTML={{ __html: cleanDescription }}
-                      ></h4>
-
-                      <div className="d-flex mt-15 md:d-none">
-                        <Button>READ MORE</Button>
+                  <div className="baseCard__content mt-10">
+                    <div className="row x-gap-10">
+                      <div className="col-auto lh-14 text-16 md:text-13">
+                        {item.title}
                       </div>
                     </div>
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
-        )}
+
+                    <h4
+                      className="text-20 md:text-17 mt-10"
+                      dangerouslySetInnerHTML={{ __html: cleanDescription }}
+                    ></h4>
+
+                    <div className="d-flex mt-15 md:d-none">
+                      <Button>READ MORE</Button>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
