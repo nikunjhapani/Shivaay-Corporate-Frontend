@@ -45,7 +45,7 @@ export default function HeroSlider() {
             className="js-section-slider"
           >
             {cmsMenu?.map((item: any) => (
-              <SwiperSlide key={item?._id} className="baseCard -type-1 ">
+              <SwiperSlide key={item?._id} className="baseCard -type-1 -hover-image-scale">
                 <div className="baseCard__image ratio ratio-33:45 aspect-[33/45] rounded-16">
                   <div className="-hover-image-scale__image">
                     <Image
@@ -57,17 +57,14 @@ export default function HeroSlider() {
                     />
                   </div>
                 </div>
-                <div className="baseCard__content d-flex flex-column justify-end text-center">
-                  <h4 className="text-24 md:text-20 text-white">
-                    {item?.cmsId?.page_title}
-                  </h4>
-                  <Link
-                    href={`/${item?.menuURL}`}
-                    className="-hover-image-scale"
-                  >
+                <Link href={`/${item?.menuURL}`} className="">
+                  <div className="baseCard__content d-flex flex-column justify-end text-center">
+                    <h4 className="text-24 md:text-20 text-white">
+                      {item?.cmsId?.page_title}
+                    </h4>
                     <div className="text-white text-13 mt-10">READ MORE</div>
-                  </Link>
-                </div>
+                  </div>
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>

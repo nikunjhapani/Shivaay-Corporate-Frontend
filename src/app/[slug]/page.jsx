@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import HeroSlider from "../../components/HeroSlider";
 import api from "../../utils/axios";
+import getMetadataForSlug from "../../utils/getMetadataForSlug";
 
 async function getCMSData(slug) {
   try {
@@ -26,9 +27,15 @@ async function getCMSData(slug) {
   }
 }
 
-export default async function Page({ params }) {
+export async function generateMetadata({ params }) {
   const { slug } = params;
+  return await getMetadataForSlug(slug);
+}
+
+export default async function Page(props) {
+  const { slug } = await props.params;
   const cmsData = await getCMSData(slug);
+
 
   return (
     <>
