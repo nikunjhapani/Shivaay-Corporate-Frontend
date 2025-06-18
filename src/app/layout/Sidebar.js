@@ -31,9 +31,8 @@ const Sidebar = ({
     <>
       {/* For Desktop */}
       <div
-        className={`sidebar-overlay ${sidebarOpen ? "open" : ""} ${
-          closing ? "closing" : ""
-        }`}
+        className={`sidebar-overlay ${sidebarOpen ? "open" : ""} ${closing ? "closing" : ""
+          }`}
       >
         <div className="sidebar-container">
           <div
@@ -51,14 +50,13 @@ const Sidebar = ({
             </button>
 
             <div className="menuFullScreen-links js-menuFullScreen-links">
-              {menu?.map((item, index) => (
+              {menu?.filter(item => item?.isActive).map((item, index) => (
                 <div
                   key={index}
-                  className={`menuFullScreen-links__item ${
-                    item?.menuType === "Sub Menu"
-                      ? "js-menuFullScreen-has-children"
-                      : ""
-                  }`}
+                  className={`menuFullScreen-links__item ${item?.menuType === "Sub Menu"
+                    ? "js-menuFullScreen-has-children"
+                    : ""
+                    }`}
                 >
                   <Link href={item?.menuURL || "#"} onClick={toggleSidebar}>
                     {item?.menuName}
@@ -73,7 +71,7 @@ const Sidebar = ({
                   {submenuMap[item?._id] &&
                     submenuMap[item?._id]?.length > 0 && (
                       <div className="menuFullScreen-links-subnav js-menuFullScreen-subnav">
-                        {submenuMap[item?._id].map((submenuItem) => (
+                        {submenuMap[item?._id]?.filter(sub => sub?.isActive).map((submenuItem) => (
                           <div
                             key={submenuItem?._id}
                             className="menuFullScreen-links-subnav__item"
@@ -94,9 +92,8 @@ const Sidebar = ({
           </div>
 
           <div
-            className={`sidebar-banner ${
-              sidebarOpen && !closing ? "show" : closing ? "closing" : ""
-            }`}
+            className={`sidebar-banner ${sidebarOpen && !closing ? "show" : closing ? "closing" : ""
+              }`}
           >
             <Image src={`${baseUrl}${settings?.menuImage1}`} alt="Sidebar Banner" width={600} height={400} />
             <div className="text-on-image">
@@ -146,9 +143,8 @@ const Sidebar = ({
 
       {/* For Mobile */}
       <div
-        className={`sidebar-overlay-mobile ${sidebarOpen ? "open" : ""} ${
-          closing ? "closing" : ""
-        }`}
+        className={`sidebar-overlay-mobile ${sidebarOpen ? "open" : ""} ${closing ? "closing" : ""
+          }`}
       >
         <div className="menuFullScreen__topMobile js-menuFullScreen-topMobile">
           <div
@@ -183,17 +179,16 @@ const Sidebar = ({
                     onClick={() =>
                       hasSubmenu
                         ? setOpenAccordionIndex(
-                            openAccordionIndex === index ? null : index
-                          )
+                          openAccordionIndex === index ? null : index
+                        )
                         : toggleSidebar()
                     }
                   >
                     <Link href={item?.menuURL || "#"}>{item?.menuName}</Link>
                     {hasSubmenu && (
                       <span
-                        className={`accordion-toggle ${
-                          openAccordionIndex === index ? "rotate" : ""
-                        }`}
+                        className={`accordion-toggle ${openAccordionIndex === index ? "rotate" : ""
+                          }`}
                       >
                         <i className="icon-chevron-right"></i>
                       </span>

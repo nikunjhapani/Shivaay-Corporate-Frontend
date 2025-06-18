@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect } from "react";
 
 import { Fancybox as NativeFancybox } from "@fancyapps/ui";
