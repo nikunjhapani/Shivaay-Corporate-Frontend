@@ -1,6 +1,16 @@
 module.exports = {
   images: {
-    domains: ["localhost", "api.shivaayjewels.com"],
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3005',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.shivaayjewels.com',
+      },
+    ],
   },
   webpack: (config, { dev, isServer }) => {
     if (dev && !isServer) {
