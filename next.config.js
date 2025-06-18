@@ -2,13 +2,13 @@ module.exports = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '3005',
+        protocol: "http",
+        hostname: "localhost",
+        port: "5001",
       },
       {
-        protocol: 'https',
-        hostname: 'api.shivaayjewels.com',
+        protocol: "https",
+        hostname: "api.shivaayjewels.com",
       },
     ],
   },
