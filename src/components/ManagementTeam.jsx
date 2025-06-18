@@ -8,7 +8,7 @@ import SectionTitle from "./ui/SectionTitle";
 import Link from "next/link";
 
 const fetchData = async () => {
-  const { data } = await api.post("/api/managementTeam/getAllApi");
+  const { data } = await api.post("api/managementTeam/getAllApi");
   return data?.data || []; // Assuming response is { success: true, data: [...] }
 };
 
@@ -42,10 +42,11 @@ export default function ManagementTeam() {
             <Link href="/management-team" className="baseCard -type-4 ">
               <div className="baseCard__image ratio ratio-95:80 rounded-16">
                 <Image
-                  src={`${BASE_URL}/${item.profile}`}
+                  src={`${BASE_URL}${item.profile}`}
                   alt={item.name}
                   className="img-ratio"
-                  fill="fill"
+                  width={600}
+                  height={600}
                   loading="eager"
                 />
               </div>

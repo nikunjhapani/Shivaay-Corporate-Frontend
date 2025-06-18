@@ -14,7 +14,11 @@ export default function VisionMissionSection() {
     queryKey: ["VisionMission"],
     queryFn: getsData,
   });
-  const items = data?.filter((item) => item.menuType === "CMS" && (item.menuName === "Vision" || item.menuName === "Mission"));
+  const items = data?.filter(
+    (item) =>
+      item.menuType === "CMS" &&
+      (item.menuName === "Vision" || item.menuName === "Mission")
+  );
   return (
     <section className="relative layout-pt-lg">
       <div className="container">
@@ -34,12 +38,15 @@ export default function VisionMissionSection() {
                     className="rounded-8"
                     width={300}
                     height={300}
-                   
+                    style={{ width: "100%" }}
                   />
                 </div>
                 <div className="col-lg-6 text-left sm:px-40">
                   <h3 className="mb-5">{item?.cmsId?.page_title}</h3>
-                  <p className="text-15 text-justify">{item?.cmsId.page_subtitle}</p>
+                  <p className="text-15 text-justify text-truncate-three">
+                    {item?.cmsId?.page_editor?.replace(/<\/?[^>]+(>|$)/g, "")}
+                  </p>
+
                   <div className="mt-15">
                     <Link href={item?.menuURL}>
                       <Button>READ MORE</Button>

@@ -76,3 +76,12 @@
   object-fit: cover;
   display: block;
 }
+
+/*  */
+.text-truncate-three {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

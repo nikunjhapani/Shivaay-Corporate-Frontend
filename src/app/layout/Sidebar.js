@@ -98,7 +98,7 @@ const Sidebar = ({
               sidebarOpen && !closing ? "show" : closing ? "closing" : ""
             }`}
           >
-            <Image src="/img/bg01.png" alt="Sidebar Banner" width={600} height={400} />
+            <Image src={`${baseUrl}${settings?.menuImage1}`} alt="Sidebar Banner" width={600} height={400} />
             <div className="text-on-image">
               <div className="text-center">
                 <div className="mt-40">
@@ -163,7 +163,7 @@ const Sidebar = ({
 
           <div className="menuFullScreen__img">
             <Image
-              src={`${baseUrl}/${settings?.websiteLogo}`}
+              src={`${baseUrl}${settings?.websiteLogo}`}
               width={100}
               height={100}
               alt="logo"

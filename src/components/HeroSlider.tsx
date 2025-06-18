@@ -4,29 +4,27 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import Image from "next/image";
 import Link from "next/link";
-import { postData } from "../utils/apiMethods";
 import { useQuery } from "@tanstack/react-query";
 import api from "../utils/axios";
 
-export const getsliderData = async () => {
-  const res = await postData("api/cms/getAllApi");
-  return res?.data || [];
+const getMenuData = async () => {
+  const res = await fetch(`${api.defaults.baseURL}api/menu/getAllApi`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    cache: "no-store",
+  });
+  const data = await res.json();
+  return Object.values(data).flat();
 };
 
 export default function HeroSlider() {
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["innovation"],
-    queryFn: getsliderData,
+    queryKey: ["menuData"],
+    queryFn: getMenuData,
   });
 
-  const slugify = (text) =>
-  text
-    ?.toString()
-    .toLowerCase()
-    .trim()
-    .replace(/&/g, "-and-")            
-    .replace(/[\s\W-]+/g, "-");        
-
+  const cmsMenu = data?.filter((item:any) => item.menuType === "CMS");
+  
   return (
     <section className="pt-90 sm:pt-40 layout-pb-md bg-accent-1">
       <div className="container">
@@ -46,17 +44,17 @@ export default function HeroSlider() {
             }}
             className="js-section-slider"
           >
-            {data?.map((item, index) => (
-              <SwiperSlide key={index}>
+            {cmsMenu?.map((item:any) => (
+              <SwiperSlide key={item?._id}>
                 <Link
-                  href={`/${slugify(item?.page_title)}`}
+                  href={`/${item?.menuURL}`} 
                   className="baseCard -type-1 -hover-image-scale"
                 >
-                  <div className="baseCard__image ratio ratio-33:45 aspect-[33/45]  rounded-16">
+                  <div className="baseCard__image ratio ratio-33:45 aspect-[33/45] rounded-16">
                     <div className="-hover-image-scale__image">
                       <Image
-                        src={`${api.defaults.baseURL}${item?.page_image}`}
-                        alt={`${item?.page_title} || title`}
+                        src={`${api.defaults.baseURL}${item?.cmsId?.page_image}`}
+                        alt={item?.cmsId?.page_title || "CMS Image"}
                         className="img-ratio"
                         width={300}
                         height={400}
@@ -65,7 +63,7 @@ export default function HeroSlider() {
                   </div>
                   <div className="baseCard__content d-flex flex-column justify-end text-center">
                     <h4 className="text-24 md:text-20 text-white">
-                      {item?.page_title}
+                      {item?.cmsId?.page_title}
                     </h4>
                     <div className="text-white text-13 mt-10">READ MORE</div>
                   </div>
