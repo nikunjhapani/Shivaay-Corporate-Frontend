@@ -85,7 +85,7 @@ const InnovationSection = () => {
                 <Image
                   key={item?._id}
                   src={`${api.defaults.baseURL}${item.innovationImage}`}
-                  alt={item.title}
+                  alt={item.title || "title"}
                   fill
                   className={clsx("img-cover", {
                     "is-active": activeIndex === index,

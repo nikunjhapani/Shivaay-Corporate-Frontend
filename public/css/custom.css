@@ -59,3 +59,20 @@
         opacity: 1;
     }
 }
+
+
+/* Gallery */
+.media-container {
+  width: auto;  
+  height: 250px; 
+  overflow: hidden;
+  margin: 8px;
+}
+
+.media-container img,
+.media-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
