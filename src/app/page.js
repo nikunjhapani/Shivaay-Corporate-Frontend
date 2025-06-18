@@ -21,7 +21,6 @@ export default function Home() {
       <Banner
         pageName="Home"
       />
-
       <About />
       <CounterSection />
       <VisionMissionSection />
