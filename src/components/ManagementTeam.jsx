@@ -18,7 +18,6 @@ export default function ManagementTeam() {
     queryFn: fetchData,
   });
 
-
   return (
     <section className="layout-pt-md layout-pb-lg px-10 container">
       <div className="container layout-pb-sm">
@@ -34,39 +33,39 @@ export default function ManagementTeam() {
         {data?.map((item) => (
           <div
             key={item._id}
-            className="col-lg-6 col-md-6"
+            className="col-lg-6 col-md-6 baseCard -type-4"
             data-aos="fade-right"
             data-aos-offset="0"
             data-aos-duration="1500"
           >
-            <Link href="/management-team" className="baseCard -type-4 ">
-              <div className="baseCard__image ratio ratio-95:80 rounded-16">
-                <Image
-                  src={`${BASE_URL}${item.profile}`}
-                  alt={item.name}
-                  className="img-ratio"
-                  width={600}
-                  height={600}
-                  loading="eager"
-                />
-              </div>
+            <div className="baseCard__image ratio ratio-95:80 rounded-16">
+              <Image
+                src={`${BASE_URL}${item.profile}`}
+                alt={item.name}
+                className="img-ratio"
+                width={600}
+                height={600}
+                loading="eager"
+              />
+            </div>
 
-              <div className="baseCard__content d-flex flex-column justify-end">
-                <h4 className="text-30 xl:text-24 md:text-20 text-white">
-                  {item.name}
-                </h4>
-                <p className="text-17 text-white"> {item.designation}</p>
+            <div className="baseCard__content d-flex flex-column justify-end">
+              <h4 className="text-30 xl:text-24 md:text-20 text-white">
+                {item.name}
+              </h4>
+              <p className="text-17 text-white"> {item.designation}</p>
 
-                <div className="d-flex mt-20 md:mt-15">
+              <div className="d-flex mt-20 md:mt-15">
+                <Link href="/management-team" className=" ">
                   <Button
                     className="button -type-1 text-white"
                     iconColor="white"
                   >
                     DISCOVER MORE
                   </Button>
-                </div>
+                </Link>
               </div>
-            </Link>
+            </div>
           </div>
         ))}
       </div>

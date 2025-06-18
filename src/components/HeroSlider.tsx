@@ -23,8 +23,8 @@ export default function HeroSlider() {
     queryFn: getMenuData,
   });
 
-  const cmsMenu = data?.filter((item:any) => item.menuType === "CMS");
-  
+  const cmsMenu = data?.filter((item: any) => item.menuType === "CMS");
+
   return (
     <section className="pt-90 sm:pt-40 layout-pb-md bg-accent-1">
       <div className="container">
@@ -44,30 +44,30 @@ export default function HeroSlider() {
             }}
             className="js-section-slider"
           >
-            {cmsMenu?.map((item:any) => (
-              <SwiperSlide key={item?._id}>
-                <Link
-                  href={`/${item?.menuURL}`} 
-                  className="baseCard -type-1 -hover-image-scale"
-                >
-                  <div className="baseCard__image ratio ratio-33:45 aspect-[33/45] rounded-16">
-                    <div className="-hover-image-scale__image">
-                      <Image
-                        src={`${api.defaults.baseURL}${item?.cmsId?.page_image}`}
-                        alt={item?.cmsId?.page_title || "CMS Image"}
-                        className="img-ratio"
-                        width={300}
-                        height={400}
-                      />
-                    </div>
+            {cmsMenu?.map((item: any) => (
+              <SwiperSlide key={item?._id} className="baseCard -type-1 ">
+                <div className="baseCard__image ratio ratio-33:45 aspect-[33/45] rounded-16">
+                  <div className="-hover-image-scale__image">
+                    <Image
+                      src={`${api.defaults.baseURL}${item?.cmsId?.page_image}`}
+                      alt={item?.cmsId?.page_title || "CMS Image"}
+                      className="img-ratio"
+                      width={300}
+                      height={400}
+                    />
                   </div>
-                  <div className="baseCard__content d-flex flex-column justify-end text-center">
-                    <h4 className="text-24 md:text-20 text-white">
-                      {item?.cmsId?.page_title}
-                    </h4>
+                </div>
+                <div className="baseCard__content d-flex flex-column justify-end text-center">
+                  <h4 className="text-24 md:text-20 text-white">
+                    {item?.cmsId?.page_title}
+                  </h4>
+                  <Link
+                    href={`/${item?.menuURL}`}
+                    className="-hover-image-scale"
+                  >
                     <div className="text-white text-13 mt-10">READ MORE</div>
-                  </div>
-                </Link>
+                  </Link>
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>

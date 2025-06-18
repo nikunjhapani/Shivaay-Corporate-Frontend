@@ -142,7 +142,7 @@ const Footer = ({ settings, menu, submenuMap }) => {
 
               {/* Social Icons */}
               <div>
-                <h4 className="text-30 fw-500 text-white">FOLLOW US1</h4>
+                <h4 className="text-30 fw-500 text-white">FOLLOW US</h4>
                 <div className="row mt-30">
                   {socialIcons.map((icon) => {
                     const url = socialLinksMap[icon];

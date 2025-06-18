@@ -6,36 +6,21 @@ import OurClients from "../../components/OurClients";
 import { postData } from "../../utils/apiMethods";
 import { useQuery } from "@tanstack/react-query";
 import api from "../../utils/axios";
-import { getTabData } from "../../utils/tabData";
+import { getTabData, capabilityData } from "../../utils/tabData";
 import Image from "next/image";
-
-const featuresData = [
-  {
-    icon: "/img/icon/icon01.png",
-    title: "57 cities in 28 country",
-    duration: 1000,
-  },
-  {
-    icon: "/img/icon/icon02.png",
-    title: "Flexible staffing options",
-    duration: 1200,
-  },
-  {
-    icon: "/img/icon/icon03.png",
-    title: "Successful track recordy",
-    duration: 1400,
-  },
-  {
-    icon: "/img/icon/icon04.png",
-    title: "Location diversity and business continuity",
-    duration: 1600,
-  },
-];
 
 export default function page() {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["tabData"],
     queryFn: getTabData,
+  });
+    const {
+    data: featuresData,
+    isLoading: isFeatureLoading,
+    isError: isFeatureError,
+  } = useQuery({
+    queryKey: ['globalCapability'],
+    queryFn: capabilityData,
   });
   const [activeTab, setActiveTab] = useState(null);
   useEffect(() => {
@@ -50,30 +35,32 @@ export default function page() {
       <section className="layout-pb-md bg-light-1">
         <div className="container">
           <div className="row y-gap-40 layout-pt-md">
-            {featuresData.map((feature, index) => (
-              <div
-                key={index}
-                className="col-xl-3 col-lg-3 col-md-6 col-6"
-                data-aos="fade-up"
-                data-aos-offset="0"
-                data-aos-duration={feature.duration}
-              >
-                <div className="flex flex-col justify-center items-center text-center bg-white h-full min-h-[250px] sm:py-6 px-4 sm:px-2 rounded-8">
-                  <div className="mb-4">
-                    <Image
-                      src={feature.icon}
-                      alt={`Feature ${index + 1}`}
-                      className="w-[60px] h-[60px] object-contain mx-auto"
-                      width={60}
-                      height={60}
-                    />
+            {featuresData
+              ?.filter((item) => item?.isActive)
+              .map((feature, index) => (
+                <div
+                  key={index}
+                  className="col-xl-3 col-lg-3 col-md-6 col-6"
+                  data-aos="fade-up"
+                  data-aos-offset="0"
+                  // data-aos-duration={feature.duration}
+                >
+                  <div className="flex flex-col justify-center items-center text-center bg-white h-full min-h-[250px] sm:py-6 px-4 sm:px-2 rounded-8">
+                    <div className="mb-4">
+                      <Image
+                        src={`${api.defaults.baseURL}${feature?.icon}`}
+                        alt={`Feature ${index + 1}`}
+                        className="w-[60px] h-[60px] object-contain mx-auto"
+                        width={60}
+                        height={60}
+                      />
+                    </div>
+                    <h4 className="text-20 lg:text-20 sm:text-17">
+                      {feature?.label}
+                    </h4>
                   </div>
-                  <h4 className="text-20 lg:text-20 sm:text-17">
-                    {feature.title}
-                  </h4>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </section>
