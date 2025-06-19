@@ -81,7 +81,7 @@ export default async function Awards() {
                     ></h4>
 
                     <div className="d-flex mt-15 md:d-none">
-                      <Button>READ MORE</Button>
+                      <Button className="py-0">READ MORE</Button>
                     </div>
                   </div>
                 </Link>
