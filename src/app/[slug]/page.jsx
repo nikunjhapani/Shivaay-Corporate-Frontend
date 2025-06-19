@@ -59,9 +59,10 @@ export default async function Page({ params }) {
             </div>
           </div>
           <div
-            className="container"
-            dangerouslySetInnerHTML={{ __html: cmsData?.page_editor }}
-          />
+  className="container"
+  dangerouslySetInnerHTML={{ __html: String(cmsData?.page_editor || "") }}
+/>
+
         </section>
       </Suspense>
     </>

@@ -70,12 +70,12 @@ export default function GlobalPresence() {
               <h2 className="text-34 md:text-30 sm:text-24 text-white mb-20">
                 {banner?.bannerTitle}
               </h2>
-              <p
-                className="text-white text-17 sm:text-13 lh-17"
-                dangerouslySetInnerHTML={{
-                  __html: banner?.description?.replace(/<\/?p>/g, ""),
-                }}
-              />
+             <p
+  className="text-white text-17 sm:text-13 lh-17"
+  dangerouslySetInnerHTML={{
+    __html: (banner?.description || "").replace(/<\/?p>/g, ""),
+  }}
+/>
               {banner?.bannerLink && (
                 <Link href={banner.bannerLink}>
                   <Button

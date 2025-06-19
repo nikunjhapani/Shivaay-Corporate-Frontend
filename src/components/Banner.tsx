@@ -23,11 +23,11 @@ type Props = {
 
 export default function Banner({ pageName }: Props) {
 
-  //  const { startLoading, stopLoading } = useGlobalLoading();
+   const { startLoading, stopLoading } = useGlobalLoading();
   const [banners, setBanners] = useState<BannerItem[]>([]);
   useEffect(() => {
     const fetchBanners = async () => {
-      // startLoading();
+      startLoading();
       try {
         const res = await api.post("api/banner/getAllApi", { pageName });
         const Filter = res.data?.data?.filter(
@@ -37,10 +37,9 @@ export default function Banner({ pageName }: Props) {
         setBanners(Filter);
       } catch (error) {
         console.error("Error fetching banners:", error);
-      } 
-      // finally {
-      //   stopLoading();
-      // }
+      } finally {
+        stopLoading();
+      }
     };
 
     fetchBanners();

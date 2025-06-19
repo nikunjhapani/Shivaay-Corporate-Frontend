@@ -22,6 +22,9 @@ export default async function getMetadataForSlug(slug: string) {
           },
         ],
       },
+      icons: {
+        icon: "favicon.ico",
+      },
       twitter: {
         card: "summary_large_image",
         metadataBase: new URL(
