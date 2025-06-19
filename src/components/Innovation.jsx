@@ -88,6 +88,7 @@ const InnovationSection = () => {
                   src={`${api.defaults.baseURL}${item.innovationImage}`}
                   alt={item.title || "title"}
                   fill
+                  priority
                   className={clsx("img-cover", {
                     "is-active": activeIndex === index,
                     "opacity-0": activeIndex !== index,

@@ -32,8 +32,8 @@ export default async function page() {
       <Banner pageName="Awards & Certificates" />
       <section className="layout-pt-lg layout-pb-lg">
         <div className="container">
-          <div className="row y-gap-30 justify-between pt-10">
-            {awardsData.slice(0, 4).map((item, index) => {
+          <div className="row y-gap-30 pt-10">
+            {awardsData?.map((item, index) => {
               const cleanDescription = item.description?.replace(
                 /^<p>|<\/p>$/g,
                 ""
@@ -46,13 +46,13 @@ export default async function page() {
                   data-aos-duration={item.delay || "1000"}
                 >
                   <Link
-                    href={`${api.defaults.baseURL}${item.awardPdf}`}
+                    href={`${api.defaults.baseURL}${item?.awardPdf}`}
                     target="_blank"
                     className="baseCard -type-2"
                   >
                     <div className="baseCard__image ratio ratio-41:50">
                       <Image
-                        src={`${api.defaults.baseURL}${item.awardImage}`}
+                        src={`${api.defaults.baseURL}${item?.awardImage}`}
                         alt={item.title}
                         width={300}
                         height={365}
@@ -63,7 +63,7 @@ export default async function page() {
                     <div className="baseCard__content mt-10">
                       <div className="row x-gap-10">
                         <div className="col-auto lh-14 text-16 md:text-13">
-                          {item.title}
+                          {item?.title}
                         </div>
                       </div>
 

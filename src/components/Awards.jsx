@@ -37,12 +37,12 @@ export default async function Awards() {
 
           <div className="col-auto">
             <Link href={"/awards-certificates"}>
-              <Button>VIEW ALL</Button>
+              <Button className="py-0">VIEW ALL</Button>
             </Link>
           </div>
         </div>
 
-        <div className="row y-gap-30 justify-between pt-10">
+        <div className="row y-gap-30 pt-10">
           {awardsData.slice(0, 4).map((item, index) => {
             const cleanDescription = item?.description?.replace(/^<p>|<\/p>$/g, "");
 

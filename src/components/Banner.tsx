@@ -63,7 +63,7 @@ export default function Banner({ pageName }: Props) {
                 <div className="container">
                   <div className="row justify-center text-center">
                     <div className="col-xl-6 col-lg-6  d-flex items-center text-left">
-                      <div className="pr-50">
+                      <div className="">
                         <h1
                           className="hero__title text-white"
                           data-aos="fade-up"
@@ -74,7 +74,7 @@ export default function Banner({ pageName }: Props) {
                         </h1>
                         <div className="hero__content">
                           <div
-                            className="hero__subtitle text-white"
+                            className="hero__subtitle text-white text-justify"
                             data-aos="fade-up"
                             data-aos-offset="0"
                             data-aos-duration="1000"
@@ -86,9 +86,9 @@ export default function Banner({ pageName }: Props) {
                       </div>
                     </div>
                     <div className="col-xl-6 col-lg-6 job-bg">
-                      <div className="contactForm row y-gap-30 pt-30">
+                  
                         <CareerForm />
-                      </div>
+                      
                     </div>
                   </div>
                 </div>

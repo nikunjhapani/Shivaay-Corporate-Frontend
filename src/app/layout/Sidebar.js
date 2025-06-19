@@ -102,13 +102,10 @@ const Sidebar = ({
                   <div className="text-24 text-sec fw-500 text-white">
                     Location
                   </div>
-                  <div
+                 <div
                     className="mt-10 text-white force-white"
                     dangerouslySetInnerHTML={{
-                      __html:
-                        typeof settings?.address === "string"
-                          ? settings.address
-                          : "",
+                      __html: settings.address,
                     }}
                   ></div>
                 </div>
@@ -119,10 +116,10 @@ const Sidebar = ({
                   </div>
                   <div className="mt-10 text-white">
                     <div>
-                      <Link href="#">{settings?.phone}</Link>
+                      <Link href={`tel:${settings?.phone}`}>{settings?.phone}</Link>
                     </div>
                     <div>
-                      <Link href="#">{settings?.email}</Link>
+                      <Link href={`mailto:${settings?.email}`}>{settings?.email}</Link>
                     </div>
                   </div>
                 </div>
@@ -132,7 +129,7 @@ const Sidebar = ({
                     Connect With Us
                   </div>
                   <div className="mt-10 text-white">
-                    <Link href="#">{settings?.mobile}</Link>
+                    <Link href={`tel:${settings?.mobile}`}>{settings?.mobile}</Link>
                   </div>
                 </div>
               </div>

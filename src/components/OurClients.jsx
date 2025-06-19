@@ -75,6 +75,7 @@ const OurClients = () => {
               <>
                 <Swiper
                   modules={[Navigation]}
+                  autoplay={true}
                   spaceBetween={30}
                   slidesPerView={1}
                   speed={500}

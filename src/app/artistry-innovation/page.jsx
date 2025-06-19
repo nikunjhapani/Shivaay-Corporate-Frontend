@@ -57,7 +57,7 @@ export default async function Page() {
               return (
                 <div key={i} className="lineGrid -type-1 md:pt-0 sm:pt-50">
                   {/* Left Item */}
-                  <div className="lineGrid__content sm:mb-20">
+                  <div className="lineGrid__content">
                     <div
                       className="mb-20 sm:mb-10 sm:order-2"
                       data-aos="zoom-in"

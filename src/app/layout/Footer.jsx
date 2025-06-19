@@ -45,7 +45,7 @@ const Footer = ({ settings, menu, submenuMap }) => {
           <a className="d-block text-15 text-white-60 lh-17" href="#">
             {data.address.replace(/<\/?p>/g, "")}
           </a>
-          <div className="mt-25">
+          <div className="mt-10">
             <a
               className="d-block text-15 text-white-60"
               href={`mailto:${data?.email}`}

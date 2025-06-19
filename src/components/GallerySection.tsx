@@ -31,16 +31,18 @@ export default function GallerySection() {
                 {images.map(({ _id, gallaryImage, sort_order_no, gallaryType }) => {
                   const fileUrl = `${api.defaults.baseURL}${gallaryImage}`;
                   return gallaryType === "video" ? (
+                    <div key={_id} className="col-md-4">
                     <a
-                      key={_id}
+                 
                       href={fileUrl}
-                      className="col-md-4"
+                      className=""
                       data-fancybox={galleryTitleId}
                       data-type="video"
                     >
                       <div className="media-container">
                         <video
                           src={fileUrl}
+                          className="gallery-img img-fluid"
                           width={300}
                           height={200}
                           style={{ objectFit: "cover" }}
@@ -48,6 +50,7 @@ export default function GallerySection() {
                         />
                       </div>
                     </a>
+                    </div>
                   ) : (
                     <a
                       key={_id}
@@ -60,6 +63,7 @@ export default function GallerySection() {
                         <Image
                           src={fileUrl}
                           alt={`Image ${sort_order_no}`}
+                          className="gallery-img img-fluid"
                           width={300}
                           height={200}
                           style={{ objectFit: "cover" }}

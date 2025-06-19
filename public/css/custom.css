@@ -64,9 +64,9 @@
 /* Gallery */
 .media-container {
   width: auto;  
-  height: 250px; 
+  /* height: 250px;  */
   overflow: hidden;
-  margin: 8px;
+  /* margin: 8px; */
 }
 
 .media-container img,

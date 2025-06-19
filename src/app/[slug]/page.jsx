@@ -36,7 +36,6 @@ export default async function Page(props) {
   const { slug } = await props.params;
   const cmsData = await getCMSData(slug);
 
-
   return (
     <>
       <HeroSlider />
@@ -49,7 +48,9 @@ export default async function Page(props) {
                   <h1 className="pageHero__title lh-11 capitalize">
                     {cmsData?.page_title}
                   </h1>
-                  <p className="pageHero__text lh-17">{cmsData?.page_subtitle}</p>
+                  <p className="pageHero__text lh-17">
+                    {cmsData?.page_subtitle}
+                  </p>
                 </div>
               </div>
             </div>
