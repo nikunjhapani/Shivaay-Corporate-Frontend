@@ -75,7 +75,7 @@ import api from "../../utils/axios";
 import getMetadataForSlug from "../../utils/getMetadataForSlug";
 
 async function getCMSData(slug) {
-  try {
+  try { 
     const res = await fetch(`${api.defaults.baseURL}api/menu/getAllApi`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -99,12 +99,12 @@ async function getCMSData(slug) {
 }
 
 export async function generateMetadata({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
   return await getMetadataForSlug(slug);
 }
 
 export default async function Page({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
   const cmsData = await getCMSData(slug);
 
   return (

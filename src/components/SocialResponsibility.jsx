@@ -106,16 +106,22 @@ export default function SocialResponsibility() {
               <div className="verticalSlider__wrap relative">
                 <Swiper
                   ref={swiperRef}
-                  direction="vertical"
+                  direction="horizontal"
                   loop={true}
                   centeredSlides={true}
-                  slidesPerView={3}
+                  slidesPerView={1}
                   spaceBetween={10}
                   mousewheel={true}
                   initialSlide={0}
                   modules={[Mousewheel]}
                   className="verticalSlider"
                   onSlideChange={handleSlideChange}
+                  breakpoints={{
+                    991: {
+                      slidesPerView: 3,
+                      direction: "vertical",
+                    },
+                  }}
                 >
                   {filteredData.map((item) => (
                     <SwiperSlide key={item._id}>
@@ -145,8 +151,9 @@ export default function SocialResponsibility() {
                 {filteredData.map((_, index) => (
                   <span
                     key={index}
-                    className={`pagination__item cursor-hover-target cursor-pointer ${activeIndex === index ? "is-active" : ""
-                      }`}
+                    className={`pagination__item cursor-hover-target cursor-pointer ${
+                      activeIndex === index ? "is-active" : ""
+                    }`}
                     onClick={() => handlePaginationClick(index)}
                   >
                     {String(index + 1).padStart(2, "0")}
