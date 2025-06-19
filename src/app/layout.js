@@ -10,7 +10,9 @@ import AOSProvider from "../components/AOSProvider";
 import ReactQueryProvider from "./context/ReactQueryProvider";
 import getLayoutData from "../utils/getLayoutData";
 import CustomCursor from "../components/ui/CustomCursor";
-
+import { GlobalLoadingProvider } from "./context/GlobalLoadingContext";
+import LoaderManager from "../components/LoaderManager";
+import PageLoader from "../components/PageLoader";
 import { metadata } from "./seo/metadata";
 import ParentHeader from "./layout/ParentHeader";
 
@@ -36,22 +38,30 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <body className={`${cinzel.variable} ${poppins.variable}`}>
         <ReactQueryProvider>
-          <AOSProvider>
-            <CustomCursor />
-            <main>
+          <GlobalLoadingProvider>
+            <LoaderManager />
 
-              {/* <Header settings={settings} /> */}
-              <ParentHeader
-                settings={settings}
-                menu={menu}
-                submenuMap={submenuMap}
-              />
-              {children}
+            <AOSProvider>
+              <CustomCursor />
+              <PageLoader />
+              <main>
+                {/* <Header settings={settings} /> */}
+                <ParentHeader
+                  settings={settings}
+                  menu={menu}
+                  submenuMap={submenuMap}
+                />
+                {children}
 
-              <Footer settings={settings} menu={menu} submenuMap={submenuMap} />
-            </main>
-            {/* <Footer settings={settings} menu={menu} submenuMap={submenuMap} /> */}
-          </AOSProvider>
+                <Footer
+                  settings={settings}
+                  menu={menu}
+                  submenuMap={submenuMap}
+                />
+              </main>
+              {/* <Footer settings={settings} menu={menu} submenuMap={submenuMap} /> */}
+            </AOSProvider>
+          </GlobalLoadingProvider>
         </ReactQueryProvider>
         <Script src="/js/main.js" strategy="afterInteractive" />
       </body>

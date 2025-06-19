@@ -11,10 +11,7 @@ export default function GallerySection() {
     queryKey: ["gallery"],
     queryFn: fetchGalleryData,
   });
-
-  if (isLoading) return <p>Loading gallery...</p>;
-  if (isError) return <p>Failed to load gallery. Please try again later.</p>;
-
+  
   return (
     <section className="layout-pt-md layout-pb-lg">
       <div className="container">
