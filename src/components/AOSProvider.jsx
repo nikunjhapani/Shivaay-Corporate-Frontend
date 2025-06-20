@@ -15,7 +15,8 @@
 'use client';
 
 import { useEffect, useState, createContext, useContext } from 'react';
-import { initAOS } from '../utils/aos';
+// import { initAOS } from '../utils/aos';
+import {initAOS} from "../utils/aos";
 
 const AOSContext = createContext(false);
 

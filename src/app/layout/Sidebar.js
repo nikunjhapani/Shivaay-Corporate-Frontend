@@ -207,7 +207,15 @@ const Sidebar = ({
                         : toggleSidebar()
                     }
                   >
-                    <Link href={item?.menuURL || "#"}>{item?.menuName}</Link>
+                    <Link
+                      href={
+                        item?.menuType === "Sub Menu"
+                          ? "#"
+                          : item?.menuURL || "#"
+                      }
+                    >
+                      {item?.menuName}
+                    </Link>
                     {hasSubmenu && (
                       <span
                         className={`accordion-toggle ${

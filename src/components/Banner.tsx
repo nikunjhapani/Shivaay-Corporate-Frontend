@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 import api from "../utils/axios";
 import Image from "next/image";
 import CareerForm from "./CareerForm";
-import { useGlobalLoading } from "../app/context/GlobalLoadingContext";
+// import { useGlobalLoading } from "../app/context/GlobalLoadingContext";
 import { useIsClient } from "./AOSProvider";
+import HomeLoader from "./HomeLoader";
 
 type BannerItem = {
   _id: string;
@@ -24,11 +25,12 @@ type Props = {
 
 export default function Banner({ pageName }: Props) {
   const isClient = useIsClient();
-  const { startLoading, stopLoading } = useGlobalLoading();
+  // const { startLoading, stopLoading } = useGlobalLoading();
   const [banners, setBanners] = useState<BannerItem[]>([]);
+  const [loader, setLoader] = useState<boolean>(true);
   useEffect(() => {
     const fetchBanners = async () => {
-      startLoading();
+      // startLoading();
       try {
         const res = await api.post("api/banner/getAllApi", { pageName });
         const Filter = res.data?.data?.filter(
@@ -38,13 +40,17 @@ export default function Banner({ pageName }: Props) {
         setBanners(Filter);
       } catch (error) {
         console.error("Error fetching banners:", error);
-      } finally {
-        stopLoading();
+      } 
+      finally {
+        // stopLoading();
+        setLoader(false);
       }
     };
 
     fetchBanners();
   }, [pageName]);
+
+   if (loader) return <HomeLoader />;
   if (banners.length === 0) return null;
   return (
     <>

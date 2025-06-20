@@ -10,10 +10,10 @@ import AOSProvider from "../components/AOSProvider";
 import ReactQueryProvider from "./context/ReactQueryProvider";
 import getLayoutData from "../utils/getLayoutData";
 import CustomCursor from "../components/ui/CustomCursor";
-import { GlobalLoadingProvider } from "./context/GlobalLoadingContext";
-import LoaderManager from "../components/LoaderManager";
-import PageLoader from "../components/PageLoader";
-import { metadata } from "./seo/metadata";
+// import { GlobalLoadingProvider } from "./context/GlobalLoadingContext";
+// import LoaderManager from "../components/LoaderManager";
+// import PageLoader from "../components/PageLoader";
+// import { metadata } from "./seo/metadata";
 import ParentHeader from "./layout/ParentHeader";
 
 const cinzel = Cinzel({
@@ -29,7 +29,7 @@ const poppins = Poppins({
   variable: "--font-poppins",
   display: "swap",
 });
-export { metadata };
+// export { metadata };
 
 export default async function RootLayout({ children }) {
   const { settings, menu, submenuMap } = await getLayoutData();
@@ -38,12 +38,12 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <body className={`${cinzel.variable} ${poppins.variable}`}>
         <ReactQueryProvider>
-          <GlobalLoadingProvider>
-            <LoaderManager />
+          {/* <GlobalLoadingProvider> */}
+            {/* <LoaderManager /> */}
 
             <AOSProvider>
               <CustomCursor />
-              <PageLoader />
+              {/* <PageLoader /> */}
               <main>
                 {/* <Header settings={settings} /> */}
                 <ParentHeader
@@ -61,9 +61,9 @@ export default async function RootLayout({ children }) {
               </main>
               {/* <Footer settings={settings} menu={menu} submenuMap={submenuMap} /> */}
             </AOSProvider>
-          </GlobalLoadingProvider>
+          {/* </GlobalLoadingProvider> */}
         </ReactQueryProvider>
-        <Script src="/js/main.js" strategy="afterInteractive" />
+        {/* <Script src="/js/main.js" strategy="afterInteractive" /> */}
       </body>
     </html>
   );
