@@ -63,6 +63,7 @@ const OurClients = () => {
                       alt="ratings"
                       width={100}
                       height={20}
+                      style={{ height: "auto" }}
                     />
                   </div>
                 </div>

@@ -4,6 +4,7 @@ import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 import { postData } from "../utils/apiMethods";
 import { useQuery } from "@tanstack/react-query";
+import { useIsClient } from "./AOSProvider";
 
 export const getStats = async () => {
   const res = await postData("/api/counters/getAllApi");
@@ -11,6 +12,8 @@ export const getStats = async () => {
 };
 
 const CounterSection = () => {
+
+  const isClient = useIsClient();
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.2,
@@ -31,9 +34,11 @@ const CounterSection = () => {
                 <div
                   key={index}
                   className="col-lg-auto col-6"
-                  data-aos="fade-up"
-                  data-aos-offset="0"
-                  data-aos-duration={1000}
+                  {...(isClient && {
+                    "data-aos": "fade-up",
+                    "data-aos-offset": "0",
+                    "data-aos-duration": 1000,
+                  })}
                 >
                   <h3 className="text-60 lg:text-40 sm:text-34 lh-1">
                     {inView ? (

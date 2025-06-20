@@ -5,6 +5,7 @@ import { postData } from "../utils/apiMethods";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import api from "../utils/axios";
+import { useIsClient } from "./AOSProvider";
 
 export const GlobalPresenceData = async () => {
   const res = await postData("/api/banner/getAllApi");
@@ -12,6 +13,7 @@ export const GlobalPresenceData = async () => {
 };
 
 export default function GlobalPresence() {
+  const isClient = useIsClient();
   const { data, isLoading, isError } = useQuery({
     queryKey: ["GlobalPresence"],
     queryFn: GlobalPresenceData,
@@ -60,9 +62,11 @@ export default function GlobalPresence() {
         <div className="container">
           <div className="col-lg-6">
             <div
-              data-aos="fade-right"
-              data-aos-offset="0"
-              data-aos-duration="1500"
+              {...(isClient && {
+                "data-aos": "fade-right",
+                "data-aos-offset": "0",
+                "data-aos-duration": 1500,
+              })}
             >
               {/* <div className="text-15 sm:text-13 uppercase mb-5 text-white">
                 A Worldwide Influence in Jewelry Design
@@ -70,12 +74,12 @@ export default function GlobalPresence() {
               <h2 className="text-34 md:text-30 sm:text-24 text-white mb-20">
                 {banner?.bannerTitle}
               </h2>
-             <p
-  className="text-white text-17 sm:text-13 lh-17"
-  dangerouslySetInnerHTML={{
-    __html: (banner?.description || "").replace(/<\/?p>/g, ""),
-  }}
-/>
+              <p
+                className="text-white text-17 sm:text-13 lh-17"
+                dangerouslySetInnerHTML={{
+                  __html: (banner?.description || "").replace(/<\/?p>/g, ""),
+                }}
+              />
               {banner?.bannerLink && (
                 <Link href={banner.bannerLink}>
                   <Button

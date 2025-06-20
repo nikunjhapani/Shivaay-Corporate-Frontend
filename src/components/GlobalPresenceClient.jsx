@@ -8,8 +8,11 @@ import { getTabData, capabilityData } from "../utils/tabData";
 import Image from "next/image";
 import Banner from "./Banner";
 import api from "../utils/axios";
+import { useIsClient } from "./AOSProvider";
 
 export default function GlobalPresenceClient() {
+
+  const isClient = useIsClient();
   const { data, isLoading, isError } = useQuery({
     queryKey: ["tabData"],
     queryFn: getTabData,
@@ -45,8 +48,10 @@ export default function GlobalPresenceClient() {
                 <div
                   key={index}
                   className="col-xl-3 col-lg-3 col-md-6 col-6"
-                  data-aos="fade-up"
-                  data-aos-offset="0"
+                  {...(isClient && {
+                    "data-aos": "fade-up",
+                    "data-aos-offset": "0",
+                  })}
                 >
                   <div className="flex flex-col justify-center items-center text-center bg-white h-full min-h-[250px] sm:py-6 px-4 sm:px-2 rounded-8">
                     <div className="mb-4">

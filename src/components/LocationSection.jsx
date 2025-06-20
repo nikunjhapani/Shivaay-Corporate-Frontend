@@ -1,7 +1,9 @@
 "use client";
 import React from "react";
+import { useIsClient } from "./AOSProvider";
 
 export default function LocationSection() {
+  const isClient = useIsClient();
   return (
     <section className="relative layout-pt-lg layout-pb-lg md:pt-0 bg-light-1">
       <div className="container">
@@ -23,9 +25,11 @@ export default function LocationSection() {
           <div className="col-lg-5 col-12">
             <h2
               className="text-34 md:text-30 sm:text-24"
-              data-aos="fade-up"
-              data-aos-offset="0"
-              data-aos-duration="1000"
+               {...(isClient && {
+                  "data-aos": "fade-up",
+                  "data-aos-offset": "0",
+                  "data-aos-duration": "1000",
+                })}
             >
               Location
             </h2>

@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { postData } from "../utils/apiMethods";
 import api from "../utils/axios";
 import Image from "next/image";
+import { useIsClient } from "./AOSProvider";
 
 export const getEssence = async () => {
   const res = await postData("/api/essence/getAllApi");
@@ -10,6 +11,7 @@ export const getEssence = async () => {
 };
 
 export default function Essence() {
+  const isClient = useIsClient();
   const { data } = useQuery({
     queryKey: ["essence"],
     queryFn: getEssence,
@@ -33,9 +35,11 @@ export default function Essence() {
               <div
                 key={item.id || index}
                 className="col-xl-2 col-md-4 col-6"
-                data-aos="fade-up"
-                data-aos-offset="0"
-                data-aos-duration={500 + index * 200}
+                {...(isClient && {
+                  "data-aos": "fade-up",
+                  "data-aos-offset": "0",
+                  "data-aos-duration": 500 + index * 200,
+                })}
               >
                 <div className="iconCard -type-1 -hover-2 text-center p-4">
                   <div className="iconCard__bg rounded-16"></div>

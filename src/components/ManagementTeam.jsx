@@ -7,6 +7,7 @@ import { BASE_URL } from "../utils/config";
 import Button from "./ui/Button";
 import SectionTitle from "./ui/SectionTitle";
 import Link from "next/link";
+import { useIsClient } from "./AOSProvider";
 
 const fetchData = async () => {
   const { data } = await api.post("/api/managementTeam/getAllApi");
@@ -14,6 +15,7 @@ const fetchData = async () => {
 };
 
 export default function ManagementTeam() {
+  const isClient = useIsClient();
   const { data, isLoading, isError } = useQuery({
     queryKey: ["managementTeam"],
     queryFn: fetchData,
@@ -35,9 +37,11 @@ export default function ManagementTeam() {
           <div
             key={item._id}
             className="col-lg-6 col-md-6 baseCard -type-4"
-            data-aos="fade-right"
-            data-aos-offset="0"
-            data-aos-duration="1500"
+            {...(isClient && {
+              "data-aos": "fade-right",
+              "data-aos-offset": "0",
+              "data-aos-duration": 1500,
+            })}
           >
             <div className="baseCard__image ratio ratio-95:80 rounded-16">
               <Image

@@ -12084,9 +12084,9 @@ body.is-cursor-active * {
   }
 }
 
-.ratings img {
+/* .ratings img {
   max-width: 120px;
-}
+} */
 
 .sr-icon {
   width: 50px;

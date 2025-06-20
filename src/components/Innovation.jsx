@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { postData } from "../utils/apiMethods";
 import api from "../utils/axios";
 import Link from "next/link";
+import { useIsClient } from "./AOSProvider";
 export const getInnovation = async () => {
   const res = await postData("/api/innovation/getAllApi");
   return (res?.data || []).filter((item) => item.isActive);
@@ -17,7 +18,8 @@ const InnovationCard = ({
   description,
   index,
   setActiveIndex,
-}) => (
+}) => 
+  (
   <div
     className="imageCard -type-1 -hover-1"
     onMouseEnter={() => setActiveIndex(index)}
@@ -45,6 +47,7 @@ const InnovationCard = ({
 );
 
 const InnovationSection = () => {
+  const isClient = useIsClient();
   const [activeIndex, setActiveIndex] = useState(0);
   const { data, isLoading, isError } = useQuery({
     queryKey: ["innovation"],
@@ -58,17 +61,21 @@ const InnovationSection = () => {
             <div className="col-auto">
               <h2
                 className="text-34 md:text-30 sm:text-24"
-                data-aos="fade-up"
-                data-aos-offset="0"
-                data-aos-duration="1000"
+                {...(isClient && {
+                  "data-aos": "fade-up",
+                  "data-aos-offset": "0",
+                  "data-aos-duration": "1000",
+                })}
               >
                 Artistry & Innovation
               </h2>
               <div
                 className="text-15 sm:text-13 uppercase mb-5"
-                data-aos="fade-up"
-                data-aos-offset="0"
-                data-aos-duration="1000"
+                {...(isClient && {
+                  "data-aos": "fade-up",
+                  "data-aos-offset": "0",
+                  "data-aos-duration": "1000",
+                })}
               >
                 Where Tradition Meets Cutting-Edge Design
               </div>

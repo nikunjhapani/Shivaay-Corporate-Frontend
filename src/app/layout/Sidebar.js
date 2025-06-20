@@ -31,8 +31,9 @@ const Sidebar = ({
     <>
       {/* For Desktop */}
       <div
-        className={`sidebar-overlay ${sidebarOpen ? "open" : ""} ${closing ? "closing" : ""
-          }`}
+        className={`sidebar-overlay ${sidebarOpen ? "open" : ""} ${
+          closing ? "closing" : ""
+        }`}
       >
         <div className="sidebar-container">
           <div
@@ -50,59 +51,77 @@ const Sidebar = ({
             </button>
 
             <div className="menuFullScreen-links js-menuFullScreen-links">
-              {menu?.filter(item => item?.isActive).map((item, index) => (
-                <div
-                  key={index}
-                  className={`menuFullScreen-links__item ${item?.menuType === "Sub Menu"
-                    ? "js-menuFullScreen-has-children"
-                    : ""
+              {menu
+                ?.filter((item) => item?.isActive)
+                .map((item, index) => (
+                  <div
+                    key={index}
+                    className={`menuFullScreen-links__item ${
+                      item?.menuType === "Sub Menu"
+                        ? "js-menuFullScreen-has-children"
+                        : ""
                     }`}
-                >
-                  <Link href={item?.menuURL || "#"} onClick={toggleSidebar}>
-                    {item?.menuName}
-                    {item?.menuType === "Sub Menu" && (
-                      <>
-                        <i className="icon-arrow-right"></i>
-                        <i className="icon-chevron-right"></i>
-                      </>
-                    )}
-                  </Link>
+                  >
+                    <Link
+                      href={
+                        item?.menuType === "Sub Menu"
+                          ? "#"
+                          : item?.menuURL || "#"
+                      }
+                      onClick={toggleSidebar}
+                    >
+                      {item?.menuName}
+                      {item?.menuType === "Sub Menu" && (
+                        <>
+                          <i className="icon-arrow-right"></i>
+                          <i className="icon-chevron-right"></i>
+                        </>
+                      )}
+                    </Link>
 
-                  {submenuMap[item?._id] &&
-                    submenuMap[item?._id]?.length > 0 && (
-                      <div className="menuFullScreen-links-subnav js-menuFullScreen-subnav">
-                        {submenuMap[item?._id]?.filter(sub => sub?.isActive).map((submenuItem) => (
-                          <div
-                            key={submenuItem?._id}
-                            className="menuFullScreen-links-subnav__item"
-                          >
-                            <Link
-                              href={submenuItem?.menuURL}
-                              onClick={toggleSidebar}
-                            >
-                              {submenuItem?.menuName}
-                            </Link>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                </div>
-              ))}
+                    {submenuMap[item?._id] &&
+                      submenuMap[item?._id]?.length > 0 && (
+                        <div className="menuFullScreen-links-subnav js-menuFullScreen-subnav">
+                          {submenuMap[item?._id]
+                            ?.filter((sub) => sub?.isActive)
+                            .map((submenuItem) => (
+                              <div
+                                key={submenuItem?._id}
+                                className="menuFullScreen-links-subnav__item"
+                              >
+                                <Link
+                                  href={submenuItem?.menuURL}
+                                  onClick={toggleSidebar}
+                                >
+                                  {submenuItem?.menuName}
+                                </Link>
+                              </div>
+                            ))}
+                        </div>
+                      )}
+                  </div>
+                ))}
             </div>
           </div>
 
           <div
-            className={`sidebar-banner ${sidebarOpen && !closing ? "show" : closing ? "closing" : ""
-              }`}
+            className={`sidebar-banner ${
+              sidebarOpen && !closing ? "show" : closing ? "closing" : ""
+            }`}
           >
-            <Image src={`${baseUrl}${settings?.menuImage1}`} alt="Sidebar Banner" width={600} height={400} />
+            <Image
+              src={`${baseUrl}${settings?.menuImage1}`}
+              alt="Sidebar Banner"
+              width={600}
+              height={400}
+            />
             <div className="text-on-image">
               <div className="text-center">
                 <div className="mt-40">
                   <div className="text-24 text-sec fw-500 text-white">
                     Location
                   </div>
-                 <div
+                  <div
                     className="mt-10 text-white force-white"
                     dangerouslySetInnerHTML={{
                       __html: settings.address,
@@ -116,10 +135,14 @@ const Sidebar = ({
                   </div>
                   <div className="mt-10 text-white">
                     <div>
-                      <Link href={`tel:${settings?.phone}`}>{settings?.phone}</Link>
+                      <Link href={`tel:${settings?.phone}`}>
+                        {settings?.phone}
+                      </Link>
                     </div>
                     <div>
-                      <Link href={`mailto:${settings?.email}`}>{settings?.email}</Link>
+                      <Link href={`mailto:${settings?.email}`}>
+                        {settings?.email}
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -129,7 +152,9 @@ const Sidebar = ({
                     Connect With Us
                   </div>
                   <div className="mt-10 text-white">
-                    <Link href={`tel:${settings?.mobile}`}>{settings?.mobile}</Link>
+                    <Link href={`tel:${settings?.mobile}`}>
+                      {settings?.mobile}
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -140,8 +165,9 @@ const Sidebar = ({
 
       {/* For Mobile */}
       <div
-        className={`sidebar-overlay-mobile ${sidebarOpen ? "open" : ""} ${closing ? "closing" : ""
-          }`}
+        className={`sidebar-overlay-mobile ${sidebarOpen ? "open" : ""} ${
+          closing ? "closing" : ""
+        }`}
       >
         <div className="menuFullScreen__topMobile js-menuFullScreen-topMobile">
           <div
@@ -176,16 +202,17 @@ const Sidebar = ({
                     onClick={() =>
                       hasSubmenu
                         ? setOpenAccordionIndex(
-                          openAccordionIndex === index ? null : index
-                        )
+                            openAccordionIndex === index ? null : index
+                          )
                         : toggleSidebar()
                     }
                   >
                     <Link href={item?.menuURL || "#"}>{item?.menuName}</Link>
                     {hasSubmenu && (
                       <span
-                        className={`accordion-toggle ${openAccordionIndex === index ? "rotate" : ""
-                          }`}
+                        className={`accordion-toggle ${
+                          openAccordionIndex === index ? "rotate" : ""
+                        }`}
                       >
                         <i className="icon-chevron-right"></i>
                       </span>

@@ -5,12 +5,14 @@ import Button from "./ui/Button";
 import { postData } from "../utils/apiMethods";
 import { useQuery } from "@tanstack/react-query";
 import api from "../utils/axios";
+import { useIsClient } from "./AOSProvider";
 
 export const getsData = async () => {
   const res = await postData("api/menu/getAllApi");
   return res?.data || [];
 };
 export default function VisionMissionSection() {
+  const isClient = useIsClient();
   const { data, isLoading, isError } = useQuery({
     queryKey: ["VisionMission"],
     queryFn: getsData,
@@ -20,6 +22,7 @@ export default function VisionMissionSection() {
       item.menuType === "CMS" &&
       (item.menuName === "Vision" || item.menuName === "Mission")
   );
+  
   return (
     <section className="relative layout-pt-lg">
       <div className="container">
@@ -29,9 +32,11 @@ export default function VisionMissionSection() {
               <div className="row items-center">
                 <div
                   className="col-lg-6 mb-3 sm:px-40"
-                  data-aos="zoom-in"
-                  data-aos-offset="0"
-                  data-aos-duration="1000"
+                  {...(isClient && {
+                    "data-aos": "zoom-in",
+                    "data-aos-offset": "0",
+                    "data-aos-duration": "1000",
+                  })}
                 >
                   <Image
                     src={`${api.defaults.baseURL}/${item?.cmsId?.page_image}`}
@@ -44,7 +49,7 @@ export default function VisionMissionSection() {
                 </div>
                 <div className="col-lg-6 text-left sm:px-40">
                   <h3 className="mb-5">{item?.cmsId?.page_title}</h3>
-                  <p className="text-15 text-justify text-truncate-three">
+                  <p className="text-15 text-justify text-truncate-five">
                     {item?.cmsId?.page_editor?.replace(/<\/?[^>]+(>|$)/g, "")}
                   </p>
 

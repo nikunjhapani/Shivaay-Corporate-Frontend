@@ -4,6 +4,7 @@ import api from "../utils/axios";
 import Image from "next/image";
 import CareerForm from "./CareerForm";
 import { useGlobalLoading } from "../app/context/GlobalLoadingContext";
+import { useIsClient } from "./AOSProvider";
 
 type BannerItem = {
   _id: string;
@@ -22,8 +23,8 @@ type Props = {
 };
 
 export default function Banner({ pageName }: Props) {
-
-   const { startLoading, stopLoading } = useGlobalLoading();
+  const isClient = useIsClient();
+  const { startLoading, stopLoading } = useGlobalLoading();
   const [banners, setBanners] = useState<BannerItem[]>([]);
   useEffect(() => {
     const fetchBanners = async () => {
@@ -68,18 +69,22 @@ export default function Banner({ pageName }: Props) {
                       <div className="">
                         <h1
                           className="hero__title text-white"
-                          data-aos="fade-up"
-                          data-aos-offset="0"
-                          data-aos-duration="1000"
+                          {...(isClient && {
+                            "data-aos": "fade-up",
+                            "data-aos-offset": "0",
+                            "data-aos-duration": "1000",
+                          })}
                         >
                           {banner.bannerTitle}
                         </h1>
                         <div className="hero__content">
                           <div
                             className="hero__subtitle text-white text-justify"
-                            data-aos="fade-up"
-                            data-aos-offset="0"
-                            data-aos-duration="1000"
+                            {...(isClient && {
+                              "data-aos": "fade-up",
+                              "data-aos-offset": "0",
+                              "data-aos-duration": "1000",
+                            })}
                             dangerouslySetInnerHTML={{
                               __html: cleanDescription,
                             }}
@@ -88,9 +93,7 @@ export default function Banner({ pageName }: Props) {
                       </div>
                     </div>
                     <div className="col-xl-6 col-lg-6 job-bg">
-                  
-                        <CareerForm />
-                      
+                      <CareerForm />
                     </div>
                   </div>
                 </div>
@@ -153,18 +156,22 @@ export default function Banner({ pageName }: Props) {
                     <div className="col-xl-8 col-lg-10">
                       <h1
                         className="hero__title text-white"
-                        data-aos="fade-up"
-                        data-aos-offset="0"
-                        data-aos-duration="1000"
+                        {...(isClient && {
+                          "data-aos": "fade-up",
+                          "data-aos-offset": "0",
+                          "data-aos-duration": "1000",
+                        })}
                       >
                         {banner.bannerTitle}
                       </h1>
                       <div className="hero__content">
                         <div
                           className="hero__subtitle text-white"
-                          data-aos="fade-up"
-                          data-aos-offset="0"
-                          data-aos-duration="1000"
+                          {...(isClient && {
+                            "data-aos": "fade-up",
+                            "data-aos-offset": "0",
+                            "data-aos-duration": "1000",
+                          })}
                           dangerouslySetInnerHTML={{ __html: cleanDescription }}
                         ></div>
                       </div>

@@ -3,8 +3,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import api from "../utils/axios";
+import { useIsClient } from "./AOSProvider";
 
 export default function ContactFormSection() {
+
+  const isClient = useIsClient();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -68,7 +71,7 @@ export default function ContactFormSection() {
           <div className="col-xl-8 col-lg-10">
             <h2
               className="text-34 md:text-30 sm:text-24 capitalize"
-              data-aos="fade-up"
+              {...(isClient && { "data-aos": "fade-up" })}
             >
               Leave us your info
             </h2>
