@@ -10,18 +10,15 @@ import CounterSection from "../components/Counter";
 import VisionMissionSection from "../components/VisionMissionSection";
 import GlobalPresence from "../components/GlobalPresence";
 import About from "../components/AboutSection";
-import getMetadataForSlug from "../utils/getMetadataForSlug"
+import getMetadataForSlug from "../utils/getMetadataForSlug";
 
-  export async function generateMetadata() {
-    return await getMetadataForSlug('home');
-  }
+export async function generateMetadata() {
+  return await getMetadataForSlug("home");
+}
 export default function Home() {
-
   return (
     <>
-      <Banner
-        pageName="Home"
-      />
+      <Banner pageName="Home" />
       <About />
       <CounterSection />
       <VisionMissionSection />

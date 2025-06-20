@@ -15,6 +15,10 @@ const Sidebar = ({
   const [openAccordionIndex, setOpenAccordionIndex] = useState(null);
   const [closing, setClosing] = useState(false);
 
+  const menuData = menu?.filter(
+    (item) => item.menuName?.toLowerCase() !== "home"
+  );
+
   const toggleSidebar = () => {
     if (sidebarOpen) {
       setClosing(true);
@@ -51,7 +55,7 @@ const Sidebar = ({
             </button>
 
             <div className="menuFullScreen-links js-menuFullScreen-links">
-              {menu
+              {menuData
                 ?.filter((item) => item?.isActive)
                 .map((item, index) => (
                   <div
@@ -191,7 +195,7 @@ const Sidebar = ({
         </div>
         <div className="sidebar-mobile-menu">
           <div className="accordion-menu">
-            {menu?.map((item, index) => {
+            {menuData?.map((item, index) => {
               const hasSubmenu =
                 item?.menuType === "Sub Menu" &&
                 submenuMap[item?._id]?.length > 0;

@@ -7,6 +7,9 @@ const Footer = ({ settings, menu, submenuMap }) => {
     Accordion.init();
   }, []);
 
+  const menuData = menu?.filter(
+    (item) => item.menuName?.toLowerCase() !== "home"
+  );
   const allSubmenus = Object.values(submenuMap || {}).flat();
   const data = settings;
 
@@ -29,7 +32,7 @@ const Footer = ({ settings, menu, submenuMap }) => {
   const footerSections = [
     {
       title: "Information",
-      links: menu
+      links: menuData
         ?.filter((item) => item.menuName !== "About Us")
         .map((item) => [item.menuName, item.menuURL]),
     },

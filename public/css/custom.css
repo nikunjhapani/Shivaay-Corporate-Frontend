@@ -63,10 +63,15 @@
 
 /* Gallery */
 .media-container {
-  width: auto;  
-  /* height: 250px;  */
+  width: 100%;  
+  height: 250px; 
   overflow: hidden;
-  /* margin: 8px; */
+}
+
+@media (max-width: 1200px) {
+  .media-container {
+    height: 180px; 
+  }
 }
 
 .media-container img,

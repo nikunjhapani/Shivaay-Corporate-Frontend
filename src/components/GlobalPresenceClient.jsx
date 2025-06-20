@@ -136,7 +136,7 @@ export default function GlobalPresenceClient() {
                               <div className="row y-gap-40 justify-between items-center">
                                 <div className="col-xl-6 col-lg-6">
                                   <h2 className="text-30 md:text-24 sm:text-24">
-                                    {location.name}
+                                    {location.countryName}
                                   </h2>
                                   <div
                                     className="lh-17 text-15 sm:text-13 mt-15 mb-10 text-justify"

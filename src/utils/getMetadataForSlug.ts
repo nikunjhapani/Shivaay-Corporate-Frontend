@@ -1,9 +1,12 @@
 import getLayoutData from "./getLayoutData";
 
 export default async function getMetadataForSlug(slug: string) {
-  try {
-    const { menu, submenuMap } = await getLayoutData();
 
+
+
+  try {
+
+    const { menu, submenuMap } = await getLayoutData();
     const allMenus = [...menu, ...Object.values(submenuMap).flat()];
     const page = allMenus.find((item: any) => item.menuURL === slug);
 
