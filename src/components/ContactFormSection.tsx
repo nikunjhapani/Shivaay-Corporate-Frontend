@@ -82,7 +82,11 @@ export default function ContactFormSection() {
               // noValidate
             >
               <div className="col-md-6">
-                <div className="form-input">
+                <div
+                  className={`form-input ${
+                    formData.firstName.trim() !== "" ? "has-value" : ""
+                  }`}
+                >
                   <input
                     name="firstName"
                     type="text"
@@ -97,7 +101,11 @@ export default function ContactFormSection() {
               </div>
 
               <div className="col-md-6">
-                <div className="form-input">
+                <div
+                  className={`form-input ${
+                    formData.lastName.trim() !== "" ? "has-value" : ""
+                  }`}
+                >
                   <input
                     name="lastName"
                     type="text"
@@ -110,7 +118,11 @@ export default function ContactFormSection() {
               </div>
 
               <div className="col-12">
-                <div className="form-input">
+                <div
+                  className={`form-input ${
+                    formData.email.trim() !== "" ? "has-value" : ""
+                  }`}
+                >
                   <input
                     name="email"
                     type="email"
@@ -123,7 +135,11 @@ export default function ContactFormSection() {
               </div>
 
               <div className="col-12">
-                <div className="form-input">
+                <div
+                  className={`form-input ${
+                    formData.comment.trim() !== "" ? "has-value" : ""
+                  }`}
+                >
                   <textarea
                     name="comment"
                     required

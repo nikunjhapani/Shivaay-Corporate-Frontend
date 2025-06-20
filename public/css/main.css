@@ -1167,7 +1167,7 @@ button:focus {
   color: #666;
   z-index: 10;
   pointer-events: none;
-  transition: all 0.15s ease-out;
+  transition: all 0.2s ease;
 }
 
 .contactForm .form-input label::before {
@@ -1181,14 +1181,24 @@ button:focus {
   z-index: -1;
 }
 
-.contactForm .form-input textarea:focus+label,
-.contactForm .form-input input:focus+label {
+.contactForm .form-input input:focus + label,
+.contactForm .form-input textarea:focus + label,
+.contactForm .form-input.has-value label {
   transform: translateY(-29px);
+  font-size: 12px;
+  color: #333;
+}
+
+.contactForm .form-input input,
+.contactForm .form-input textarea {
+  padding: 16px 15px 8px 15px;
+  font-size: 14px;
 }
 
 .contactForm .form-input.-h-55 input {
   height: 55px;
 }
+
 
 input.text-white::-moz-placeholder {
   color: white;
