@@ -138,9 +138,12 @@ export default function SocialResponsibility() {
                           <h4 className="text-30 lg:text-30 sm:text-20 text-white mt-20">
                             {item?.title}
                           </h4>
-                          <p className="text-17 text-white mt-10">
-                            {item?.description}
-                          </p>
+                          <p
+                            className="text-17 text-white mt-10"
+                            dangerouslySetInnerHTML={{
+                              __html: item?.description,
+                            }}
+                          />
                         </div>
                       </div>
                     </SwiperSlide>
