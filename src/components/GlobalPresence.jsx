@@ -22,7 +22,10 @@ export default function GlobalPresence() {
   const banner = data?.find((item) => item.pageName === "Our Global Presence");
 
   return (
-    <section className="global-bg-section">
+    <>
+      {banner && (
+        <>
+          <section className="global-bg-section">
       {["video", "image"].includes(banner?.bannerType) &&
         (banner.bannerType === "video" ? (
           <>
@@ -94,6 +97,9 @@ export default function GlobalPresence() {
           </div>
         </div>
       </div>
-    </section>
+          </section>
+        </>
+      )}
+    </>
   );
 }
