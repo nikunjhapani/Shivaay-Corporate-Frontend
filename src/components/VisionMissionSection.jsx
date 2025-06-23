@@ -22,7 +22,7 @@ export default function VisionMissionSection() {
       item.menuType === "CMS" &&
       (item.menuName === "Vision" || item.menuName === "Mission")
   );
-  
+
   return (
     <section className="relative layout-pt-lg">
       <div className="container">
@@ -45,6 +45,8 @@ export default function VisionMissionSection() {
                     width={300}
                     height={300}
                     style={{ width: "100%" }}
+                    priority
+                    
                   />
                 </div>
                 <div className="col-lg-6 text-left sm:px-40">

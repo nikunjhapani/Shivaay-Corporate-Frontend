@@ -11,7 +11,7 @@ export default function GallerySection() {
     queryKey: ["gallery"],
     queryFn: fetchGalleryData,
   });
-  
+
   return (
     <section className="layout-pt-md layout-pb-lg">
       <div className="container">
@@ -29,24 +29,24 @@ export default function GallerySection() {
                   const fileUrl = `${api.defaults.baseURL}${gallaryImage}`;
                   return gallaryType === "video" ? (
                     <div key={_id} className="col-md-4">
-                    <a
-                 
-                      href={fileUrl}
-                      className=""
-                      data-fancybox={galleryTitleId}
-                      data-type="video"
-                    >
-                      <div className="media-container">
-                        <video
-                          src={fileUrl}
-                          className="gallery-img img-fluid"
-                          width={300}
-                          height={200}
-                          style={{ objectFit: "cover" }}
-                          controls
-                        />
-                      </div>
-                    </a>
+                      <a
+
+                        href={fileUrl}
+                        className=""
+                        data-fancybox={galleryTitleId}
+                        data-type="video"
+                      >
+                        <div className="media-container">
+                          <video
+                            src={fileUrl}
+                            className="gallery-img img-fluid"
+                            width={300}
+                            height={200}
+                            style={{ objectFit: "cover" }}
+                            controls
+                          />
+                        </div>
+                      </a>
                     </div>
                   ) : (
                     <a
@@ -65,6 +65,7 @@ export default function GallerySection() {
                           height={200}
                           style={{ objectFit: "cover" }}
                           priority
+                          
                         />
                       </div>
                     </a>

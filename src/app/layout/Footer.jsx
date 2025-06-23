@@ -265,7 +265,7 @@ const Footer = ({ settings, menu, submenuMap }) => {
             <div className="row y-gap-30 justify-center items-center">
               <div className="col-md-auto">
                 <div className="text-15 text-center text-white-60">
-                  © {new Date().getFullYear()} {data.title}.
+                  © {new Date().getFullYear()} {data.title}
                 </div>
               </div>
             </div>

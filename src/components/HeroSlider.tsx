@@ -54,6 +54,8 @@ export default function HeroSlider() {
                       className="img-ratio"
                       width={300}
                       height={400}
+                      priority
+                      
                     />
                   </div>
                 </div>

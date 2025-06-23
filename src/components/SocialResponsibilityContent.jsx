@@ -48,6 +48,8 @@ export default function SocialResponsibilityContent() {
                   className="w-full h-auto object-cover"
                   width={600}
                   height={400}
+                  priority
+                  
                 />
               </div>
 
@@ -64,6 +66,8 @@ export default function SocialResponsibilityContent() {
                     alt="Icon"
                     width={50}
                     height={50}
+                    priority
+                    
                   />
                 </div>
                 <h4

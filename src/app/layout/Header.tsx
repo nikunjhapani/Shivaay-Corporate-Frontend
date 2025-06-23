@@ -31,7 +31,7 @@ export default function Header({ settings, setSidebarOpen, menu, submenuMap }) {
         data-add-bg="bg-accent-1"
         data-x="header"
         data-x-toggle="-is-menu-opened"
-        // ref={headerRef}
+      // ref={headerRef}
       >
         <div className="header__container h-full items-center">
           <div className="header__left d-flex items-center">
@@ -55,6 +55,7 @@ export default function Header({ settings, setSidebarOpen, menu, submenuMap }) {
                   width={120}
                   height={40}
                   priority
+                  
                   style={{ width: "auto", height: "auto" }}
                 />
               </Link>
@@ -111,6 +112,7 @@ export default function Header({ settings, setSidebarOpen, menu, submenuMap }) {
               width={120}
               height={40}
               priority
+              
             />
           </div>
         </div>

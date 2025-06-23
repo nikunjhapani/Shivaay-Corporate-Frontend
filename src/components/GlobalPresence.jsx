@@ -46,6 +46,8 @@ export default function GlobalPresence() {
               alt={banner.bannerTitle}
               width={1920}
               height={800}
+              priority
+              
               className="hidden md:block w-full object-cover"
             />
             <Image
@@ -53,6 +55,8 @@ export default function GlobalPresence() {
               alt={banner.bannerTitle}
               width={768}
               height={500}
+              priority
+              
               className="md:hidden w-full object-cover"
             />
           </>

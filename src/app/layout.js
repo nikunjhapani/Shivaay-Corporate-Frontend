@@ -1,10 +1,10 @@
 import { Cinzel, Poppins } from "next/font/google";
-import Script from "next/script";
+// import Script from "next/script";
 import "./globals.css";
 import "../../public/css/vendors.css";
 import "../../public/css/main.css";
 import "../../public/css/custom.css";
-import Header from "../app/layout/Header";
+// import Header from "../app/layout/Header";
 import Footer from "../app/layout/Footer";
 import AOSProvider from "../components/AOSProvider";
 import ReactQueryProvider from "./context/ReactQueryProvider";

@@ -56,6 +56,8 @@ export default function AwardsPageContent() {
                       alt={item.title}
                       width={300}
                       height={365}
+                      priority
+                      
                       className="img-ratio"
                     />
                   </div>

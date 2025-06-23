@@ -64,6 +64,8 @@ const OurClients = () => {
                       width={100}
                       height={20}
                       style={{ height: "auto" }}
+                      priority
+                      
                     />
                   </div>
                 </div>
@@ -95,6 +97,8 @@ const OurClients = () => {
                             className="size-80"
                             width={80}
                             height={80}
+                            priority
+                            
                           />
                           <div className="ml-20">
                             <h5>Client from {slide.name}</h5>
@@ -115,9 +119,8 @@ const OurClients = () => {
                   {slides.map((_, index) => (
                     <React.Fragment key={index}>
                       <span
-                        className={`number cursor-hover-target ${
-                          activeIndex === index + 1 ? "active" : ""
-                        }`}
+                        className={`number cursor-hover-target ${activeIndex === index + 1 ? "active" : ""
+                          }`}
                         onClick={() => handlePaginationClick(index)}
                         style={{ cursor: "pointer" }}
                       >
@@ -125,9 +128,8 @@ const OurClients = () => {
                       </span>
                       {index !== slides.length - 1 && (
                         <span
-                          className={`line ${
-                            activeIndex === index + 1 ? "line-filled" : ""
-                          }`}
+                          className={`line ${activeIndex === index + 1 ? "line-filled" : ""
+                            }`}
                         />
                       )}
                     </React.Fragment>
