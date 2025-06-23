@@ -67,8 +67,6 @@ export default function ArtistryInnovationContent() {
                       alt={leftItem?.subTitle}
                       width={696}
                       height={469}
-                      priority
-                      
                       className="w-full rounded-4 shadow-md"
                     />
                   </div>
@@ -96,8 +94,6 @@ export default function ArtistryInnovationContent() {
                           alt={rightItem1?.subTitle}
                           width={696}
                           height={469}
-                          priority
-                          
                           className="w-full rounded-4 shadow-md"
                         />
                       </div>
@@ -122,8 +118,6 @@ export default function ArtistryInnovationContent() {
                           alt={rightItem2?.subTitle}
                           width={696}
                           height={469}
-                          priority
-                          
                           className="w-full rounded-4 shadow-md"
                         />
                       </div>

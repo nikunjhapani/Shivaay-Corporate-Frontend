@@ -37,8 +37,8 @@ export default function About() {
 
   const items = Array.isArray(menuData)
     ? menuData.filter(
-      (item) => item.menuType === "CMS" && item.menuName === "Our Journey"
-    )
+        (item) => item.menuType === "CMS" && item.menuName === "Our Journey"
+      )
     : [];
   return (
     <section className="about -type-1 layout-pt-md">
@@ -61,8 +61,6 @@ export default function About() {
                   className="rounded-16"
                   width={500}
                   height={500}
-                  priority
-                  
                 />
               </div>
             ))}

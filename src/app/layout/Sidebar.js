@@ -35,8 +35,9 @@ const Sidebar = ({
     <>
       {/* For Desktop */}
       <div
-        className={`sidebar-overlay ${sidebarOpen ? "open" : ""} ${closing ? "closing" : ""
-          }`}
+        className={`sidebar-overlay ${sidebarOpen ? "open" : ""} ${
+          closing ? "closing" : ""
+        }`}
       >
         <div className="sidebar-container">
           <div
@@ -59,10 +60,11 @@ const Sidebar = ({
                 .map((item, index) => (
                   <div
                     key={index}
-                    className={`menuFullScreen-links__item ${item?.menuType === "Sub Menu"
-                      ? "js-menuFullScreen-has-children"
-                      : ""
-                      }`}
+                    className={`menuFullScreen-links__item ${
+                      item?.menuType === "Sub Menu"
+                        ? "js-menuFullScreen-has-children"
+                        : ""
+                    }`}
                   >
                     <Link
                       href={
@@ -107,16 +109,15 @@ const Sidebar = ({
           </div>
 
           <div
-            className={`sidebar-banner ${sidebarOpen && !closing ? "show" : closing ? "closing" : ""
-              }`}
+            className={`sidebar-banner ${
+              sidebarOpen && !closing ? "show" : closing ? "closing" : ""
+            }`}
           >
             <Image
               src={`${baseUrl}${settings?.menuImage1}`}
               alt="Sidebar Banner"
               width={600}
               height={400}
-              priority
-              
             />
             <div className="text-on-image">
               <div className="text-center">
@@ -168,8 +169,9 @@ const Sidebar = ({
 
       {/* For Mobile */}
       <div
-        className={`sidebar-overlay-mobile ${sidebarOpen ? "open" : ""} ${closing ? "closing" : ""
-          }`}
+        className={`sidebar-overlay-mobile ${sidebarOpen ? "open" : ""} ${
+          closing ? "closing" : ""
+        }`}
       >
         <div className="menuFullScreen__topMobile js-menuFullScreen-topMobile">
           <div
@@ -187,8 +189,6 @@ const Sidebar = ({
               src={`${baseUrl}${settings?.websiteLogo}`}
               width={100}
               height={100}
-              priority
-              
               alt="logo"
             />
           </div>
@@ -206,8 +206,8 @@ const Sidebar = ({
                     onClick={() =>
                       hasSubmenu
                         ? setOpenAccordionIndex(
-                          openAccordionIndex === index ? null : index
-                        )
+                            openAccordionIndex === index ? null : index
+                          )
                         : toggleSidebar()
                     }
                   >
@@ -222,8 +222,9 @@ const Sidebar = ({
                     </Link>
                     {hasSubmenu && (
                       <span
-                        className={`accordion-toggle ${openAccordionIndex === index ? "rotate" : ""
-                          }`}
+                        className={`accordion-toggle ${
+                          openAccordionIndex === index ? "rotate" : ""
+                        }`}
                       >
                         <i className="icon-chevron-right"></i>
                       </span>

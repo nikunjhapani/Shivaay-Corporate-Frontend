@@ -7,7 +7,7 @@ import api from "../../utils/axios";
 import getMetadataForSlug from "../../utils/getMetadataForSlug";
 
 async function getCMSData(slug) {
-  try { 
+  try {
     const res = await fetch(`${api.defaults.baseURL}api/menu/getAllApi`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -59,10 +59,9 @@ export default async function Page({ params }) {
             </div>
           </div>
           <div
-  className="container"
-  dangerouslySetInnerHTML={{ __html: String(cmsData?.page_editor || "") }}
-/>
-
+            className="container"
+            dangerouslySetInnerHTML={{ __html: String(cmsData?.page_editor || "") }}
+          />
         </section>
       </Suspense>
     </>

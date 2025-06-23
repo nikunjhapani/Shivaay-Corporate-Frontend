@@ -94,8 +94,6 @@ export default function SocialResponsibility() {
                   className="img-ratio"
                   width={1920}
                   height={1080}
-                  priority
-                  
                 />
               </div>
             ))}
@@ -135,8 +133,6 @@ export default function SocialResponsibility() {
                               alt={item?.title || "Icon"}
                               width={50}
                               height={50}
-                              priority
-                              
                             />
                           </div>
                           <h4 className="text-30 lg:text-30 sm:text-20 text-white mt-20">
@@ -158,8 +154,9 @@ export default function SocialResponsibility() {
                 {filteredData.map((_, index) => (
                   <span
                     key={index}
-                    className={`pagination__item cursor-hover-target cursor-pointer ${activeIndex === index ? "is-active" : ""
-                      }`}
+                    className={`pagination__item cursor-hover-target cursor-pointer ${
+                      activeIndex === index ? "is-active" : ""
+                    }`}
                     onClick={() => handlePaginationClick(index)}
                   >
                     {String(index + 1).padStart(2, "0")}

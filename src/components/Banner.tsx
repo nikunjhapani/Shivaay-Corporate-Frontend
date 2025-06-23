@@ -1,5 +1,10 @@
+"use client";
+import React, { useEffect, useState } from "react";
+import api from "../utils/axios";
 import Image from "next/image";
 import CareerForm from "./CareerForm";
+import { useIsClient } from "./AOSProvider";
+import Home from "../../public/img/banners/Home.jpg";
 
 type BannerItem = {
   _id: string;
@@ -18,26 +23,63 @@ type Props = {
   pageName: string;
 };
 
-const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+export default function Banner({ pageName }: Props) {
+  const isClient = useIsClient();
+  const [banners, setBanners] = useState<BannerItem[]>([]);
+  const [loader, setLoader] = useState<boolean>(true);
+  const [videoLoaded, setVideoLoaded] = useState<{ [key: string]: boolean }>({});
 
-async function getBanners(pageName: string): Promise<BannerItem[]> {
-  const res = await fetch(`${baseURL}api/banner/getAllApi`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ pageName }),
-    cache: "no-store",
-  });
+  useEffect(() => {
+    const fetchBanners = async () => {
+      try {
+        const res = await api.post("api/banner/getAllApi", { pageName });
+        const Filter = res.data?.data?.filter(
+          (item: BannerItem) =>
+            item.pageName === pageName && item.isActive === true
+        );
+        setBanners(Filter);
+      } catch (error) {
+        console.error("Error fetching banners:", error);
+      } finally {
+        setLoader(false);
+      }
+    };
 
-  const data = await res.json();
-  return data?.data?.filter(
-    (item: BannerItem) => item.pageName === pageName && item.isActive
-  );
-}
+    fetchBanners();
+  }, [pageName]);
 
-export default async function Banner({ pageName }: Props) {
-  const banners = await getBanners(pageName);
+  if (loader) {
+    // Show fallback banner while loading
+    return (
+      <section className="hero -type-1 z-1">
+        <div className="video-overlay01"></div>
+        <div className="hero__bg">
+          <Image
+            src={Home}
+            alt="Video Placeholder"
+            width={1920}
+            height={800}
+            className="w-full object-cover absolute top-0 left-0 z-0"
+            priority
+          />
+        </div>
+        <div className="container">
+          <div className="row justify-center text-center">
+            <div className="col-xl-8 col-lg-10">
+              <h1 className="hero__title text-white">Creativity & Innovation</h1>
+              <div className="hero__content">
+                <div className="hero__subtitle text-white">
+                  Jewelry-Making Intertwines With
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
-  if (!banners || banners.length === 0) return null;
+  if (banners.length === 0) return null;
 
   return (
     <>
@@ -46,12 +88,12 @@ export default async function Banner({ pageName }: Props) {
         const cleanDescription = banner.description?.replace(/^<p>|<\/p>$/g, "");
 
         return (
-          <div key={banner._id}>
+          <React.Fragment key={banner._id}>
             {pageName === "Career" ? (
               <section
                 className="job-section"
                 style={{
-                  backgroundImage: `url(${baseURL}${banner.desktopImage})`,
+                  backgroundImage: `url(${api.defaults.baseURL}${banner.desktopImage})`,
                 }}
               >
                 <div className="container">
@@ -62,8 +104,10 @@ export default async function Banner({ pageName }: Props) {
                         <div className="hero__content">
                           <div
                             className="hero__subtitle text-white text-justify"
-                            dangerouslySetInnerHTML={{ __html: cleanDescription }}
-                          ></div>
+                            dangerouslySetInnerHTML={{
+                              __html: cleanDescription,
+                            }}
+                          />
                         </div>
                       </div>
                     </div>
@@ -79,30 +123,72 @@ export default async function Banner({ pageName }: Props) {
                 <div className="hero__bg">
                   {isVideo ? (
                     <>
-                      <video width="100%" className="desktop-v" autoPlay loop muted playsInline>
-                        <source src={`${baseURL}${banner.desktopImage}`} type="video/mp4" />
+                      {!videoLoaded[banner._id] && (
+                        <Image
+                          src={Home}
+                          alt="Video Placeholder"
+                          width={1920}
+                          height={800}
+                          className="w-full object-cover absolute top-0 left-0 z-0 transition-opacity duration-500 ease-in-out"
+                          priority
+                        />
+                      )}
+
+                      <video
+                        width="100%"
+                        className="desktop-v"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        onLoadedData={() =>
+                          setVideoLoaded((prev) => ({ ...prev, [banner._id]: true }))
+                        }
+                        onError={() =>
+                          setVideoLoaded((prev) => ({ ...prev, [banner._id]: false }))
+                        }
+                      >
+                        <source
+                          src={`${api.defaults.baseURL}${banner.desktopImage}`}
+                          type="video/mp4"
+                        />
                       </video>
-                      <video width="100%" className="mobile-v" autoPlay loop muted playsInline>
-                        <source src={`${baseURL}${banner.desktopImage}`} type="video/mp4" />
+
+                      <video
+                        width="100%"
+                        className="mobile-v"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        onLoadedData={() =>
+                          setVideoLoaded((prev) => ({ ...prev, [banner._id]: true }))
+                        }
+                        onError={() =>
+                          setVideoLoaded((prev) => ({ ...prev, [banner._id]: false }))
+                        }
+                      >
+                        <source
+                          src={`${api.defaults.baseURL}${banner.desktopImage}`}
+                          type="video/mp4"
+                        />
                       </video>
                     </>
                   ) : (
                     <>
                       <Image
-                        src={`${baseURL}${banner.desktopImage}`}
+                        src={`${api.defaults.baseURL}${banner.desktopImage}`}
                         alt={banner.bannerTitle}
                         width={1920}
                         height={800}
                         className="hidden md:block w-full object-cover"
-                        priority
                       />
                       <Image
-                        src={`${baseURL}${banner.mobileImage}`}
+                        src={`${api.defaults.baseURL}${banner.mobileImage}`}
                         alt={banner.bannerTitle}
                         width={768}
                         height={500}
                         className="md:hidden w-full object-cover"
-                        priority
                       />
                     </>
                   )}
@@ -111,19 +197,33 @@ export default async function Banner({ pageName }: Props) {
                 <div className="container">
                   <div className="row justify-center text-center">
                     <div className="col-xl-8 col-lg-10">
-                      <h1 className="hero__title text-white">{banner.bannerTitle}</h1>
+                      <h1
+                        className="hero__title text-white"
+                        {...(isClient && {
+                          "data-aos": "fade-up",
+                          "data-aos-offset": "0",
+                          "data-aos-duration": "1000",
+                        })}
+                      >
+                        {banner.bannerTitle}
+                      </h1>
                       <div className="hero__content">
                         <div
                           className="hero__subtitle text-white"
+                          {...(isClient && {
+                            "data-aos": "fade-up",
+                            "data-aos-offset": "0",
+                            "data-aos-duration": "1000",
+                          })}
                           dangerouslySetInnerHTML={{ __html: cleanDescription }}
-                        ></div>
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
               </section>
             )}
-          </div>
+          </React.Fragment>
         );
       })}
     </>

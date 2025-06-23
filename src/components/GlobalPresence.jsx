@@ -9,7 +9,7 @@ import { useIsClient } from "./AOSProvider";
 
 export const GlobalPresenceData = async () => {
   const res = await postData("/api/banner/getAllApi");
-  return res?.data || [];
+  return (res?.data || []).filter((item) => item.isActive);
 };
 
 export default function GlobalPresence() {
@@ -46,8 +46,6 @@ export default function GlobalPresence() {
               alt={banner.bannerTitle}
               width={1920}
               height={800}
-              priority
-              
               className="hidden md:block w-full object-cover"
             />
             <Image
@@ -55,8 +53,6 @@ export default function GlobalPresence() {
               alt={banner.bannerTitle}
               width={768}
               height={500}
-              priority
-              
               className="md:hidden w-full object-cover"
             />
           </>

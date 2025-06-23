@@ -45,9 +45,11 @@ const Footer = ({ settings, menu, submenuMap }) => {
       content: (
         <>
           <p className="text-16 text-white-60 lh-17 mb-5">{data?.title}</p>
-          <a className="d-block text-15 text-white-60 lh-17" href="#">
-            {data.address.replace(/<\/?p>/g, "")}
-          </a>
+          <a
+            className="d-block text-15 text-white-60 lh-17"
+            href="#"
+            dangerouslySetInnerHTML={{ __html: data.address }}
+          ></a>
           <div className="mt-10">
             <a
               className="d-block text-15 text-white-60"
@@ -134,10 +136,10 @@ const Footer = ({ settings, menu, submenuMap }) => {
                   <div className="y-gap-10 text-15 text-white-60 mt-20 md:mt-20">
                     {section.links
                       ? section.links.map(([label, href], i) => (
-                          <Link className="d-block" href={href} key={i}>
-                            {label}
-                          </Link>
-                        ))
+                        <Link className="d-block" href={href} key={i}>
+                          {label}
+                        </Link>
+                      ))
                       : section.content}
                   </div>
                 </div>
@@ -176,7 +178,7 @@ const Footer = ({ settings, menu, submenuMap }) => {
             <div className="row y-gap-30 justify-between md:justify-center items-center">
               <div className="col-md-auto">
                 <div className="text-15 text-center text-white-60">
-                  © {new Date().getFullYear()} {data.title}.
+                  © {new Date().getFullYear()} {data.title}
                 </div>
               </div>
             </div>
@@ -213,14 +215,14 @@ const Footer = ({ settings, menu, submenuMap }) => {
                             <div className="y-gap-15 text-15 text-white-60 d-flex flex-column">
                               {section.links
                                 ? section.links.map(([label, href], i) => (
-                                    <Link
-                                      className="d-block"
-                                      href={href}
-                                      key={i}
-                                    >
-                                      {label}
-                                    </Link>
-                                  ))
+                                  <Link
+                                    className="d-block"
+                                    href={href}
+                                    key={i}
+                                  >
+                                    {label}
+                                  </Link>
+                                ))
                                 : section.content}
                             </div>
                           </div>

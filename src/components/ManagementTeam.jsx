@@ -51,8 +51,6 @@ export default function ManagementTeam() {
                 width={600}
                 height={600}
                 loading="eager"
-                priority
-                
               />
             </div>
 

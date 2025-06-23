@@ -61,8 +61,6 @@ export default function GlobalPresenceClient() {
                         className="w-[60px] h-[60px] object-contain mx-auto"
                         width={60}
                         height={60}
-                        priority
-                        
                       />
                     </div>
                     <h4 className="text-20 lg:text-20 sm:text-17">
@@ -85,8 +83,9 @@ export default function GlobalPresenceClient() {
                   .map((location) => (
                     <div className="col-auto" key={location._id}>
                       <button
-                        className={`tabs__button fw-500 pb-15 ${activeTab === location._id ? "is-tab-el-active" : ""
-                          }`}
+                        className={`tabs__button fw-500 pb-15 ${
+                          activeTab === location._id ? "is-tab-el-active" : ""
+                        }`}
                         onClick={() => setActiveTab(location._id)}
                       >
                         {location.countryName}
@@ -119,8 +118,6 @@ export default function GlobalPresenceClient() {
                                     alt={location.countryName}
                                     width={600}
                                     height={400}
-                                    priority
-                                    
                                   />
                                 </div>
                                 <div className="col-xl-6 col-lg-6">
@@ -155,8 +152,6 @@ export default function GlobalPresenceClient() {
                                     alt={location.countryName}
                                     width={600}
                                     height={400}
-                                    priority
-                                    
                                   />
                                 </div>
                               </div>
