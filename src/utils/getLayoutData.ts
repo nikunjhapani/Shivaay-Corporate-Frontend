@@ -2,7 +2,6 @@
 import api from "./axios";
 
 export default async function getLayoutData() {
-
   const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const [settingsRes, menuRes] = await Promise.all([
@@ -22,11 +21,11 @@ export default async function getLayoutData() {
 
   const settingsData = await settingsRes.json();
   const menuResponse = await menuRes.json();
-  const fullMenu = menuResponse?.data || [];
-  // const filteredMenuData = fullMenu.filter(
-  //   (item: any) => item.menuName?.toLowerCase() !== "home"
-  // );
+
+  const fullMenu = (menuResponse?.data || []).filter((item: any) => item.isActive);
+
   const parentMenus = fullMenu.filter((item: any) => !item.parentId);
+
   const submenuMap = fullMenu.reduce((acc: any, item: any) => {
     if (item.parentId && item.parentId._id) {
       const parentKey = item.parentId._id;
