@@ -169,7 +169,7 @@ export default function Banner({ pageName }: Props) {
                         }
                       >
                         <source
-                          src={`${api.defaults.baseURL}${banner.desktopImage}`}
+                          src={`${api.defaults.baseURL}${banner.mobileImage}`}
                           type="video/mp4"
                         />
                       </video>
