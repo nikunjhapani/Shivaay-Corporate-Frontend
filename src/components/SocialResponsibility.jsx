@@ -60,113 +60,116 @@ export default function SocialResponsibility() {
     }
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError || !filteredData.length) return <div>No data found.</div>;
+  // if (isLoading) return <div>Loading...</div>;
+  // if (isError || !filteredData.length) return <div>No data found.</div>;
 
   return (
     <>
-      <section className="layout-pt-md">
-        <div className="container layout-pb-sm">
-          <div className="row justify-center text-center">
-            <div className="col-auto">
-              <div className="text-15 sm:text-13 uppercase mb-5">
-                Committed to Making a Difference
+      {filteredData.length > 0 && (
+        <>
+          <section className="layout-pt-md">
+            <div className="container layout-pb-sm">
+              <div className="row justify-center text-center">
+                <div className="col-auto">
+                  <div className="text-15 sm:text-13 uppercase mb-5">
+                    Committed to Making a Difference
+                  </div>
+                  <h2 className="text-34 md:text-30 sm:text-24 capitalize">
+                    Social Responsibility
+                  </h2>
+                </div>
               </div>
-              <h2 className="text-34 md:text-30 sm:text-24 capitalize">
-                Social Responsibility
-              </h2>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      <section className="verticalSlider-images relative z-0 bg-accent-3">
-        <div className="sectionBg -left-2 w-1/2 lg:w-1/1 z-2">
-          <div className="verticalSlider-images__images">
-            {filteredData.map((item, index) => (
-              <div
-                key={item._id}
-                className={index === activeIndex ? "is-active" : ""}
-              >
-                <Image
-                  src={`${api.defaults.baseURL}${item?.socialActivityphoto}`}
-                  alt={item?.title || "Social responsibility image"}
-                  className="img-ratio"
-                  width={1920}
-                  height={1080}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-5 col-lg-4 offset-lg-7">
-              <div className="verticalSlider__wrap relative">
-                <Swiper
-                  ref={swiperRef}
-                  direction="horizontal"
-                  loop={true}
-                  centeredSlides={true}
-                  slidesPerView={1}
-                  spaceBetween={10}
-                  mousewheel={true}
-                  initialSlide={0}
-                  modules={[Mousewheel]}
-                  className="verticalSlider"
-                  onSlideChange={handleSlideChange}
-                  breakpoints={{
-                    991: {
-                      slidesPerView: 3,
-                      direction: "vertical",
-                    },
-                  }}
-                >
-                  {filteredData.map((item) => (
-                    <SwiperSlide key={item._id}>
-                      <div className="d-flex items-center h-full">
-                        <div>
-                          <div className="sr-icon">
-                            <Image
-                              src={`${api.defaults.baseURL}${item?.socialActivityIcon}`}
-                              alt={item?.title || "Icon"}
-                              width={50}
-                              height={50}
-                            />
-                          </div>
-                          <h4 className="text-30 lg:text-30 sm:text-20 text-white mt-20">
-                            {item?.title}
-                          </h4>
-                          <p
-                            className="text-17 text-white mt-10"
-                            dangerouslySetInnerHTML={{
-                              __html: item?.description,
-                            }}
-                          />
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </div>
-              <div className="verticalSlider__nav js-verticalSlider-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-vertical">
-                {filteredData.map((_, index) => (
-                  <span
-                    key={index}
-                    className={`pagination__item cursor-hover-target cursor-pointer ${
-                      activeIndex === index ? "is-active" : ""
-                    }`}
-                    onClick={() => handlePaginationClick(index)}
+          <section className="verticalSlider-images relative z-0 bg-accent-3">
+            <div className="sectionBg -left-2 w-1/2 lg:w-1/1 z-2">
+              <div className="verticalSlider-images__images">
+                {filteredData.map((item, index) => (
+                  <div
+                    key={item._id}
+                    className={index === activeIndex ? "is-active" : ""}
                   >
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
+                    <Image
+                      src={`${api.defaults.baseURL}${item?.socialActivityphoto}`}
+                      alt={item?.title || "Social responsibility image"}
+                      className="img-ratio"
+                      width={1920}
+                      height={1080}
+                    />
+                  </div>
                 ))}
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+
+            <div className="container">
+              <div className="row">
+                <div className="col-xl-5 col-lg-4 offset-lg-7">
+                  <div className="verticalSlider__wrap relative">
+                    <Swiper
+                      ref={swiperRef}
+                      direction="horizontal"
+                      loop={true}
+                      centeredSlides={true}
+                      slidesPerView={1}
+                      spaceBetween={10}
+                      mousewheel={true}
+                      initialSlide={0}
+                      modules={[Mousewheel]}
+                      className="verticalSlider"
+                      onSlideChange={handleSlideChange}
+                      breakpoints={{
+                        991: {
+                          slidesPerView: 3,
+                          direction: "vertical",
+                        },
+                      }}
+                    >
+                      {filteredData.map((item) => (
+                        <SwiperSlide key={item._id}>
+                          <div className="d-flex items-center h-full">
+                            <div>
+                              <div className="sr-icon">
+                                <Image
+                                  src={`${api.defaults.baseURL}${item?.socialActivityIcon}`}
+                                  alt={item?.title || "Icon"}
+                                  width={50}
+                                  height={50}
+                                />
+                              </div>
+                              <h4 className="text-30 lg:text-30 sm:text-20 text-white mt-20">
+                                {item?.title}
+                              </h4>
+                              <p
+                                className="text-17 text-white mt-10"
+                                dangerouslySetInnerHTML={{
+                                  __html: item?.description,
+                                }}
+                              />
+                            </div>
+                          </div>
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
+                  </div>
+                  <div className="verticalSlider__nav js-verticalSlider-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-vertical">
+                    {filteredData.map((_, index) => (
+                      <span
+                        key={index}
+                        className={`pagination__item cursor-hover-target cursor-pointer ${activeIndex === index ? "is-active" : ""
+                          }`}
+                        onClick={() => handlePaginationClick(index)}
+                      >
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </>
+      )}
     </>
   );
 }
