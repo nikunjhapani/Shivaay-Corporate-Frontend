@@ -129,3 +129,8 @@
 a.d-block.text-15.text-white-60.lh-17 p {
   color: rgba(255, 255, 255, 0.6);
 }
+
+/* CSS or SCSS */
+.description-wrapper p {
+  color: white !important;
+}

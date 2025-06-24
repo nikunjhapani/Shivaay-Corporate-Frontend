@@ -18,8 +18,8 @@ const InnovationCard = ({
   description,
   index,
   setActiveIndex,
-}) => 
-  (
+}) =>
+(
   <div
     className="imageCard -type-1 -hover-1"
     onMouseEnter={() => setActiveIndex(index)}
@@ -32,7 +32,10 @@ const InnovationCard = ({
       </div>
       <div className="-hover-1-content">
         <div className="lh-17 mt-20 w-full max-w-md">
-          <div>{description}</div>
+          <div
+            className="description-wrapper"
+            dangerouslySetInnerHTML={{ __html: description }}
+          ></div>
         </div>
         <div className="d-flex mt-30">
           <Link href="/artistry-innovationl">

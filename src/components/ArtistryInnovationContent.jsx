@@ -99,7 +99,10 @@ export default function ArtistryInnovationContent() {
                       </div>
                       <div className="px-40 sm:px-20 text-center mb-60 md:mb-60 sm:mb-40">
                         <h3 className="text-32 sm:text-24 mb-10">{rightItem1?.subTitle}</h3>
-                        <p className="text-16 leading-md">{rightItem1?.description}</p>
+                        <p
+                          className="text-16 leading-md"
+                          dangerouslySetInnerHTML={{ __html: rightItem1?.description }}
+                        ></p>
                       </div>
                     </>
                   )}
