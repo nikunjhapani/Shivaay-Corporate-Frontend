@@ -13,15 +13,13 @@ import { useIsClient } from "./AOSProvider";
 export default function GlobalPresenceClient() {
 
   const isClient = useIsClient();
-  const { data, isLoading, isError } = useQuery({
+  const { data } = useQuery({
     queryKey: ["tabData"],
     queryFn: getTabData,
   });
 
   const {
     data: featuresData,
-    isLoading: isFeatureLoading,
-    isError: isFeatureError,
   } = useQuery({
     queryKey: ["globalCapability"],
     queryFn: capabilityData,

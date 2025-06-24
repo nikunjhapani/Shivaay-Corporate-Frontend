@@ -18,7 +18,7 @@ const getMenuData = async () => {
 };
 
 export default function HeroSlider() {
-  const { data, isLoading, isError } = useQuery({
+  const { data } = useQuery({
     queryKey: ["menuData"],
     queryFn: getMenuData,
   });
