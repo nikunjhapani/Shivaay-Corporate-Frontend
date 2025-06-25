@@ -168,15 +168,15 @@ export default function Banner({ pageName }: Props) {
                       <Image
                         src={`${api.defaults.baseURL}${banner.desktopImage}`}
                         alt={banner.bannerTitle}
-                        width={1920}
-                        height={800}
+                        width={1915}
+                        height={1122}
                         className="hidden md:block w-full object-cover"
                       />
                       <Image
                         src={`${api.defaults.baseURL}${banner.mobileImage}`}
                         alt={banner.bannerTitle}
-                        width={768}
-                        height={500}
+                        width={520}
+                        height={650}
                         className="md:hidden w-full object-cover"
                       />
                     </>

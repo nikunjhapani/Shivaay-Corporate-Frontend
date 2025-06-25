@@ -31,7 +31,7 @@ export default function Header({ settings, setSidebarOpen, menu, submenuMap }) {
         data-add-bg="bg-accent-1"
         data-x="header"
         data-x-toggle="-is-menu-opened"
-        // ref={headerRef}
+      // ref={headerRef}
       >
         <div className="header__container h-full items-center">
           <div className="header__left d-flex items-center">
@@ -64,7 +64,7 @@ export default function Header({ settings, setSidebarOpen, menu, submenuMap }) {
           <div className="header__right d-flex items-center h-full">
             <div className="line -vertical bg-white-10 h-full ml-90 mr-90 xl:d-none"></div>
 
-            <Link href="https://lajo.in/" target="_blank">
+            <Link href="https://b2b.shivaayjewels.com/" target="_blank">
               <button className="button text-white">
                 <svg
                   className="icon"
