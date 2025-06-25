@@ -27,6 +27,7 @@ export default function Banner({ pageName }: Props) {
   const isClient = useIsClient();
   const [banners, setBanners] = useState<BannerItem[]>([]);
   const [loader, setLoader] = useState<boolean>(true);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
   const [videoLoaded, setVideoLoaded] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
@@ -34,8 +35,7 @@ export default function Banner({ pageName }: Props) {
       try {
         const res = await api.post("api/banner/getAllApi", { pageName });
         const Filter = res.data?.data?.filter(
-          (item: BannerItem) =>
-            item.pageName === pageName && item.isActive === true
+          (item: BannerItem) => item.pageName === pageName && item.isActive
         );
         setBanners(Filter);
       } catch (error) {
@@ -48,8 +48,16 @@ export default function Banner({ pageName }: Props) {
     fetchBanners();
   }, [pageName]);
 
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
+
   if (loader) {
-    // Show fallback banner while loading
     return (
       <section className="hero -type-1 z-1">
         <div className="video-overlay01"></div>
@@ -133,14 +141,14 @@ export default function Banner({ pageName }: Props) {
                           priority
                         />
                       )}
-
                       <video
                         width="100%"
-                        className="desktop-v"
+                        className={isMobile ? "mobile-v" : "desktop-v"}
                         autoPlay
                         loop
                         muted
                         playsInline
+                        preload="auto"
                         onLoadedData={() =>
                           setVideoLoaded((prev) => ({ ...prev, [banner._id]: true }))
                         }
@@ -149,27 +157,8 @@ export default function Banner({ pageName }: Props) {
                         }
                       >
                         <source
-                          src={`${api.defaults.baseURL}${banner.desktopImage}`}
-                          type="video/mp4"
-                        />
-                      </video>
-
-                      <video
-                        width="100%"
-                        className="mobile-v"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        onLoadedData={() =>
-                          setVideoLoaded((prev) => ({ ...prev, [banner._id]: true }))
-                        }
-                        onError={() =>
-                          setVideoLoaded((prev) => ({ ...prev, [banner._id]: false }))
-                        }
-                      >
-                        <source
-                          src={`${api.defaults.baseURL}${banner.mobileImage}`}
+                          src={`${api.defaults.baseURL}${isMobile ? banner.mobileImage : banner.desktopImage
+                            }`}
                           type="video/mp4"
                         />
                       </video>

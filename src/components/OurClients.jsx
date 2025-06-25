@@ -51,7 +51,7 @@ const OurClients = () => {
           <section className="layout-pt-md layout-pb-lg bg-light-1">
             <div className="container">
               <div className="row y-gap-30 justify-between">
-                <div className="col-xl-5 col-lg-6">
+                <div className="col-xl-5 col-lg-6 align-content-center">
                   <div>
                     <h2 className="text-40 md:text-30 sm:text-24 lh-11">
                       Feedback from Our Clients &amp; Visitors
