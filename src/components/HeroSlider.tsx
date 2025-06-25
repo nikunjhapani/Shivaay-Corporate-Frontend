@@ -23,8 +23,7 @@ export default function HeroSlider() {
     queryFn: getMenuData,
   });
 
-  const cmsMenu = data?.filter((item: any) => item.menuType === "CMS");
-
+  const cmsMenu = data?.filter((item: any) => item.menuType === "CMS" && item.isActive);
   return (
     <section className="pt-90 sm:pt-40 layout-pb-md bg-accent-1">
       <div className="container">
