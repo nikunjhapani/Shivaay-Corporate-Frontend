@@ -18,8 +18,7 @@ const InnovationCard = ({
   description,
   index,
   setActiveIndex,
-}) =>
-(
+}) => (
   <div
     className="imageCard -type-1 -hover-1"
     onMouseEnter={() => setActiveIndex(index)}
@@ -38,7 +37,7 @@ const InnovationCard = ({
           ></div>
         </div>
         <div className="d-flex mt-30">
-          <Link href="/artistry-innovationl">
+          <Link href="/artistry-innovation">
             <button className="button -md -type-2 -outline-white text-white">
               Discover More
             </button>
