@@ -61,7 +61,7 @@ export default function GlobalPresenceClient() {
                         height={60}
                       />
                     </div>
-                    <h4 className="text-20 lg:text-20 sm:text-17">
+                    <h4 className="text-20 lg:text-20 sm:text-17 capitalize">
                       {feature?.label}
                     </h4>
                   </div>
