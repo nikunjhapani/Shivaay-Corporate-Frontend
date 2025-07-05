@@ -1561,8 +1561,8 @@ h3,
 h4,
 h5,
 h6 {
-  line-height: 1.2;
-  font-weight: 500;
+  line-height: 1.5;
+  font-weight: 300;
   color: var(--color-black);
   font-family: var(--font-secondary);
   margin: 0;

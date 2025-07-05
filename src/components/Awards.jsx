@@ -35,11 +35,11 @@ export default function Awards() {
       <div className="container">
         <div className="row y-gap-30 justify-between items-end">
           <div className="col-auto">
-            <div className="text-15 sm:text-13 uppercase mb-5">
+            <div className="text-15 sm:text-13 mb-5 uppercase">
               Government and Other Recognitions
             </div>
             <h2 className="text-34 md:text-30 sm:text-24">
-              AWARDS & CERTIFICATES
+              Awards & Certificates
             </h2>
           </div>
 

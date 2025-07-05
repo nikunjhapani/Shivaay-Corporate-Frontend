@@ -53,8 +53,8 @@ const OurClients = () => {
               <div className="row y-gap-30 justify-between">
                 <div className="col-xl-5 col-lg-6 align-content-center">
                   <div>
-                    <h2 className="text-40 md:text-30 sm:text-24 lh-11">
-                      Feedback from Our Clients &amp; Visitors
+                    <h2 className="text-36 md:text-30 sm:text-24 lh-11">
+                      Feedback from <br /> Our Clients &amp; Visitors
                     </h2>
                     <p className="lh-17 mt-20">
                       We take pride in the experiences we create for our clients and

@@ -78,7 +78,7 @@ export default function About() {
                     "data-aos-duration": "1000",
                   })}
                 >
-                  SHIVAAY JEWELS
+                  Shivaay Jewels
                 </Typography>
                 <Typography
                   variant="body"

@@ -25,7 +25,7 @@ import ParentHeader from "./layout/ParentHeader";
 
 const merriweather = Merriweather({
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["300", "300"],
   variable: "--font-playfair",
   display: "swap",
 });

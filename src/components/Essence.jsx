@@ -21,9 +21,9 @@ export default function Essence() {
       <div className="container">
         <div className="row justify-center text-center">
           <div className="col-auto">
-            <h2 className="text-34 md:text-30 sm:text-24">THE ESSENCE</h2>
-            <div className="text-15 sm:text-13 uppercase mb-5">
-              SHIVAAY JEWELS
+            <h2 className="text-34 md:text-30 sm:text-24">The Essence</h2>
+            <div className="text-15 sm:text-13 mb-5 uppercase">
+              Shivaay Jewels 
             </div>
           </div>
         </div>

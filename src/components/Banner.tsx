@@ -146,7 +146,7 @@ export default function Banner({ pageName }: Props) {
                         className={isMobile ? "mobile-v" : "desktop-v"}
                         autoPlay
                         loop
-                        muted
+                        // muted
                         playsInline
                         preload="auto"
                         onLoadedData={() =>

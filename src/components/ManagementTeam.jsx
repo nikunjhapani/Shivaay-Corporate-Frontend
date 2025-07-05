@@ -38,7 +38,7 @@ export default function ManagementTeam() {
             key={item._id}
             className="col-lg-6 col-md-6 baseCard -type-4"
             {...(isClient && {
-              "data-aos": "fade-right",
+              "data-aos": "fade-up",
               "data-aos-offset": "0",
               "data-aos-duration": 1500,
             })}

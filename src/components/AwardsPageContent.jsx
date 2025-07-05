@@ -90,7 +90,6 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import api from "../utils/axios";
 import Button from "./ui/Button";
 import { useIsClient } from "./AOSProvider";
@@ -121,23 +120,6 @@ export default function AwardsPageContent() {
   return (
     <section className="layout-pt-md layout-pb-lg">
       <div className="container">
-        <div className="row y-gap-30 justify-between items-end">
-          <div className="col-auto">
-            <div className="text-15 sm:text-13 uppercase mb-5">
-              Government and Other Recognitions
-            </div>
-            <h2 className="text-34 md:text-30 sm:text-24">
-              AWARDS & CERTIFICATES
-            </h2>
-          </div>
-
-          <div className="col-auto">
-            <Link href="/awards-certificates">
-              <Button className="py-0">VIEW ALL</Button>
-            </Link>
-          </div>
-        </div>
-
         <div className="row y-gap-30 pt-10">
           <Fancybox>
             {awardsData.map((item, index) => {
