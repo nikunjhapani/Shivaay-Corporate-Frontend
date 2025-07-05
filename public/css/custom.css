@@ -87,7 +87,6 @@ img {
   display: block;
 }
 
-/*  */
 .text-truncate-five {
   display: -webkit-box;
   -webkit-line-clamp: 5;
