@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       fontFamily: {
         // cinzel: 'var(--font-cinzel)',
-        playfair: 'var(--font-playfair)',
+        playfair: 'var(--font-merriweather)',
         poppins: 'var(--font-poppins)',
       },
     },

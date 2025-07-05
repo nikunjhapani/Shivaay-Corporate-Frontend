@@ -1,4 +1,4 @@
-import { Cinzel, Poppins, Playfair_Display  } from "next/font/google";
+import { Cinzel, Poppins, Merriweather  } from "next/font/google";
 // import Script from "next/script";
 import "./globals.css";
 import "../../public/css/vendors.css";
@@ -23,7 +23,7 @@ import ParentHeader from "./layout/ParentHeader";
 //   display: "swap",
 // });
 
-const playfair = Playfair_Display({
+const merriweather = Merriweather({
   subsets: ["latin"],
   weight: ["400", "700"],
   variable: "--font-playfair",
@@ -43,7 +43,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={`${playfair.variable} ${poppins.variable}`}>
+      <body className={`${merriweather.variable} ${poppins.variable}`}>
         <ReactQueryProvider>
           {/* <GlobalLoadingProvider> */}
             {/* <LoaderManager /> */}
