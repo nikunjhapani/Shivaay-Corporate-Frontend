@@ -1,4 +1,10 @@
 /* CUSTOM CURSOR */
+
+img {
+  pointer-events: none;
+  user-select: none;
+}
+
 .custom-cursor {
   position: fixed;
   pointer-events: none;
@@ -60,7 +66,6 @@
   }
 }
 
-
 /* Gallery */
 .media-container {
   width: 100%;
@@ -91,7 +96,6 @@
   text-overflow: ellipsis;
 }
 
-
 /* Loader */
 /* Overlay */
 .loader-overlay {
@@ -107,7 +111,7 @@
 
 /* Loader */
 .loader {
-  border: 5px solid #F3F3F3;
+  border: 5px solid #f3f3f3;
   border-top: 5px solid #172862;
   border-radius: 50%;
   width: 48px;
@@ -124,7 +128,6 @@
     transform: rotate(360deg);
   }
 }
-
 
 a.d-block.text-15.text-white-60.lh-17 p {
   color: rgba(255, 255, 255, 0.6);
