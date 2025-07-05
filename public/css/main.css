@@ -1181,8 +1181,8 @@ button:focus {
   z-index: -1;
 }
 
-.contactForm .form-input input:focus + label,
-.contactForm .form-input textarea:focus + label,
+.contactForm .form-input input:focus+label,
+.contactForm .form-input textarea:focus+label,
 .contactForm .form-input.has-value label {
   transform: translateY(-29px);
   font-size: 12px;
@@ -1588,7 +1588,7 @@ h6 {
   font-size: var(--text-15) !important;
 }
 
-.text-16{
+.text-16 {
   font-size: var(--text-16) !important;
 }
 
@@ -2125,7 +2125,7 @@ h6 {
 
 @media (max-width: 575px) {
   .header__logo img {
-    height: 48px;
+    height: 48px !important;
   }
 }
 
@@ -2842,24 +2842,24 @@ h6 {
 }
 
 .footer.-type-1 .footer__main {
-      padding: 55px 0px 35px 0px;
+  padding: 55px 0px 35px 0px;
 }
 
 @media (max-width: 1199px) {
   .footer.-type-1 .footer__main {
-      padding: 55px 0px 35px 0px;
+    padding: 55px 0px 35px 0px;
   }
 }
 
 @media (max-width: 991px) {
   .footer.-type-1 .footer__main {
-      padding: 20px 0px 20px 0px;
+    padding: 20px 0px 20px 0px;
   }
 }
 
 @media (max-width: 575px) {
   .footer.-type-1 .footer__main {
-      padding: 15px 0px 15px 0px;
+    padding: 15px 0px 15px 0px;
   }
 }
 
@@ -3171,6 +3171,8 @@ h6 {
 @media (max-width: 768px) {
   .hero.-type-1 .hero__subtitle {
     margin-bottom: 14px;
+    font-size: 14px;
+    font-weight: 400;
   }
 }
 
@@ -3180,7 +3182,7 @@ h6 {
 
 @media (max-width: 991px) {
   .hero.-type-1 .hero__title {
-    font-size: 40px;
+    font-size: 30px;
   }
 }
 
@@ -6208,13 +6210,13 @@ body.is-cursor-active * {
   margin-right: 100px !important;
 }
 
-.px-4{
+.px-4 {
   padding-left: 1.5rem !important;
   padding-right: 1.5rem !important;
 }
 
 @media (max-width:425px) {
-  .sm\:px-2{
+  .sm\:px-2 {
     padding-left: 0.5rem !important;
     padding-right: 0.5rem !important;
   }
@@ -11046,7 +11048,7 @@ body.is-cursor-active * {
 }
 
 .lineGrid.-type-1 .lineGrid__content {
-  padding:  0;
+  padding: 0;
 }
 
 @media (max-width: 991px) {
@@ -12126,80 +12128,83 @@ body.is-cursor-active * {
 }
 
 @media (max-width:425px) {
-.iconCard__icon_GP img{
-  width: 70px;
-}
+  .iconCard__icon_GP img {
+    width: 70px;
+  }
 }
 
 /* Gallery */
- .gallery-img {
-      width: 100%;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
+.gallery-img {
+  width: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
 
-    .gallery-img:hover {
-      transform: scale(1.02);
-    }
+.gallery-img:hover {
+  transform: scale(1.02);
+}
 
 
-  .h-testimonial-w {
-    background-color: #fff;
-    padding: 30px 40px;
-    border-radius: 10px;
+.h-testimonial-w {
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 10px;
 }
 
 
 .iconCard__icon_GP img {
-    max-width: 75px;
+  max-width: 75px;
 }
 
 
 .iconCard__icon.text-50 img {
-    width: 75px;
+  width: 75px;
 }
 
-.job-section{
-    position: relative;
-    padding-top: 150px;
-    padding-bottom: 60px;
-    z-index: 0;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size:cover;
-    background-attachment: fixed;
+.job-section {
+  position: relative;
+  padding-top: 150px;
+  padding-bottom: 60px;
+  z-index: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .job-bg {
-    background-color: #4141416b;
-    padding: 35px;
-    border-radius: 15px;
+  background-color: #4141416b;
+  padding: 35px;
+  border-radius: 15px;
 }
+
 .global-bg-section {
-    position: relative;
-    height: 650px;
-    overflow: hidden;
+  position: relative;
+  height: 650px;
+  overflow: hidden;
 }
+
 .global-text-p {
-    position: absolute;
-    left: 0px;
-    top: 30%;
-    z-index: 9;
-    width: 100%;
+  position: absolute;
+  left: 0px;
+  top: 30%;
+  z-index: 9;
+  width: 100%;
 }
 
 
 @media (max-width: 768px) {
-.global-text-p{
+  .global-text-p {
     top: 20%;
-}
-.global-bg-section {
+  }
+
+  .global-bg-section {
     height: 480px;
-}
+  }
 }
 
 
 .list-view ul li {
-    padding: 10px 0;
+  padding: 10px 0;
 }

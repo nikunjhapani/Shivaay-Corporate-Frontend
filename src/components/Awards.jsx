@@ -6,6 +6,7 @@ import Link from "next/link";
 import api from "../utils/axios";
 import Button from "./ui/Button";
 import { useIsClient } from "./AOSProvider";
+import Fancybox from "./ui/FancyBox";
 
 export default function Awards() {
   const [awardsData, setAwardsData] = useState([]);
@@ -49,58 +50,71 @@ export default function Awards() {
           </div>
         </div>
 
-        <div className="row y-gap-30 pt-10">
-          {awardsData.slice(0, 4).map((item, index) => {
-            const cleanDescription = item?.description?.replace(
-              /^<p>|<\/p>$/g,
-              ""
-            );
+        <Fancybox>
+          <div className="row y-gap-30 pt-10">
+            {awardsData.slice(0, 4).map((item, index) => {
+              const cleanDescription = item?.description?.replace(/^<p>|<\/p>$/g, "");
+              const imageUrl = item?.awardImage
+                ? `${api.defaults.baseURL}${item.awardImage}`
+                : "/images/placeholder.jpg";
+              const pdfUrl = item?.awardPdf
+                ? `${api.defaults.baseURL}${item.awardPdf}`
+                : "#";
 
-            return (
-              <div
-                key={index}
-                className="col-lg-3 col-md-6 col-6"
-                {...(isClient && {
-                  "data-aos": "fade-up",
-                  "data-aos-duration": item.delay || "1000",
-                })}
-              >
-                <Link
-                  href={`${api.defaults.baseURL}${item?.awardPdf}`}
-                  target="_blank"
-                  className="baseCard -type-2"
+              return (
+                <div
+                  key={index}
+                  className="col-lg-3 col-md-6 col-6"
+                  {...(isClient && {
+                    "data-aos": "fade-up",
+                    "data-aos-duration": item.delay || "1000",
+                  })}
                 >
-                  <div className="baseCard__image ratio ratio-41:50">
-                    <Image
-                      src={`${api.defaults.baseURL}${item?.awardImage}`}
-                      alt={item.title}
-                      width={300}
-                      height={365}
-                      className="img-ratio"
-                    />
-                  </div>
+                  <div className="baseCard -type-2">
+                    {/* Thumbnail image that opens PDF in Fancybox */}
+                    <a
+                      href={pdfUrl}
+                      data-fancybox="awards-gallery"
+                      data-type="iframe"
+                      data-caption={item.title}
+                      title={item.title}
+                      className="baseCard__image ratio ratio-41:50"
+                    >
+                      <Image
+                        src={imageUrl}
+                        alt={item.title}
+                        width={300}
+                        height={365}
+                        className="img-ratio"
+                      />
+                    </a>
 
-                  <div className="baseCard__content mt-10">
-                    <div className="row x-gap-10">
-                      <div className="col-auto lh-14 text-16 md:text-13">
-                        {item.title}
+                    {/* Text content */}
+                    <div className="baseCard__content mt-10">
+                      <div className="row x-gap-10">
+                        <div className="col-auto lh-14 text-16 md:text-13">
+                          {item.title}
+                        </div>
+                      </div>
+
+                      <h4
+                        className="text-20 md:text-17 mt-10"
+                        dangerouslySetInnerHTML={{ __html: cleanDescription }}
+                      ></h4>
+
+                      {/* Optional: Button to open PDF in new tab */}
+                      <div className="d-flex mt-15">
+                        <a href={pdfUrl} target="_blank" rel="noreferrer">
+                          <Button className="py-0">READ MORE</Button>
+                        </a>
                       </div>
                     </div>
-
-                    <h4
-                      className="text-20 md:text-17 mt-10"
-                      dangerouslySetInnerHTML={{ __html: cleanDescription }}
-                    ></h4>
-
-                    <div className="d-flex mt-15 md:d-none">
-                      <Button className="py-0">READ MORE</Button>
-                    </div>
                   </div>
-                </Link>
-              </div>
-            );
-          })}
-        </div>
+                </div>
+              );
+            })}
+          </div>
+        </Fancybox>
       </div>
     </section>
   );
