@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import HeroSlider from "../../components/HeroSlider";
 import api from "../../utils/axios";
 import getMetadataForSlug from "../../utils/getMetadataForSlug";
+import AOSProvider from "../../components/AOSProvider";
 
 async function getCMSData(slug) {
   try {
@@ -41,6 +42,7 @@ export default async function Page({ params }) {
 
   return (
     <>
+     <AOSProvider />
       <HeroSlider />
       <Suspense fallback={<div>Loading content...</div>}>
         <section className="layout-pt-md layout-pb-md">
@@ -48,10 +50,10 @@ export default async function Page({ params }) {
             <div className="row justify-center">
               <div className="col-auto">
                 <div className="pageHero__content text-center">
-                  <h1 className="pageHero__title lh-11 capitalize">
+                  <h1 className="pageHero__title lh-11 capitalize"  data-aos="fade-up">
                     {cmsData?.page_title}
                   </h1>
-                  <p className="pageHero__text lh-17">
+                  <p className="pageHero__text lh-17"  data-aos="fade-up">
                     {cmsData?.page_subtitle}
                   </p>
                 </div>
