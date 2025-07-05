@@ -50,10 +50,13 @@ export default function Awards() {
           </div>
         </div>
 
-        <Fancybox>
-          <div className="row y-gap-30 pt-10">
+        <div className="row y-gap-30 pt-10">
+          <Fancybox>
             {awardsData.slice(0, 4).map((item, index) => {
-              const cleanDescription = item?.description?.replace(/^<p>|<\/p>$/g, "");
+              const cleanDescription = item?.description?.replace(
+                /^<p>|<\/p>$/g,
+                ""
+              );
               const imageUrl = item?.awardImage
                 ? `${api.defaults.baseURL}${item.awardImage}`
                 : "/images/placeholder.jpg";
@@ -71,14 +74,10 @@ export default function Awards() {
                   })}
                 >
                   <div className="baseCard -type-2">
-                    {/* Thumbnail image that opens PDF in Fancybox */}
                     <a
                       href={pdfUrl}
-                      data-fancybox="awards-gallery"
-                      data-type="iframe"
-                      data-caption={item.title}
-                      title={item.title}
-                      className="baseCard__image ratio ratio-41:50"
+                      data-fancybox="gallery"
+                      className="baseCard__image ratio ratio-41:50 fancybox-link"
                     >
                       <Image
                         src={imageUrl}
@@ -89,7 +88,6 @@ export default function Awards() {
                       />
                     </a>
 
-                    {/* Text content */}
                     <div className="baseCard__content mt-10">
                       <div className="row x-gap-10">
                         <div className="col-auto lh-14 text-16 md:text-13">
@@ -102,7 +100,6 @@ export default function Awards() {
                         dangerouslySetInnerHTML={{ __html: cleanDescription }}
                       ></h4>
 
-                      {/* Optional: Button to open PDF in new tab */}
                       <div className="d-flex mt-15">
                         <a href={pdfUrl} target="_blank" rel="noreferrer">
                           <Button className="py-0">READ MORE</Button>
@@ -113,8 +110,8 @@ export default function Awards() {
                 </div>
               );
             })}
-          </div>
-        </Fancybox>
+          </Fancybox>
+        </div>
       </div>
     </section>
   );
