@@ -109,11 +109,11 @@ export default function SocialResponsibility() {
                     <Swiper
                       ref={swiperRef}
                       direction="horizontal"
-                      loop={true}
+                      loop={false}
                       centeredSlides={true}
                       slidesPerView={1}
                       spaceBetween={10}
-                      mousewheel={true}
+                      mousewheel={false}
                       initialSlide={0}
                       modules={[Mousewheel]}
                       className="verticalSlider"
