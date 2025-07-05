@@ -8,7 +8,8 @@ module.exports = {
    theme: {
     extend: {
       fontFamily: {
-        cinzel: 'var(--font-cinzel)',
+        // cinzel: 'var(--font-cinzel)',
+        playfair: 'var(--font-playfair)',
         poppins: 'var(--font-poppins)',
       },
     },

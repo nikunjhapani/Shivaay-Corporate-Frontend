@@ -1,4 +1,4 @@
-import { Cinzel, Poppins } from "next/font/google";
+import { Cinzel, Poppins, Playfair_Display  } from "next/font/google";
 // import Script from "next/script";
 import "./globals.css";
 import "../../public/css/vendors.css";
@@ -16,10 +16,17 @@ import CustomCursor from "../components/ui/CustomCursor";
 // import { metadata } from "./seo/metadata";
 import ParentHeader from "./layout/ParentHeader";
 
-const cinzel = Cinzel({
+// const cinzel = Cinzel({
+//   subsets: ["latin"],
+//   weight: ["400", "700"],
+//   variable: "--font-cinzel",
+//   display: "swap",
+// });
+
+const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "700"],
-  variable: "--font-cinzel",
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -36,7 +43,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={`${cinzel.variable} ${poppins.variable}`}>
+      <body className={`${playfair.variable} ${poppins.variable}`}>
         <ReactQueryProvider>
           {/* <GlobalLoadingProvider> */}
             {/* <LoaderManager /> */}

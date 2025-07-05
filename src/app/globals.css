@@ -6,7 +6,7 @@
 @import 'swiper/css/effect-fade'; /* Optional */
 
 h1, h2, h3 {
-  font-family: var(--font-cinzel), serif;
+  font-family: var(--font-playfair), serif;
   font-display: swap;
 }
 
